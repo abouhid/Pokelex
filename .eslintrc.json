@@ -16,6 +16,7 @@
     "airbnb",
     "plugin:react/recommended",
     "prettier/react",
+    "plugin:prettier/recommended",
     "prettier"
   ],
   "plugins": ["react", "prettier"],
@@ -24,8 +25,9 @@
     "react/react-in-jsx-scope": "off",
     "import/no-unresolved": "off",
     "no-shadow": "off",
-    "arrow-parens": ["error", "as-needed"],
-    "prettier/prettier": "error"
+    "arrow-parens": "off",
+    "prettier/prettier": "error",
+    "arrow-body-style": "off"
   },
   "ignorePatterns": ["dist/", "build/"]
 }
