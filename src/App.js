@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Footer from "./containers/Footer";
@@ -6,20 +6,9 @@ import Header from "./containers/Header";
 import ItemDetails from "./pages/ItemDetails";
 import MainPage from "./pages/MainPage";
 /*eslint-disable */
-import getList from "./services/list";
+import getList from "./services/FetchData";
+import axios from "axios";
 function App() {
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    let mounted = true;
-    getList().then((items) => {
-      if (mounted) {
-        setList(items);
-        console.log(items);
-      }
-    });
-    return () => (mounted = false);
-  }, []);
   return (
     <div className="App">
       <Header />
