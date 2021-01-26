@@ -3,55 +3,18 @@
 //   pokeImage.srcset = `https://pokeres.bastionbot.org/images/pokemon/${pokeID}.png`;
 //   containerDiv.append(pokeImage);
 // }
-
-// function fetchPokemonData({ url }) {
-//   fetch(url)
-//     .then((response) => response.json())
-//     .then(function (pokeData) {
-//       return pokeData;
-//     });
-// }
-
-// function getList() {
-//   return fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
-//     .then((response) => response.json())
-//     .then(function (allpokemon) {
-//       allpokemon.results.forEach(function (pokemon) {
-//         return fetchPokemonData(pokemon);
-//       });
-//     });
-// }
-
-// export default getList;
+/*eslint-disable */
 import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
+import dataFetchReducer from "../reducers/dataFetchReducer";
 
-const dataFetchReducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_INIT":
-      return {
-        ...state,
-        isLoading: true,
-        isError: false,
-      };
-    case "FETCH_SUCCESS":
-      return {
-        ...state,
-        isLoading: false,
-        isError: false,
-        data: action.payload,
-      };
-    case "FETCH_FAILURE":
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-      };
-    default:
-      throw new Error();
-  }
-};
-const FetchData = (initialUrl, initialData) => {
+async function fetchPokemonData({ url }) {
+  const res = await fetch(url);
+
+  return await res.json();
+}
+
+const FetchData = (initialUrl, initialData = {}) => {
   const [url, setUrl] = useState(initialUrl);
   const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,
@@ -66,10 +29,19 @@ const FetchData = (initialUrl, initialData) => {
       dispatch({ type: "FETCH_INIT" });
 
       try {
+        let pokeData;
         const result = await axios(url);
 
+        if (result.data.forms) {
+          pokeData = result.data;
+        } else {
+          pokeData = await Promise.all(
+            result.data.results.map((el) => fetchPokemonData(el))
+          );
+        }
+
         if (!didCancel) {
-          dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+          dispatch({ type: "FETCH_SUCCESS", payload: pokeData });
         }
       } catch (error) {
         if (!didCancel) {
@@ -88,3 +60,4 @@ const FetchData = (initialUrl, initialData) => {
   return [state, setUrl];
 };
 export default FetchData;
+export { fetchPokemonData };

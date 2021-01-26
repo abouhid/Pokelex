@@ -16,7 +16,7 @@ function App() {
         <Route exact path="/">
           <MainPage />
         </Route>
-        <Route path="/info/:productId">
+        <Route path="/:pokemonId">
           <ItemDetails />
         </Route>
       </Switch>

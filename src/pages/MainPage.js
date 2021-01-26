@@ -1,82 +1,21 @@
 import { useState } from "react";
-// import axios from "axios";
-import FetchData from "../services/FetchData";
-
-// const dataFetchReducer = (state, action) => {
-//   switch (action.type) {
-//     case "FETCH_INIT":
-//       return {
-//         ...state,
-//         isLoading: true,
-//         isError: false,
-//       };
-//     case "FETCH_SUCCESS":
-//       return {
-//         ...state,
-//         isLoading: false,
-//         isError: false,
-//         data: action.payload,
-//       };
-//     case "FETCH_FAILURE":
-//       return {
-//         ...state,
-//         isLoading: false,
-//         isError: true,
-//       };
-//     default:
-//       throw new Error();
-//   }
-// };
-// const useDataApi = (initialUrl, initialData) => {
-//   const [url, setUrl] = useState(initialUrl);
-//   const [state, dispatch] = useReducer(dataFetchReducer, {
-//     isLoading: false,
-//     isError: false,
-//     data: initialData,
-//   });
-
-//   useEffect(() => {
-//     let didCancel = false;
-
-//     const fetchData = async () => {
-//       dispatch({ type: "FETCH_INIT" });
-
-//       try {
-//         const result = await axios(url);
-
-//         if (!didCancel) {
-//           dispatch({ type: "FETCH_SUCCESS", payload: result.data });
-//         }
-//       } catch (error) {
-//         if (!didCancel) {
-//           dispatch({ type: "FETCH_FAILURE" });
-//         }
-//       }
-//     };
-
-//     fetchData();
-
-//     return () => {
-//       didCancel = true;
-//     };
-//   }, [url]);
-
-//   return [state, setUrl];
-// };
-
+/*eslint-disable */
+import FetchData, { fetchPokemonData } from "../services/FetchData";
+import { Link } from "react-router-dom";
 const MainPage = () => {
-  const [query, setQuery] = useState("redux");
+  const [query, setQuery] = useState("");
   const [{ data, isLoading, isError }, doFetch] = FetchData(
-    "https://hn.algolia.com/api/v1/search?query=redux",
-    {
-      hits: [],
-    }
+    "https://pokeapi.co/api/v2/pokemon?limit=15"
   );
+  const getNum = (url) => {
+    const el = url.replace(/.*\D(?=\d)|\D+$/g, "");
+    return el;
+  };
   return (
     <>
       <form
         onSubmit={(event) => {
-          doFetch(`http://hn.algolia.com/api/v1/search?query=${query}`);
+          doFetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
 
           event.preventDefault();
         }}
@@ -92,13 +31,30 @@ const MainPage = () => {
       {isLoading ? (
         <div>Loading ...</div>
       ) : (
-        <ul>
-          {data.hits.map((item) => (
-            <li key={item.objectID}>
-              <a href={item.url}>{item.title}</a>
+        <ol>
+          {console.log(Object.keys(data).length)}
+
+          {Object.keys(data).length == 0 ? (
+            <li>No Pokemon Found!</li>
+          ) : Object.keys(data).length == 15 ? (
+            data.map((pokemon) => (
+              <li key={pokemon.id}>
+                <Link
+                  to={getNum(pokemon.forms[0].url)}
+                  href={pokemon.forms[0].url}
+                >
+                  {pokemon.name}
+                </Link>
+              </li>
+            ))
+          ) : (
+            <li key={data.id}>
+              <Link to={getNum(data.forms[0].url)} href={data.forms[0].url}>
+                {data.name}
+              </Link>
             </li>
-          ))}
-        </ul>
+          )}
+        </ol>
       )}
     </>
   );
