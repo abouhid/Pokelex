@@ -1,17 +1,14 @@
 /*eslint-disable*/
 import React from "react";
-import { Link } from "react-router-dom";
-
+import Pokemon from "../components/Pokemon";
 const PokeGrid = ({ data, getNum }) => {
-  // return data.map((pokemon) => (
-  //   <p key={pokemon.id}>
-  //     <Link to={getNum(pokemon.forms[0].url)} href={pokemon.forms[0].url}>
-  //       <img alt="img" src={pokemon.sprites.front_default} />
-  //       {pokemon.name}
-  //     </Link>
-  //   </p>
-  // ));
-  return "oi";
+  return (
+    <div>
+      {data.map((pokemon) => (
+        <Pokemon key={pokemon.id} data={pokemon} getNum={getNum} />
+      ))}
+    </div>
+  );
 };
 
 export default PokeGrid;

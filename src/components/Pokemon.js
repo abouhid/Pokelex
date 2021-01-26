@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import styles from "../styles/grid.css";
 
+console.log(styles);
 const Pokemon = ({ data, getNum }) => {
-  console.log(data);
   return (
-    <Link to={getNum(data.forms[0].url)} href={data.forms[0].url}>
-      <img alt="img" src={data.sprites.front_default} />
+    <div className={styles.lala}>
+      <Link to={getNum(data.forms[0].url)} href={data.forms[0].url}>
+        <img alt="img" src={data.sprites.front_default} />
 
-      {data.name}
-    </Link>
+        {data.name}
+      </Link>
+    </div>
   );
 };
 
