@@ -21,11 +21,11 @@ const MainPage = () => {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <Filter />
         <button type="submit">Search</button>
       </form>
       {isError && <div>Pokemon Not Found!</div>}
       {isLoading ? <div>Loading ...</div> : <></>}
+      <Filter />
     </>
   );
 };

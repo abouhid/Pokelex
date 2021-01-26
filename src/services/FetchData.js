@@ -1,4 +1,3 @@
-/*eslint-disable */
 import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
 import dataFetchReducer from "../reducers/dataFetchReducer";
@@ -6,7 +5,7 @@ import dataFetchReducer from "../reducers/dataFetchReducer";
 async function fetchPokemonData({ url }) {
   const res = await fetch(url);
 
-  return await res.json();
+  return res.json();
 }
 
 const FetchData = (
