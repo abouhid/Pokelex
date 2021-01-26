@@ -1,6 +1,5 @@
 import { useContext } from "react";
 /*eslint-disable */
-import { Link } from "react-router-dom";
 import Filter from "../components/Filter";
 import { Context } from "../Context";
 const MainPage = () => {

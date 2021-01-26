@@ -10,7 +10,7 @@ function ContextProvider({ children }) {
 
   return (
     <Context.Provider
-      value={{ query, setQuery, data, isError, isLoading, doFetch }}
+      value={{ query, setQuery, data, isError, isLoading, doFetch, FetchData }}
     >
       {children}
     </Context.Provider>

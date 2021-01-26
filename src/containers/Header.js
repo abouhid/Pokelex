@@ -1,27 +1,21 @@
 import React, { useContext } from "react";
 /*eslint-disable */
-
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import { Context } from "../Context";
 
 const Header = () => {
-  const { query, setQuery, data, isError, isLoading, doFetch } = useContext(
-    Context
-  );
+  const { query, setQuery, doFetch, FetchData } = useContext(Context);
 
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">PokéList</Navbar.Brand>
-        <Nav className="mr-auto">
-          {/* <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link> */}
-        </Nav>
+        <Navbar.Brand href="/" onClick={FetchData()}>
+          PokéLex
+        </Navbar.Brand>
+        <Nav className="mr-auto"></Nav>
         <form
           onSubmit={(event) => {
             event.preventDefault();
-
             doFetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
           }}
         >
