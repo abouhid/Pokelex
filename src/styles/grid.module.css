@@ -1,0 +1,12 @@
+.pokegrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 4%;
+}
+
+.pokemon {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2% 0;
+}

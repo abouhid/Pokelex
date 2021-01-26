@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 /*eslint-disable */
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { Context } from "../Context";
+import logo from "../images/snorlax.png";
+import style from "../styles/image.module.css";
 
 const Header = () => {
   const { query, setQuery, doFetch } = useContext(Context);
@@ -9,7 +11,10 @@ const Header = () => {
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/">PokéLex</Navbar.Brand>
+        <Navbar.Brand href="/">
+          <img className={style.logo} src={logo} alt="Logo" />
+          PokéLex
+        </Navbar.Brand>
         <Nav className="mr-auto"></Nav>
         <form
           onSubmit={(event) => {

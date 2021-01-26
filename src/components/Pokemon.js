@@ -1,16 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import styles from "../styles/grid.css";
+import styles from "../styles/grid.module.css";
 
-console.log(styles);
 const Pokemon = ({ data, getNum }) => {
+  const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
   return (
-    <div className={styles.lala}>
+    <div className={styles.pokemon}>
       <Link to={getNum(data.forms[0].url)} href={data.forms[0].url}>
         <img alt="img" src={data.sprites.front_default} />
 
-        {data.name}
+        {capitalize(data.name)}
       </Link>
     </div>
   );
