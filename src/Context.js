@@ -7,10 +7,22 @@ const Context = React.createContext();
 function ContextProvider({ children }) {
   const [query, setQuery] = useState("");
   const [{ data, isLoading, isError }, doFetch] = FetchData();
-
+  const getNum = (url) => {
+    const el = url.replace(/.*\D(?=\d)|\D+$/g, "");
+    return el;
+  };
   return (
     <Context.Provider
-      value={{ query, setQuery, data, isError, isLoading, doFetch, FetchData }}
+      value={{
+        query,
+        setQuery,
+        data,
+        isError,
+        isLoading,
+        doFetch,
+        FetchData,
+        getNum,
+      }}
     >
       {children}
     </Context.Provider>

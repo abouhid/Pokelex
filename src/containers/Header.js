@@ -4,14 +4,12 @@ import { Navbar, Nav, Button } from "react-bootstrap";
 import { Context } from "../Context";
 
 const Header = () => {
-  const { query, setQuery, doFetch, FetchData } = useContext(Context);
+  const { query, setQuery, doFetch } = useContext(Context);
 
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/" onClick={FetchData()}>
-          PokéLex
-        </Navbar.Brand>
+        <Navbar.Brand href="/">PokéLex</Navbar.Brand>
         <Nav className="mr-auto"></Nav>
         <form
           onSubmit={(event) => {

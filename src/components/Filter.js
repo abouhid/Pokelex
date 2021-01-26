@@ -2,16 +2,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../Context";
-// import { createPokeImage } from "../services/FetchImage";
-const Filter = () => {
-  const { data } = useContext(Context);
+import PokeGrid from "../containers/PokeGrid";
 
-  const getNum = (url) => {
-    const el = url.replace(/.*\D(?=\d)|\D+$/g, "");
-    return el;
-  };
-  const noPokemon = Object.keys(data).length == 0;
-  const isOnePokemon = Object.keys(data).length == 17;
+const Filter = () => {
+  const { data, getNum } = useContext(Context);
 
   const limit = noPokemon ? (
     <p>No Pokémon Found!</p>
@@ -24,16 +18,7 @@ const Filter = () => {
       </Link>
     </p>
   ) : (
-    <>
-      {data.map((pokemon) => (
-        <p key={pokemon.id}>
-          <Link to={getNum(pokemon.forms[0].url)} href={pokemon.forms[0].url}>
-            <img src={pokemon.sprites.front_default} />
-            {pokemon.name}
-          </Link>
-        </p>
-      ))}
-    </>
+    <PokeGrid data={data} getNum={getNum} />
   );
 
   return <div>{limit}</div>;
