@@ -6,7 +6,7 @@ import Header from "./containers/Header";
 import PokeDetails from "./pages/PokeDetails";
 import MainPage from "./pages/MainPage";
 /*eslint-disable */
-import getList from "./services/FetchData";
+// import getList from "./services/FetchData";
 import axios from "axios";
 function App() {
   return (

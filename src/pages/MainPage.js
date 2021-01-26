@@ -1,17 +1,19 @@
 import { useContext } from "react";
 /*eslint-disable */
-import FetchData from "../services/FetchData";
 import { Link } from "react-router-dom";
 import Filter from "../components/Filter";
 import { Context } from "../Context";
 const MainPage = () => {
-  const { query, setQuery } = useContext(Context);
-  const [{ data, isLoading, isError }, doFetch] = FetchData();
+  const { query, setQuery, data, isError, isLoading, doFetch } = useContext(
+    Context
+  );
   return (
     <>
       <form
         onSubmit={(event) => {
           event.preventDefault();
+
+          doFetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
         }}
       >
         <input
@@ -19,10 +21,10 @@ const MainPage = () => {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
-        <Filter query={query} />
+        <Filter />
         <button type="submit">Search</button>
       </form>
-      {isError && <div>Something went wrong ...</div>}
+      {isError && <div>Pokemon Not Found!</div>}
       {isLoading ? <div>Loading ...</div> : <></>}
     </>
   );

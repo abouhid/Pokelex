@@ -1,13 +1,13 @@
+/*eslint-disable*/
 import React, { useContext } from "react";
 import FetchData from "../services/FetchData";
-/*eslint-disable*/
 import { Link } from "react-router-dom";
 import { Context } from "../Context";
 
 const Filter = () => {
-  const { query, setQuery } = useContext(Context);
-  const [{ data }, doFetch] = FetchData();
+  const { query, setQuery, data } = useContext(Context);
   //   doFetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
+  //   const data = {};
   const getNum = (url) => {
     const el = url.replace(/.*\D(?=\d)|\D+$/g, "");
     return el;
@@ -18,7 +18,7 @@ const Filter = () => {
     ) : Object.keys(data).length == 10 ? (
       <>
         {data
-          .filter((poke) => poke.name.includes(query))
+          //   .filter((poke) => poke.name.includes(query))
           .map((pokemon) => (
             <li key={pokemon.id}>
               <Link
