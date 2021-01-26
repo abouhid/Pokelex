@@ -3,7 +3,7 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Footer from "./containers/Footer";
 import Header from "./containers/Header";
-import ItemDetails from "./pages/ItemDetails";
+import PokeDetails from "./pages/PokeDetails";
 import MainPage from "./pages/MainPage";
 /*eslint-disable */
 import getList from "./services/FetchData";
@@ -17,7 +17,7 @@ function App() {
           <MainPage />
         </Route>
         <Route path="/:pokemonId">
-          <ItemDetails />
+          <PokeDetails />
         </Route>
       </Switch>
       <Footer />

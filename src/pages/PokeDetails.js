@@ -3,16 +3,16 @@ import React from "react";
 import FetchData, { fetchPokemonData } from "../services/FetchData";
 import { useParams } from "react-router-dom";
 
-const ItemDetails = () => {
+const PokeDetails = () => {
   const { pokemonId } = useParams();
   const [{ data, isLoading, isError }, doFetch] = FetchData(
-    `https://pokeapi.co/api/v2/pokemon/${pokemonId}`,
-    {
-      forms: [],
-    }
+    `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
   );
-  console.log(data);
-  return <div>Item Details</div>;
+  return (
+    <>
+      <p>{data.name}</p>
+    </>
+  );
 };
 
-export default ItemDetails;
+export default PokeDetails;

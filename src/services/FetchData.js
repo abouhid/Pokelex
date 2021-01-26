@@ -1,8 +1,3 @@
-// export function createPokeImage(pokeID) {
-//   let pokeImage = document.createElement("img");
-//   pokeImage.srcset = `https://pokeres.bastionbot.org/images/pokemon/${pokeID}.png`;
-//   containerDiv.append(pokeImage);
-// }
 /*eslint-disable */
 import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
@@ -14,7 +9,10 @@ async function fetchPokemonData({ url }) {
   return await res.json();
 }
 
-const FetchData = (initialUrl, initialData = {}) => {
+const FetchData = (
+  initialUrl = "https://pokeapi.co/api/v2/pokemon?limit=10",
+  initialData = {}
+) => {
   const [url, setUrl] = useState(initialUrl);
   const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,
@@ -60,4 +58,3 @@ const FetchData = (initialUrl, initialData = {}) => {
   return [state, setUrl];
 };
 export default FetchData;
-export { fetchPokemonData };
