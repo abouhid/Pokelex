@@ -27,7 +27,6 @@ const Filter = () => {
     <>
       {data.map((pokemon) => (
         <p key={pokemon.id}>
-          {console.log(pokemon)}
           <Link to={getNum(pokemon.forms[0].url)} href={pokemon.forms[0].url}>
             <img src={pokemon.sprites.front_default} />
             {pokemon.name}

@@ -9,20 +9,6 @@ const MainPage = () => {
   );
   return (
     <>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-
-          doFetch(`https://pokeapi.co/api/v2/pokemon/${query}`);
-        }}
-      >
-        <input
-          type="text"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
       {isError && <div>Pokemon Not Found!</div>}
       {isLoading ? <div>Loading ...</div> : <></>}
       <Filter />
