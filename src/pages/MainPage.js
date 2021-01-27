@@ -4,6 +4,8 @@ import Filter from "../components/Filter";
 import Pokemon from "../components/Pokemon";
 import PokeGrid from "../containers/PokeGrid";
 import { Context } from "../Context";
+import { Icon } from "semantic-ui-react";
+
 const MainPage = () => {
   const { data, isError, isLoading, getNum } = useContext(Context);
   const noPokemon = Object.keys(data).length == 0;
@@ -12,9 +14,11 @@ const MainPage = () => {
   return (
     <>
       {isError && <div>Pokemon Not Found!</div>}
-      {isLoading ? <div>Loading ...</div> : <></>}
+      {isLoading ? <Icon loading name="spinner" /> : <></>}
       {noPokemon ? (
-        <div>Loading ...</div>
+        <div>
+          <Icon loading name="spinner" />
+        </div>
       ) : isOnePokemon ? (
         <Pokemon data={data} getNum={getNum} />
       ) : (

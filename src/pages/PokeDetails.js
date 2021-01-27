@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import styles from "../styles/pokePage.module.css";
 import { Context } from "../Context";
 import axios from "axios";
+import { Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 // numero dex nacional
 
@@ -44,7 +46,7 @@ const PokeDetails = () => {
         setSpecies(result.data);
 
         if (chainEv.data.chain.evolves_to.length > 1) {
-          const imgArr = chainEv.data.chain.evolves_to.map((el) => {
+          chainEv.data.chain.evolves_to.map((el) => {
             evArr.push(getImg(getNum(el.species.url)));
             evArr.push(el.species.name);
           });
@@ -88,8 +90,7 @@ const PokeDetails = () => {
   if (!noPokemon) {
     sprite = data.sprites.front_default;
     sprite_shiny = data.sprites.front_shiny;
-    description = species.flavor_text_entries[0].flavor_text;
-
+    description = species.flavor_text_entries[2].flavor_text;
     types = data.types.map((el) => (
       <p key={el.type.name}>{el.type.name.toUpperCase()}</p>
     ));
@@ -101,15 +102,21 @@ const PokeDetails = () => {
 
     chainList = splitArr.map((el) => (
       <div key={el}>
-        <img alt="img" src={el[0]} />
-        {getNum(el[0])} {capitalize(el[1])}
+        <a href={`/${getNum(el[0])}`}>
+          <img alt="img" src={el[0]} />
+          Nº {getNum(el[0])} <h3>{capitalize(el[1])}</h3>
+        </a>
       </div>
     ));
   }
   return (
     <>
       {isError && <div>Pokemon Not Found!</div>}
-      {isLoading ? <div>Loading ...</div> : <></>}
+      {isLoading && (
+        <div>
+          <Icon loading name="spinner" />
+        </div>
+      )}
       {noPokemon ? (
         <div>No Pokemon Found!</div>
       ) : (
@@ -119,8 +126,20 @@ const PokeDetails = () => {
           <p> {capitalize(data.name)}</p>
           <p>{description}</p>
           {types}
-          <h1>Evolution Chain:</h1>
-          {chainList}
+          {pokemonId == 1 ? (
+            <></>
+          ) : (
+            <a href={`/${pokemonId - 1}`}>
+              <Icon name="arrow alternate circle left" />
+            </a>
+          )}
+          <a href={`/${Number(pokemonId) + 1}`}>
+            <Icon name="arrow alternate circle right" />
+          </a>
+          <div className={styles.chain}>
+            <h1>Evolution Chain:</h1>
+            <div>{chainList}</div>
+          </div>
         </div>
       )}
     </>
