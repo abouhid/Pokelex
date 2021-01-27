@@ -17,6 +17,10 @@ function ContextProvider({ children }) {
     const el = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`;
     return el;
   };
+  // const getName = (num) => {
+  //   const el = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`;
+  //   return el;
+  // };
   return (
     <Context.Provider
       value={{

@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import styles from "../styles/pokePage.module.css";
 import { Context } from "../Context";
 import axios from "axios";
-import { number } from "prop-types";
 
 // numero dex nacional
 
@@ -30,7 +29,6 @@ const PokeDetails = () => {
     description,
     types = [],
     evArr = [],
-    eeveeCase,
     chainList;
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
 
@@ -46,17 +44,20 @@ const PokeDetails = () => {
         setSpecies(result.data);
 
         if (chainEv.data.chain.evolves_to.length > 1) {
-          eeveeCase = chainEv.data.chain.evolves_to.map((el) =>
-            getImg(getNum(el.species.url))
-          );
-          console.log(eeveeCase);
-          setEvolution(eeveeCase);
+          const imgArr = chainEv.data.chain.evolves_to.map((el) => {
+            evArr.push(getImg(getNum(el.species.url)));
+            evArr.push(el.species.name);
+          });
+
+          setEvolution(evArr);
         } else if (chainEv.data.chain.species.name) {
           evArr.push(getImg(getNum(chainEv.data.chain.species.url)));
+          evArr.push(chainEv.data.chain.species.name);
           if (chainEv.data.chain.evolves_to[0]) {
             evArr.push(
               getImg(getNum(chainEv.data.chain.evolves_to[0].species.url))
             );
+            evArr.push(chainEv.data.chain.evolves_to[0].species.name);
 
             if (chainEv.data.chain.evolves_to[0].evolves_to[0]) {
               evArr.push(
@@ -66,8 +67,12 @@ const PokeDetails = () => {
                   )
                 )
               );
+              evArr.push(
+                chainEv.data.chain.evolves_to[0].evolves_to[0].species.name
+              );
             }
           }
+
           setEvolution(evArr);
         }
       } catch (error) {
@@ -88,7 +93,18 @@ const PokeDetails = () => {
     types = data.types.map((el) => (
       <p key={el.type.name}>{el.type.name.toUpperCase()}</p>
     ));
-    chainList = evolution.map((el) => <img key={el} alt="img" src={el} />);
+
+    let splitArr = evolution.reduce(function (result, value, index, array) {
+      if (index % 2 === 0) result.push(array.slice(index, index + 2));
+      return result;
+    }, []);
+
+    chainList = splitArr.map((el) => (
+      <div key={el}>
+        <img alt="img" src={el[0]} />
+        {getNum(el[0])} {capitalize(el[1])}
+      </div>
+    ));
   }
   return (
     <>
