@@ -19,23 +19,28 @@ const PokeDetails = () => {
     setIsLoading,
     getNum,
     getImg,
+    getName,
   } = useContext(Context);
   const [{ data }] = FetchData(
     `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
   );
-  // const sprite = data.sprites.front_default;
-  // const spriteShiny = data.sprites.front_shiny;
-  // const description = species.flavor_text_entries[2].flavor_text;
   const [species, setSpecies] = useState([]);
 
   const noPokemon = Object.keys(data).length == 0 || species.length == 0;
+  const [evolution, setEvolution] = useState([]);
+  let evArr = [],
+    sprite,
+    spriteShiny,
+    description,
+    types;
   if (!noPokemon) {
-    const types = data.types.map((el) => (
+    sprite = data.sprites.front_default;
+    spriteShiny = data.sprites.front_shiny;
+    description = species.flavor_text_entries[2].flavor_text;
+    types = data.types.map((el) => (
       <p key={el.type.name}>{el.type.name.toUpperCase()}</p>
     ));
   }
-  const [evolution, setEvolution] = useState([]);
-  let evArr = [];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -102,17 +107,18 @@ const PokeDetails = () => {
         <div>No Pokemon Found!</div>
       ) : (
         <>
-          <img alt="img" src={data.sprites.front_default} />
-          <img alt="img" src={data.sprites.front_shiny} />
+          <img alt="img" src={sprite} />
+          <img alt="img" src={spriteShiny} />
           <p> {capitalize(data.name)}</p>
-          <p>{species.flavor_text_entries[2].flavor_text}</p>
-          {/* {types} */}
+          <p>{description}</p>
+          {types}
           <EvolutionChain
             pokemonId={pokemonId}
             data={data}
             species={species}
             evolution={evolution}
             getNum={getNum}
+            getName={getName}
           />
         </>
       )}

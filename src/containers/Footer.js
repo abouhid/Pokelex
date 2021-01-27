@@ -5,7 +5,7 @@ import style from "../styles/pokePage.module.css";
 const Footer = () => {
   return (
     <div>
-      <footer className={style.footer}>
+      <footer className={style.footer} style={{ color: "white" }}>
         <img
           src="https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1611772001~hmac=6aff5a6fb4de0961a6c263186e6467ce"
           alt="Logo"

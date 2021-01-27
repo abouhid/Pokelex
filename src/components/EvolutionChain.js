@@ -16,29 +16,46 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
     <div key={el}>
       <a href={`/${getNum(el[0])}`}>
         <img alt="img" src={el[0]} />
+        <br />
         <span>Nº {getNum(el[0])} </span>
         <h3>{capitalize(el[1])}</h3>
       </a>
     </div>
   ));
-  console.log(pokemonId);
+
   return (
     <div>
       <div>
         <div className={styles.chain}>
           <h1>Evolution Chain:</h1>
           <div>
-            {pokemonId === 1 ? (
-              <></>
+            {Number(pokemonId) === 1 ? (
+              <div />
             ) : (
-              <a href={`/${pokemonId - 1}`}>
-                <Icon name="arrow alternate circle left" />
-              </a>
+              <div className={styles.arrowCont}>
+                <a href={`/${Number(pokemonId) - 1}`}>
+                  <Icon name="arrow alternate circle left" />
+                  <img
+                    alt="img"
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                      Number(pokemonId) - 1
+                    }.png`}
+                  />
+                </a>
+              </div>
             )}
-            <div>{chainList}</div>
-            <a href={`/${Number(pokemonId) + 1}`}>
-              <Icon name="arrow alternate circle right" />
-            </a>
+            <div className={styles.chainCenter}>{chainList}</div>
+            <div className={styles.arrowCont}>
+              <a href={`/${Number(pokemonId) + 1}`}>
+                <Icon name="arrow alternate circle right" />
+                <img
+                  alt="img"
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                    Number(pokemonId) + 1
+                  }.png`}
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>

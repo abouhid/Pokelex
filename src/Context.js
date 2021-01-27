@@ -17,10 +17,10 @@ function ContextProvider({ children }) {
     const el = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`;
     return el;
   };
-  // const getName = (num) => {
-  //   const el = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`;
-  //   return el;
-  // };
+  const getName = (num) => {
+    const el = num;
+    return el;
+  };
   return (
     <Context.Provider
       value={{
@@ -35,6 +35,7 @@ function ContextProvider({ children }) {
         FetchData,
         getNum,
         getImg,
+        getName,
       }}
     >
       {children}
