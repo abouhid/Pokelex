@@ -2,7 +2,7 @@ import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
 import dataFetchReducer from "../reducers/dataFetchReducer";
 
-async function fetchPokemonData({ url }) {
+export async function fetchPokemonData({ url }) {
   const res = await fetch(url);
 
   return res.json();

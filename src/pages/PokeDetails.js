@@ -11,7 +11,14 @@ import { number } from "prop-types";
 
 const PokeDetails = () => {
   const { pokemonId } = useParams();
-  const { isError, isLoading, setIsError, setIsLoading } = useContext(Context);
+  const {
+    isError,
+    isLoading,
+    setIsError,
+    setIsLoading,
+    getNum,
+    getImg,
+  } = useContext(Context);
   const [{ data }] = FetchData(
     `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
   );
@@ -22,10 +29,9 @@ const PokeDetails = () => {
     sprite_shiny,
     description,
     types = [],
-    firstEvolImg,
-    secondEvolImg,
-    thirdEvolImg,
-    num;
+    evArr = [],
+    eeveeCase,
+    chainList;
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
 
   useEffect(() => {
@@ -39,37 +45,30 @@ const PokeDetails = () => {
         const chainEv = await axios(result.data.evolution_chain.url);
         setSpecies(result.data);
 
-        console.log(chainEv.data.chain);
-
-        if (chainEv.data.chain.species.name) {
-          const firstEvol = await axios(
-            `https://pokeapi.co/api/v2/pokemon/${chainEv.data.chain.species.name}`
+        if (chainEv.data.chain.evolves_to.length > 1) {
+          eeveeCase = chainEv.data.chain.evolves_to.map((el) =>
+            getImg(getNum(el.species.url))
           );
-          firstEvolImg = firstEvol.data.sprites.front_default;
-          num = 1;
+          console.log(eeveeCase);
+          setEvolution(eeveeCase);
+        } else if (chainEv.data.chain.species.name) {
+          evArr.push(getImg(getNum(chainEv.data.chain.species.url)));
           if (chainEv.data.chain.evolves_to[0]) {
-            const secondEvol = await axios(
-              `https://pokeapi.co/api/v2/pokemon/${chainEv.data.chain.evolves_to[0].species.name}`
+            evArr.push(
+              getImg(getNum(chainEv.data.chain.evolves_to[0].species.url))
             );
-            secondEvolImg = secondEvol.data.sprites.front_default;
-            num = 2;
 
             if (chainEv.data.chain.evolves_to[0].evolves_to[0]) {
-              const thirdEvol = await axios(
-                `https://pokeapi.co/api/v2/pokemon/${chainEv.data.chain.evolves_to[0].evolves_to[0].species.name}`
+              evArr.push(
+                getImg(
+                  getNum(
+                    chainEv.data.chain.evolves_to[0].evolves_to[0].species.url
+                  )
+                )
               );
-              thirdEvolImg = thirdEvol.data.sprites.front_default;
-              num = 3;
             }
           }
-          switch (num) {
-            case 1:
-              setEvolution([firstEvolImg]);
-            case 2:
-              setEvolution([firstEvolImg, secondEvolImg]);
-            case 3:
-              setEvolution([firstEvolImg, secondEvolImg, thirdEvolImg]);
-          }
+          setEvolution(evArr);
         }
       } catch (error) {
         console.log(error);
@@ -89,8 +88,8 @@ const PokeDetails = () => {
     types = data.types.map((el) => (
       <p key={el.type.name}>{el.type.name.toUpperCase()}</p>
     ));
+    chainList = evolution.map((el) => <img key={el} alt="img" src={el} />);
   }
-  console.log(evolution);
   return (
     <>
       {isError && <div>Pokemon Not Found!</div>}
@@ -105,9 +104,7 @@ const PokeDetails = () => {
           <p>{description}</p>
           {types}
           <h1>Evolution Chain:</h1>
-          <img alt="img" src={evolution[0]} />
-          <img alt="img" src={evolution[1]} />
-          <img alt="img" src={evolution[2]} />
+          {chainList}
         </div>
       )}
     </>

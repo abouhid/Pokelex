@@ -13,6 +13,10 @@ function ContextProvider({ children }) {
     const el = url.replace(/.*\D(?=\d)|\D+$/g, "");
     return el;
   };
+  const getImg = (num) => {
+    const el = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`;
+    return el;
+  };
   return (
     <Context.Provider
       value={{
@@ -26,6 +30,7 @@ function ContextProvider({ children }) {
         doFetch,
         FetchData,
         getNum,
+        getImg,
       }}
     >
       {children}
