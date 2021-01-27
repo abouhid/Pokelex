@@ -11,47 +11,43 @@ import axios from "axios";
 const PokeDetails = () => {
   const { pokemonId } = useParams();
   const { isError, isLoading, setIsError, setIsLoading } = useContext(Context);
-
   const [{ data }] = FetchData(
     `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
   );
-  const noPokemon = Object.keys(data).length == 0;
-
   const [species, setSpecies] = useState([]);
+  const noPokemon = Object.keys(data).length == 0 || species.length == 0;
   const [evolution, setEvolution] = useState([]);
-
+  const [numEvol, setNumEvol] = useState([]);
+  let sprite;
+  let sprite_shiny;
+  let description;
+  let types = [];
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
-
-  const getEvolution = (evchain) => {
-    return fetch(evchain).then((data) => data.json());
-  };
 
   useEffect(() => {
     const fetchData = async () => {
+      let num = 0;
       setIsError(false);
       setIsLoading(true);
       try {
         const result = await axios(
           `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
         );
-        console.log(result.data.evolution_chain.url);
-        const result2 = await axios(result.data.evolution_chain.url);
-        console.log(result2.data.chain.species.name);
-
-        if (typeof result2.data.chain.evolves_to[0] !== "undefined") {
-          console.log(result2.data.chain.evolves_to[0].species.name);
-          if (
-            typeof result2.data.chain.evolves_to[0].evolves_to[0] !==
-            "undefined"
-          ) {
-            console.log(
-              result2.data.chain.evolves_to[0].evolves_to[0].species.name
-            );
-          }
-        }
+        const chainEv = await axios(result.data.evolution_chain.url);
 
         setSpecies(result.data);
-        setEvolution(result2);
+        setEvolution(chainEv);
+
+        if (chainEv.data.chain.species.name) {
+          num = 1;
+          if (chainEv.data.chain.evolves_to[0]) {
+            num = 2;
+            if (chainEv.data.chain.evolves_to[0].evolves_to[0]) {
+              num = 3;
+            }
+          }
+        }
+        setNumEvol(num);
       } catch (error) {
         console.log(error);
         setIsError(true);
@@ -61,7 +57,16 @@ const PokeDetails = () => {
     };
     fetchData();
   }, []);
-  // console.log(data);
+
+  if (!noPokemon) {
+    sprite = data.sprites.front_default;
+    sprite_shiny = data.sprites.front_shiny;
+    description = species.flavor_text_entries[0].flavor_text;
+    types = data.types.map((el) => (
+      <p key={el.type.name}>{el.type.name.toUpperCase()}</p>
+    ));
+  }
+  console.log(numEvol);
   return (
     <>
       {isError && <div>Pokemon Not Found!</div>}
@@ -70,14 +75,14 @@ const PokeDetails = () => {
         <div>No Pokemon Found!</div>
       ) : (
         <div>
-          <img alt="img" src={data.sprites.front_default} />
-          <img alt="img" src={data.sprites.front_shiny} />
+          <img alt="img" src={sprite} />
+          <img alt="img" src={sprite_shiny} />
           <p> {capitalize(data.name)}</p>
-          {/* {console.log(evolution)} */}
-          {/* <p>{species.flavor_text_entries[13].flavor_text}</p> */}
+          <p>{description}</p>
+          {types}
         </div>
       )}
     </>
   );
 };
-export default PokeDetails;
+export default React.memo(PokeDetails);
