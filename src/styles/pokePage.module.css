@@ -17,6 +17,9 @@
 }
 
 .chain div div {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
   border-radius: 5px;
 }
 

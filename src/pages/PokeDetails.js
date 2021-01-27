@@ -6,9 +6,7 @@ import styles from "../styles/pokePage.module.css";
 import { Context } from "../Context";
 import axios from "axios";
 import { Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
-
-// numero dex nacional
+import EvolutionChain from "../components/EvolutionChain";
 
 const PokeDetails = () => {
   const { pokemonId } = useParams();
@@ -26,13 +24,7 @@ const PokeDetails = () => {
   const [species, setSpecies] = useState([]);
   const noPokemon = Object.keys(data).length == 0 || species.length == 0;
   const [evolution, setEvolution] = useState([]);
-  let sprite,
-    sprite_shiny,
-    description,
-    types = [],
-    evArr = [],
-    chainList;
-  const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
+  let evArr = [];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,26 +80,6 @@ const PokeDetails = () => {
   }, []);
 
   if (!noPokemon) {
-    sprite = data.sprites.front_default;
-    sprite_shiny = data.sprites.front_shiny;
-    description = species.flavor_text_entries[2].flavor_text;
-    types = data.types.map((el) => (
-      <p key={el.type.name}>{el.type.name.toUpperCase()}</p>
-    ));
-
-    let splitArr = evolution.reduce(function (result, value, index, array) {
-      if (index % 2 === 0) result.push(array.slice(index, index + 2));
-      return result;
-    }, []);
-
-    chainList = splitArr.map((el) => (
-      <div key={el}>
-        <a href={`/${getNum(el[0])}`}>
-          <img alt="img" src={el[0]} />
-          Nº {getNum(el[0])} <h3>{capitalize(el[1])}</h3>
-        </a>
-      </div>
-    ));
   }
   return (
     <>
@@ -120,27 +92,13 @@ const PokeDetails = () => {
       {noPokemon ? (
         <div>No Pokemon Found!</div>
       ) : (
-        <div>
-          <img alt="img" src={sprite} />
-          <img alt="img" src={sprite_shiny} />
-          <p> {capitalize(data.name)}</p>
-          <p>{description}</p>
-          {types}
-          {pokemonId == 1 ? (
-            <></>
-          ) : (
-            <a href={`/${pokemonId - 1}`}>
-              <Icon name="arrow alternate circle left" />
-            </a>
-          )}
-          <a href={`/${Number(pokemonId) + 1}`}>
-            <Icon name="arrow alternate circle right" />
-          </a>
-          <div className={styles.chain}>
-            <h1>Evolution Chain:</h1>
-            <div>{chainList}</div>
-          </div>
-        </div>
+        <EvolutionChain
+          pokemonId={pokemonId}
+          data={data}
+          species={species}
+          evolution={evolution}
+          getNum={getNum}
+        />
       )}
     </>
   );
