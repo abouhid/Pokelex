@@ -1,11 +1,9 @@
-/*eslint-disable */
 import React, { useEffect, useState, useContext } from "react";
-import FetchData from "../services/FetchData";
 import { useParams } from "react-router-dom";
-import styles from "../styles/pokePage.module.css";
-import { Context } from "../Context";
 import axios from "axios";
 import { Icon } from "semantic-ui-react";
+import { Context } from "../Context";
+import FetchData from "../services/FetchData";
 import EvolutionChain from "../components/EvolutionChain";
 import MainInfo from "../components/MainInfo";
 
@@ -27,12 +25,12 @@ const PokeDetails = () => {
   );
   const [species, setSpecies] = useState([]);
 
-  const noPokemon = Object.keys(data).length == 0 || species.length == 0;
+  const noPokemon = Object.keys(data).length === 0 || species.length === 0;
   const [evolution, setEvolution] = useState([]);
-  let evArr = [],
-    description,
-    name,
-    types;
+  const evArr = [];
+  let description;
+  let name;
+  let types;
   if (!noPokemon) {
     description = species.flavor_text_entries[2].flavor_text;
     types = data.types.map((el) => (
@@ -58,6 +56,7 @@ const PokeDetails = () => {
           chainEv.data.chain.evolves_to.map((el) => {
             evArr.push(getImg(getNum(el.species.url)));
             evArr.push(el.species.name);
+            return evArr;
           });
 
           setEvolution(evArr);

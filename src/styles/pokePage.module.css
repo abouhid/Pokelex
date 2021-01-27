@@ -8,13 +8,14 @@
 
 .mainImg {
   width: 100%;
-  border: 1px solid #343a40;
+  border: 6px solid #343a40;
+  border-radius: 10px;
+  margin-right: 10%;
 }
 
 .infoCont {
-  border: 1px solid black;
   border-radius: 5px;
-  padding: 6%;
+  padding: 2%;
   display: flex;
 }
 

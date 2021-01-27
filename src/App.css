@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  -webkit-font-smoothing: none;
+  font-family: "pokemon-font", monospace;
 }
 
 .App-logo {

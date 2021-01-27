@@ -8,7 +8,6 @@ import Footer from "./containers/Footer";
 import Header from "./containers/Header";
 import PokeDetails from "./pages/PokeDetails";
 import MainPage from "./pages/MainPage";
-/*eslint-disable */
 
 function App() {
   return (
