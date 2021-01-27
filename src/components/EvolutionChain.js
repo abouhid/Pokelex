@@ -4,13 +4,7 @@ import { Icon } from "semantic-ui-react";
 
 import styles from "../styles/pokePage.module.css";
 
-const EvolutionChain = ({ data, species, evolution, getNum, pokemonId }) => {
-  const sprite = data.sprites.front_default;
-  const spriteShiny = data.sprites.front_shiny;
-  const description = species.flavor_text_entries[2].flavor_text;
-  const types = data.types.map((el) => (
-    <p key={el.type.name}>{el.type.name.toUpperCase()}</p>
-  ));
+const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
 
   const splitArr = evolution.reduce(function (result, value, index, array) {
@@ -27,16 +21,10 @@ const EvolutionChain = ({ data, species, evolution, getNum, pokemonId }) => {
       </a>
     </div>
   ));
-
+  console.log(pokemonId);
   return (
     <div>
       <div>
-        <img alt="img" src={sprite} />
-        <img alt="img" src={spriteShiny} />
-        <p> {capitalize(data.name)}</p>
-        <p>{description}</p>
-        {types}
-
         <div className={styles.chain}>
           <h1>Evolution Chain:</h1>
           <div>
@@ -58,33 +46,8 @@ const EvolutionChain = ({ data, species, evolution, getNum, pokemonId }) => {
   );
 };
 EvolutionChain.propTypes = {
-  data: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    sprites: PropTypes.arrayOf(
-      PropTypes.shape({ url: PropTypes.string.isRequired }).isRequired
-    ),
-    types: PropTypes.arrayOf(PropTypes.string.isRequired),
-  }).isRequired,
-  species: PropTypes.shape({
-    flavor_text_entries: PropTypes.arrayOf(
-      PropTypes.shape({ flavor_text: PropTypes.string.isRequired }).isRequired
-    ),
-  }).isRequired,
-  evolution: PropTypes.shape({
-    flavor_text_entries: PropTypes.arrayOf(
-      PropTypes.shape({ url: PropTypes.string.isRequired }).isRequired
-    ),
-    reduce: PropTypes.func.isRequired,
-  }).isRequired,
-  pokemonId: PropTypes.number.isRequired,
-  //   data: PropTypes.shape({
-  //     forms: PropTypes.arrayOf(
-  //       PropTypes.shape({ url: PropTypes.string.isRequired }).isRequired
-  //     ).isRequired,
-  //     sprites: PropTypes.shape({ front_default: PropTypes.string.isRequired })
-  //       .isRequired,
-  //     name: PropTypes.string.isRequired,
-  //   }).isRequired,
+  evolution: PropTypes.arrayOf(PropTypes.string).isRequired,
+  pokemonId: PropTypes.string.isRequired,
   getNum: PropTypes.func.isRequired,
 };
 
