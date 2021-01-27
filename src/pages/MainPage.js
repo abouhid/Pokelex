@@ -14,7 +14,7 @@ const MainPage = () => {
       {isError && <div>Pokemon Not Found!</div>}
       {isLoading ? <div>Loading ...</div> : <></>}
       {noPokemon ? (
-        <div>No Pokemon Found!</div>
+        <div>Loading ...</div>
       ) : isOnePokemon ? (
         <Pokemon data={data} getNum={getNum} />
       ) : (

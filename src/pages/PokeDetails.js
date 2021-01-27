@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import styles from "../styles/pokePage.module.css";
 import { Context } from "../Context";
 import axios from "axios";
+import { number } from "prop-types";
 
 // numero dex nacional
 
@@ -17,16 +18,18 @@ const PokeDetails = () => {
   const [species, setSpecies] = useState([]);
   const noPokemon = Object.keys(data).length == 0 || species.length == 0;
   const [evolution, setEvolution] = useState([]);
-  const [numEvol, setNumEvol] = useState([]);
-  let sprite;
-  let sprite_shiny;
-  let description;
-  let types = [];
+  let sprite,
+    sprite_shiny,
+    description,
+    types = [],
+    firstEvolImg,
+    secondEvolImg,
+    thirdEvolImg,
+    num;
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
 
   useEffect(() => {
     const fetchData = async () => {
-      let num = 0;
       setIsError(false);
       setIsLoading(true);
       try {
@@ -34,20 +37,40 @@ const PokeDetails = () => {
           `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
         );
         const chainEv = await axios(result.data.evolution_chain.url);
-
         setSpecies(result.data);
-        setEvolution(chainEv);
+
+        console.log(chainEv.data.chain);
 
         if (chainEv.data.chain.species.name) {
+          const firstEvol = await axios(
+            `https://pokeapi.co/api/v2/pokemon/${chainEv.data.chain.species.name}`
+          );
+          firstEvolImg = firstEvol.data.sprites.front_default;
           num = 1;
           if (chainEv.data.chain.evolves_to[0]) {
+            const secondEvol = await axios(
+              `https://pokeapi.co/api/v2/pokemon/${chainEv.data.chain.evolves_to[0].species.name}`
+            );
+            secondEvolImg = secondEvol.data.sprites.front_default;
             num = 2;
+
             if (chainEv.data.chain.evolves_to[0].evolves_to[0]) {
+              const thirdEvol = await axios(
+                `https://pokeapi.co/api/v2/pokemon/${chainEv.data.chain.evolves_to[0].evolves_to[0].species.name}`
+              );
+              thirdEvolImg = thirdEvol.data.sprites.front_default;
               num = 3;
             }
           }
+          switch (num) {
+            case 1:
+              setEvolution([firstEvolImg]);
+            case 2:
+              setEvolution([firstEvolImg, secondEvolImg]);
+            case 3:
+              setEvolution([firstEvolImg, secondEvolImg, thirdEvolImg]);
+          }
         }
-        setNumEvol(num);
       } catch (error) {
         console.log(error);
         setIsError(true);
@@ -62,11 +85,12 @@ const PokeDetails = () => {
     sprite = data.sprites.front_default;
     sprite_shiny = data.sprites.front_shiny;
     description = species.flavor_text_entries[0].flavor_text;
+
     types = data.types.map((el) => (
       <p key={el.type.name}>{el.type.name.toUpperCase()}</p>
     ));
   }
-  console.log(numEvol);
+  console.log(evolution);
   return (
     <>
       {isError && <div>Pokemon Not Found!</div>}
@@ -80,6 +104,10 @@ const PokeDetails = () => {
           <p> {capitalize(data.name)}</p>
           <p>{description}</p>
           {types}
+          <h1>Evolution Chain:</h1>
+          <img alt="img" src={evolution[0]} />
+          <img alt="img" src={evolution[1]} />
+          <img alt="img" src={evolution[2]} />
         </div>
       )}
     </>
