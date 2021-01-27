@@ -1,4 +1,5 @@
 import React from "react";
+import pokemon from "pokemon";
 import PropTypes from "prop-types";
 import styles from "../styles/pokePage.module.css";
 
@@ -6,6 +7,7 @@ const MainInfo = ({ name, description, types, data }) => {
   const sprites = [];
   const weight = data.weight / 10;
   const height = data.height / 10;
+  console.log(pokemon.all());
 
   sprites[0] = data.sprites.front_default;
   sprites[1] = data.sprites.front_shiny;
@@ -35,9 +37,14 @@ const MainInfo = ({ name, description, types, data }) => {
 MainInfo.propTypes = {
   name: PropTypes.string.isRequired,
   data: PropTypes.shape({
-    sprites: PropTypes.string,
-    weight: PropTypes.string,
-    height: PropTypes.string,
+    sprites: PropTypes.shape({
+      front_default: PropTypes.string,
+      front_shiny: PropTypes.string,
+      back_default: PropTypes.string,
+      back_shiny: PropTypes.string,
+    }),
+    weight: PropTypes.number,
+    height: PropTypes.number,
   }).isRequired,
   description: PropTypes.string.isRequired,
   types: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string }))
