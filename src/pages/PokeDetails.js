@@ -34,9 +34,24 @@ const PokeDetails = () => {
         const result = await axios(
           `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
         );
+        console.log(result.data.evolution_chain.url);
         const result2 = await axios(result.data.evolution_chain.url);
+        console.log(result2.data.chain.species.name);
+
+        if (typeof result2.data.chain.evolves_to[0] !== "undefined") {
+          console.log(result2.data.chain.evolves_to[0].species.name);
+          if (
+            typeof result2.data.chain.evolves_to[0].evolves_to[0] !==
+            "undefined"
+          ) {
+            console.log(
+              result2.data.chain.evolves_to[0].evolves_to[0].species.name
+            );
+          }
+        }
+
         setSpecies(result.data);
-        setEvolution(result2.config.url);
+        setEvolution(result2);
       } catch (error) {
         console.log(error);
         setIsError(true);
