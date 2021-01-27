@@ -2,6 +2,22 @@
   border: 1px solid black;
 }
 
+.cont {
+  padding: 2% 20%;
+}
+
+.mainImg {
+  width: 100%;
+  border: 1px solid #343a40;
+}
+
+.infoCont {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 6%;
+  display: flex;
+}
+
 .chain {
   color: #fff;
   align-items: center;
@@ -10,11 +26,14 @@
   background: transparent url(../images/bg_grey.png);
 }
 
+.title {
+  padding: 1%;
+}
+
 .chain > div {
   display: flex;
   justify-content: space-around;
   width: -webkit-fill-available;
-  border: 1px solid black;
   align-items: center;
 }
 

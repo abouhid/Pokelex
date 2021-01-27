@@ -7,6 +7,7 @@ import { Context } from "../Context";
 import axios from "axios";
 import { Icon } from "semantic-ui-react";
 import EvolutionChain from "../components/EvolutionChain";
+import MainInfo from "../components/MainInfo";
 
 const PokeDetails = () => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
@@ -29,17 +30,17 @@ const PokeDetails = () => {
   const noPokemon = Object.keys(data).length == 0 || species.length == 0;
   const [evolution, setEvolution] = useState([]);
   let evArr = [],
-    sprite,
-    spriteShiny,
     description,
+    name,
     types;
   if (!noPokemon) {
-    sprite = data.sprites.front_default;
-    spriteShiny = data.sprites.front_shiny;
     description = species.flavor_text_entries[2].flavor_text;
     types = data.types.map((el) => (
-      <p key={el.type.name}>{el.type.name.toUpperCase()}</p>
+      <span key={el.type.name}>
+        {el.type.name.toUpperCase()} {""}
+      </span>
     ));
+    name = capitalize(data.name);
   }
 
   useEffect(() => {
@@ -107,11 +108,13 @@ const PokeDetails = () => {
         <div>No Pokemon Found!</div>
       ) : (
         <>
-          <img alt="img" src={sprite} />
-          <img alt="img" src={spriteShiny} />
-          <p> {capitalize(data.name)}</p>
-          <p>{description}</p>
-          {types}
+          <MainInfo
+            data={data}
+            name={name}
+            description={description}
+            types={types}
+          />
+
           <EvolutionChain
             pokemonId={pokemonId}
             data={data}

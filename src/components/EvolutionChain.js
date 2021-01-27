@@ -27,7 +27,7 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
     <div>
       <div>
         <div className={styles.chain}>
-          <h1>Evolution Chain:</h1>
+          <h1 className={styles.title}>Evolution Chain:</h1>
           <div>
             {Number(pokemonId) === 1 ? (
               <div />
