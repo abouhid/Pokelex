@@ -113,6 +113,7 @@ const PokeDetails = () => {
             name={name}
             description={description}
             types={types}
+            pokemonId={pokemonId}
           />
 
           <EvolutionChain
@@ -128,4 +129,4 @@ const PokeDetails = () => {
     </>
   );
 };
-export default React.memo(PokeDetails);
+export default PokeDetails;

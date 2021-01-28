@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "../styles/pokePage.module.css";
 
-const MainInfo = ({ name, description, types, data }) => {
+const MainInfo = ({ name, description, types, data, pokemonId }) => {
   const sprites = [];
   const weight = data[0].weight / 10;
   const height = data[0].height / 10;
@@ -19,8 +19,7 @@ const MainInfo = ({ name, description, types, data }) => {
           <img alt="img" src={sprites[2]} />
           <img alt="img" src={sprites[1]} />
           <img alt="img" src={sprites[3]} />
-
-          <h2> {name}</h2>
+          <span>Nº {pokemonId} </span> <h2> {name}</h2>
           <div>Type(s): {types}</div>
           <div style={{ margin: "10px" }}>
             Height: {height} m - Weight: {weight} kg
@@ -32,6 +31,7 @@ const MainInfo = ({ name, description, types, data }) => {
   );
 };
 MainInfo.propTypes = {
+  pokemonId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   data: PropTypes.arrayOf(
     PropTypes.shape({
