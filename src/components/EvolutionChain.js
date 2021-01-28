@@ -1,7 +1,8 @@
+/*eslint-disable */
 import React from "react";
 import PropTypes from "prop-types";
 import { Icon } from "semantic-ui-react";
-/*eslint-disable */
+
 import pokemon from "pokemon";
 import FetchData from "../services/FetchData";
 

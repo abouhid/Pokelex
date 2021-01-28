@@ -1,7 +1,7 @@
+/*eslint-disable */
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import pokemon from "pokemon";
-/*eslint-disable */
 import { Context } from "../Context";
 import FetchData from "../services/FetchData";
 import EvolutionChain from "../components/EvolutionChain";
@@ -26,17 +26,12 @@ const PokeDetails = () => {
   const [species, setSpecies] = useState([]);
   const noPokemon = Object.keys(data).length === 0 || species.length === 0;
   const [evolution, setEvolution] = useState([]);
-  const evArr = [];
-  let description;
-  let name;
-  let types;
   const colors = {
     grass: "#7AC74C",
     normal: "#A8A77A",
     fire: "#EE8130",
     water: "#6390F0",
     electric: "#F7D02C",
-    grass: "#7AC74C",
     fighting: "#C22E28",
     poison: "#A33EA1",
     ground: "#E2BF65",
@@ -50,13 +45,18 @@ const PokeDetails = () => {
     steel: "#B7B7CE",
     fairy: "#D685AD",
   };
+  const evArr = [];
+  let description;
+  let name;
+  let types;
+
   if (!noPokemon) {
     description = species.flavor_text_entries[2].flavor_text;
     types = data[0].types.map((el) => (
       <span
         key={el.type.name}
         style={{ backgroundColor: `${colors[el.type.name]}` }}
-        className={"types"}
+        className="types"
       >
         {el.type.name.toUpperCase()} {""}
       </span>
@@ -65,7 +65,7 @@ const PokeDetails = () => {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getData = async () => {
       setIsError(false);
       setIsLoading(true);
       try {
@@ -83,7 +83,7 @@ const PokeDetails = () => {
 
       setIsLoading(false);
     };
-    fetchData();
+    getData();
   }, [pokemonId]);
 
   return (

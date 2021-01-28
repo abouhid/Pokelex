@@ -19,7 +19,10 @@ const MainInfo = ({ name, description, types, data, pokemonId }) => {
           <img alt="img" src={sprites[2]} />
           <img alt="img" src={sprites[1]} />
           <img alt="img" src={sprites[3]} />
-          <span>Nº {pokemonId} </span> <h2> {name}</h2>
+          <h2>
+            {" "}
+            <span>Nº {pokemonId} </span> {name}
+          </h2>
           <div>Type(s): {types}</div>
           <div style={{ margin: "10px" }}>
             Height: {height} m - Weight: {weight} kg
