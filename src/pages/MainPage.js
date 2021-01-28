@@ -1,10 +1,8 @@
 import { useContext } from "react";
 /*eslint-disable */
 import Filter from "../components/Filter";
-import Pokemon from "../components/Pokemon";
 import PokeGrid from "../containers/PokeGrid";
 import { Context } from "../Context";
-import { Icon } from "semantic-ui-react";
 import pokeball from "../images/pokeball.svg";
 
 const MainPage = () => {

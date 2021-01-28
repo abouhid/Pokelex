@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import pokemon from "pokemon";
-
+/*eslint-disable */
 // import { Icon } from "semantic-ui-react";
 import { Context } from "../Context";
 import FetchData from "../services/FetchData";
 import EvolutionChain from "../components/EvolutionChain";
 import MainInfo from "../components/MainInfo";
 import getEvolution from "../services/getEvolution";
-import styles from "../styles/types.module.css";
 import pokeball from "../images/pokeball.svg";
 
 const PokeDetails = () => {
@@ -33,11 +32,35 @@ const PokeDetails = () => {
   let description;
   let name;
   let types;
+  const colors = {
+    grass: "#7AC74C",
+    normal: "#A8A77A",
+    fire: "#EE8130",
+    water: "#6390F0",
+    electric: "#F7D02C",
+    grass: "#7AC74C",
+    fighting: "#C22E28",
+    poison: "#A33EA1",
+    ground: "#E2BF65",
+    flying: "#A98FF3",
+    psychic: "#F95587",
+    bug: "#A6B91A",
+    rock: "#B6A136",
+    ghost: "#735797",
+    dragon: "#6F35FC",
+    dark: "#705746",
+    steel: "#B7B7CE",
+    fairy: "#D685AD",
+  };
   if (!noPokemon) {
     description = species.flavor_text_entries[2].flavor_text;
     types = data[0].types.map((el) => (
-      <span key={el.type.name} className={styles.typeCont}>
-        {el.type.name.toUpperCase()} {""}
+      <span
+        key={el.type.name}
+        style={{ backgroundColor: `${colors[el.type.name]}` }}
+        className={"types"}
+      >
+        {console.log(el)} {el.type.name.toUpperCase()} {""}
       </span>
     ));
     name = capitalize(data[0].name);

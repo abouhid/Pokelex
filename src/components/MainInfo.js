@@ -23,7 +23,7 @@ const MainInfo = ({ name, description, types, data }) => {
 
           <h2> {name}</h2>
           <div>Type(s): {types}</div>
-          <div>
+          <div style={{ margin: "10px" }}>
             Height: {height} m - Weight: {weight} kg
           </div>
           <p style={{ padding: "3% 0%" }}>{description}</p>

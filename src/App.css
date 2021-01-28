@@ -18,7 +18,7 @@
   width: 50px;
 }
 
-@-moz-keyframes spin {
+@if () @-moz-keyframes spin {
   100% {
     -moz-transform: rotate(360deg);
   }
@@ -66,4 +66,16 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.types {
+  width: 95px;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 5px;
+  -webkit-box-shadow: 2px 4px 9px -1px #6b0303;
+  box-shadow: 2px 4px 9px -1px #6b0303;
+  cursor: pointer;
 }
