@@ -18,12 +18,12 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
 
   const chainList = splitArr.map((el) => (
     <div key={el}>
-      <a href={`/${getNum(el[0])}`}>
+      <Link to={`/${getNum(el[0])}`}>
         <img alt="img" src={el[0]} />
         <br />
         <span>Nº {getNum(el[0])} </span>
         <h3>{capitalize(el[1])}</h3>
-      </a>
+      </Link>
     </div>
   ));
 
@@ -34,10 +34,7 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
           <h1 className={styles.title}>Evolution Chain:</h1>
           <div>
             {Number(pokemonId) === 1 ? (
-              <div
-                className={styles.arrowCont}
-                onClick={FetchData([pokemon.getName(pokemonId)])}
-              >
+              <div className={styles.arrowCont}>
                 <Link to="/1">
                   <Icon name="arrow alternate circle left" />
                   <img
@@ -47,10 +44,7 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
                 </Link>
               </div>
             ) : (
-              <div
-                className={styles.arrowCont}
-                onClick={FetchData([pokemon.getName(pokemonId)])}
-              >
+              <div className={styles.arrowCont}>
                 <Link to={`/${Number(pokemonId) - 1}`}>
                   <Icon name="arrow alternate circle left" />
                   <img
@@ -67,10 +61,7 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
 
             <div className={styles.arrowCont}>
               {Number(pokemonId) === 809 ? (
-                <div
-                  className={styles.arrowCont}
-                  onClick={FetchData([pokemon.getName(pokemonId)])}
-                >
+                <div className={styles.arrowCont}>
                   <Link to="/1">
                     <Icon name="arrow alternate circle right" />
                     <img
@@ -80,10 +71,7 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
                   </Link>
                 </div>
               ) : (
-                <div
-                  className={styles.arrowCont}
-                  onClick={FetchData([pokemon.getName(pokemonId)])}
-                >
+                <div className={styles.arrowCont}>
                   <Link to={`/${Number(pokemonId) + 1}`}>
                     <Icon name="arrow alternate circle right" />
                     <img

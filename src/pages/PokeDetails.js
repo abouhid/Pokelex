@@ -24,7 +24,6 @@ const PokeDetails = () => {
   } = useContext(Context);
   const [{ data }] = FetchData([pokemon.getName(pokemonId)]);
   const [species, setSpecies] = useState([]);
-
   const noPokemon = Object.keys(data).length === 0 || species.length === 0;
   const [evolution, setEvolution] = useState([]);
   const evArr = [];
@@ -85,7 +84,7 @@ const PokeDetails = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, []);
+  }, [pokemonId]);
 
   return (
     <>
