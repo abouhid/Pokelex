@@ -33,7 +33,6 @@ const PokeDetails = () => {
   let types;
   if (!noPokemon) {
     description = species.flavor_text_entries[2].flavor_text;
-    console.log(data);
     types = data[0].types.map((el) => (
       <span key={el.type.name}>
         {el.type.name.toUpperCase()} {""}
@@ -87,7 +86,6 @@ const PokeDetails = () => {
           setEvolution(evArr);
         }
       } catch (error) {
-        console.log(error);
         setIsError(true);
       }
 
