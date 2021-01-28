@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 /*eslint-disable */
 import pokemon, { all } from "pokemon";
 
@@ -8,8 +8,7 @@ import logo from "../images/snorlax.png";
 import style from "../styles/image.module.css";
 
 const Header = () => {
-  const { query, setQuery, doFetch } = useContext(Context);
-  const [search, setSearch] = useState(["ekans"]);
+  const { query, setQuery, doFetch, search, setSearch } = useContext(Context);
   const allPokemonArr = pokemon.all();
 
   const handleChange = (e) => {
@@ -17,7 +16,6 @@ const Header = () => {
     const filterArr = allPokemonArr.filter((el) =>
       el.toLowerCase().includes(e.target.value.toLowerCase())
     );
-    console.log(filterArr);
     setSearch(filterArr);
     setQuery(e.target.value);
   };

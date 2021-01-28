@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import pokemon from "pokemon";
+
 import { Icon } from "semantic-ui-react";
 import { Context } from "../Context";
 import FetchData from "../services/FetchData";
@@ -20,9 +22,7 @@ const PokeDetails = () => {
     getImg,
     getName,
   } = useContext(Context);
-  const [{ data }] = FetchData(
-    `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
-  );
+  const [{ data }] = FetchData([pokemon.getName(pokemonId)]);
   const [species, setSpecies] = useState([]);
 
   const noPokemon = Object.keys(data).length === 0 || species.length === 0;
@@ -33,12 +33,13 @@ const PokeDetails = () => {
   let types;
   if (!noPokemon) {
     description = species.flavor_text_entries[2].flavor_text;
-    types = data.types.map((el) => (
+    console.log(data);
+    types = data[0].types.map((el) => (
       <span key={el.type.name}>
         {el.type.name.toUpperCase()} {""}
       </span>
     ));
-    name = capitalize(data.name);
+    name = capitalize(data[0].name);
   }
 
   useEffect(() => {

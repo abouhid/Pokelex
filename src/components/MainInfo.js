@@ -7,10 +7,10 @@ const MainInfo = ({ name, description, types, data }) => {
   const weight = data.weight / 10;
   const height = data.height / 10;
 
-  sprites[0] = data.sprites.front_default;
-  sprites[1] = data.sprites.front_shiny;
-  sprites[2] = data.sprites.back_default;
-  sprites[3] = data.sprites.back_shiny;
+  sprites[0] = data[0].sprites.front_default;
+  sprites[1] = data[0].sprites.front_shiny;
+  sprites[2] = data[0].sprites.back_default;
+  sprites[3] = data[0].sprites.back_shiny;
   return (
     <div className={styles.cont}>
       <div className={styles.infoCont}>

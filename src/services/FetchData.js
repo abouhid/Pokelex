@@ -1,7 +1,9 @@
 import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
-import dataFetchReducer from "../reducers/dataFetchReducer";
 /*eslint-disable */
+import pokemon, { all } from "pokemon";
+
+import dataFetchReducer from "../reducers/dataFetchReducer";
 export async function fetchPokemonData({ url }) {
   const res = await fetch(url);
 
@@ -9,17 +11,13 @@ export async function fetchPokemonData({ url }) {
 }
 
 const FetchData = (
-  query = ["pikachu", "alakazam"],
-  initialArr = "https://pokeapi.co/api/v2/pokemon?limit=12",
+  initialArr = [...Array(13).keys()]
+    .slice(1)
+    .map((num) => pokemon.getName(num)),
   initialData = {}
 ) => {
   const maxSlice = 12;
-
-  let urlArray = query
-    .slice(0, Math.min(maxSlice, query.length))
-    .map((el) => `https://pokeapi.co/api/v2/pokemon/${el}`);
-
-  const [url, setUrl] = useState(["pikachu"]);
+  const [url, setUrl] = useState(initialArr);
 
   const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,

@@ -30,7 +30,15 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
           <h1 className={styles.title}>Evolution Chain:</h1>
           <div>
             {Number(pokemonId) === 1 ? (
-              <div />
+              <div className={styles.arrowCont}>
+                <a href="/809">
+                  <Icon name="arrow alternate circle left" />
+                  <img
+                    alt="img"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/809.png"
+                  />
+                </a>
+              </div>
             ) : (
               <div className={styles.arrowCont}>
                 <a href={`/${Number(pokemonId) - 1}`}>
@@ -44,17 +52,31 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
                 </a>
               </div>
             )}
+
             <div className={styles.chainCenter}>{chainList}</div>
+
             <div className={styles.arrowCont}>
-              <a href={`/${Number(pokemonId) + 1}`}>
-                <Icon name="arrow alternate circle right" />
-                <img
-                  alt="img"
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                    Number(pokemonId) + 1
-                  }.png`}
-                />
-              </a>
+              {Number(pokemonId) === 809 ? (
+                <div className={styles.arrowCont}>
+                  <a href="/1">
+                    <Icon name="arrow alternate circle right" />
+                    <img
+                      alt="img"
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+                    />
+                  </a>
+                </div>
+              ) : (
+                <a href={`/${Number(pokemonId) + 1}`}>
+                  <Icon name="arrow alternate circle right" />
+                  <img
+                    alt="img"
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                      Number(pokemonId) + 1
+                    }.png`}
+                  />
+                </a>
+              )}
             </div>
           </div>
         </div>
