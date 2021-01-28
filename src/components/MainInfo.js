@@ -1,5 +1,4 @@
 import React from "react";
-import pokemon from "pokemon";
 import PropTypes from "prop-types";
 import styles from "../styles/pokePage.module.css";
 
@@ -7,7 +6,6 @@ const MainInfo = ({ name, description, types, data }) => {
   const sprites = [];
   const weight = data.weight / 10;
   const height = data.height / 10;
-  console.log(pokemon.all());
 
   sprites[0] = data.sprites.front_default;
   sprites[1] = data.sprites.front_shiny;

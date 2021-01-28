@@ -1,7 +1,7 @@
 import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
 import dataFetchReducer from "../reducers/dataFetchReducer";
-
+/*eslint-disable */
 export async function fetchPokemonData({ url }) {
   const res = await fetch(url);
 
@@ -9,10 +9,18 @@ export async function fetchPokemonData({ url }) {
 }
 
 const FetchData = (
-  initialUrl = "https://pokeapi.co/api/v2/pokemon?limit=12",
+  query = ["pikachu", "alakazam"],
+  initialArr = "https://pokeapi.co/api/v2/pokemon?limit=12",
   initialData = {}
 ) => {
-  const [url, setUrl] = useState(initialUrl);
+  const maxSlice = 12;
+
+  let urlArray = query
+    .slice(0, Math.min(maxSlice, query.length))
+    .map((el) => `https://pokeapi.co/api/v2/pokemon/${el}`);
+
+  const [url, setUrl] = useState(["pikachu"]);
+
   const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,
     isError: false,
@@ -25,18 +33,14 @@ const FetchData = (
     const fetchData = async () => {
       dispatch({ type: "FETCH_INIT" });
 
+      const newUrl = url
+        .slice(0, Math.min(maxSlice, url.length))
+        .map((el) => `https://pokeapi.co/api/v2/pokemon/${el.toLowerCase()}`);
       try {
-        let pokeData;
-        const result = await axios(url);
-
-        if (result.data.forms) {
-          pokeData = result.data;
-        } else {
-          pokeData = await Promise.all(
-            result.data.results.map((el) => fetchPokemonData(el))
-          );
-        }
-
+        const pokeData1 = await Promise.all(
+          newUrl.map(async (el) => await axios(el))
+        );
+        const pokeData = pokeData1.map((el) => el.data);
         if (!didCancel) {
           dispatch({ type: "FETCH_SUCCESS", payload: pokeData });
         }
