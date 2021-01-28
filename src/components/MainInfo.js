@@ -4,8 +4,8 @@ import styles from "../styles/pokePage.module.css";
 
 const MainInfo = ({ name, description, types, data }) => {
   const sprites = [];
-  const weight = data.weight / 10;
-  const height = data.height / 10;
+  const weight = data[0].weight / 10;
+  const height = data[0].height / 10;
 
   sprites[0] = data[0].sprites.front_default;
   sprites[1] = data[0].sprites.front_shiny;

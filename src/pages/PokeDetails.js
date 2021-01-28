@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import pokemon from "pokemon";
 
-import { Icon } from "semantic-ui-react";
+// import { Icon } from "semantic-ui-react";
 import { Context } from "../Context";
 import FetchData from "../services/FetchData";
 import EvolutionChain from "../components/EvolutionChain";
 import MainInfo from "../components/MainInfo";
+import getEvolution from "../services/getEvolution";
+import styles from "../styles/types.module.css";
+import pokeball from "../images/pokeball.svg";
 
 const PokeDetails = () => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
@@ -34,7 +36,7 @@ const PokeDetails = () => {
   if (!noPokemon) {
     description = species.flavor_text_entries[2].flavor_text;
     types = data[0].types.map((el) => (
-      <span key={el.type.name}>
+      <span key={el.type.name} className={styles.typeCont}>
         {el.type.name.toUpperCase()} {""}
       </span>
     ));
@@ -46,45 +48,14 @@ const PokeDetails = () => {
       setIsError(false);
       setIsLoading(true);
       try {
-        const result = await axios(
-          `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
+        getEvolution(
+          pokemonId,
+          setSpecies,
+          getImg,
+          getNum,
+          setEvolution,
+          evArr
         );
-        const chainEv = await axios(result.data.evolution_chain.url);
-        setSpecies(result.data);
-
-        if (chainEv.data.chain.evolves_to.length > 1) {
-          chainEv.data.chain.evolves_to.map((el) => {
-            evArr.push(getImg(getNum(el.species.url)));
-            evArr.push(el.species.name);
-            return evArr;
-          });
-
-          setEvolution(evArr);
-        } else if (chainEv.data.chain.species.name) {
-          evArr.push(getImg(getNum(chainEv.data.chain.species.url)));
-          evArr.push(chainEv.data.chain.species.name);
-          if (chainEv.data.chain.evolves_to[0]) {
-            evArr.push(
-              getImg(getNum(chainEv.data.chain.evolves_to[0].species.url))
-            );
-            evArr.push(chainEv.data.chain.evolves_to[0].species.name);
-
-            if (chainEv.data.chain.evolves_to[0].evolves_to[0]) {
-              evArr.push(
-                getImg(
-                  getNum(
-                    chainEv.data.chain.evolves_to[0].evolves_to[0].species.url
-                  )
-                )
-              );
-              evArr.push(
-                chainEv.data.chain.evolves_to[0].evolves_to[0].species.name
-              );
-            }
-          }
-
-          setEvolution(evArr);
-        }
       } catch (error) {
         setIsError(true);
       }
@@ -98,12 +69,22 @@ const PokeDetails = () => {
     <>
       {isError && <div>Pokemon Not Found!</div>}
       {isLoading && (
-        <div>
-          <Icon loading name="spinner" />
+        <div className="loader-container">
+          <img
+            src={pokeball}
+            className="loading-pokeball"
+            alt="pokeball-icon"
+          />
         </div>
       )}
       {noPokemon ? (
-        <div>No Pokemon Found!</div>
+        <div className="loader-container">
+          <img
+            src={pokeball}
+            className="loading-pokeball"
+            alt="pokeball-icon"
+          />
+        </div>
       ) : (
         <>
           <MainInfo

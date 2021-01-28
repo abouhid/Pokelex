@@ -5,6 +5,7 @@ import Pokemon from "../components/Pokemon";
 import PokeGrid from "../containers/PokeGrid";
 import { Context } from "../Context";
 import { Icon } from "semantic-ui-react";
+import pokeball from "../images/pokeball.svg";
 
 const MainPage = () => {
   const { data, isError, isLoading, getNum } = useContext(Context);
@@ -14,7 +15,17 @@ const MainPage = () => {
   return (
     <>
       {isError && <div>Pokemon Not Found!</div>}
-      {isLoading ? <Icon loading name="spinner" /> : <></>}
+      {isLoading ? (
+        <div className="loader-container">
+          <img
+            src={pokeball}
+            className="loading-pokeball"
+            alt="pokeball-icon"
+          />
+        </div>
+      ) : (
+        <></>
+      )}
       {noPokemon ? (
         "No Pokémon Found!"
       ) : (
