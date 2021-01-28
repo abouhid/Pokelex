@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Icon } from "semantic-ui-react";
+/*eslint-disable */
+import pokemon from "pokemon";
+import FetchData from "../services/FetchData";
 
+import { Link } from "react-router-dom";
 import styles from "../styles/pokePage.module.css";
 
 const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
@@ -30,18 +34,24 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
           <h1 className={styles.title}>Evolution Chain:</h1>
           <div>
             {Number(pokemonId) === 1 ? (
-              <div className={styles.arrowCont}>
-                <a href="/809">
+              <div
+                className={styles.arrowCont}
+                onClick={FetchData([pokemon.getName(pokemonId)])}
+              >
+                <Link to="/1">
                   <Icon name="arrow alternate circle left" />
                   <img
                     alt="img"
                     src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/809.png"
                   />
-                </a>
+                </Link>
               </div>
             ) : (
-              <div className={styles.arrowCont}>
-                <a href={`/${Number(pokemonId) - 1}`}>
+              <div
+                className={styles.arrowCont}
+                onClick={FetchData([pokemon.getName(pokemonId)])}
+              >
+                <Link to={`/${Number(pokemonId) - 1}`}>
                   <Icon name="arrow alternate circle left" />
                   <img
                     alt="img"
@@ -49,7 +59,7 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
                       Number(pokemonId) - 1
                     }.png`}
                   />
-                </a>
+                </Link>
               </div>
             )}
 
@@ -57,25 +67,33 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
 
             <div className={styles.arrowCont}>
               {Number(pokemonId) === 809 ? (
-                <div className={styles.arrowCont}>
-                  <a href="/1">
+                <div
+                  className={styles.arrowCont}
+                  onClick={FetchData([pokemon.getName(pokemonId)])}
+                >
+                  <Link to="/1">
                     <Icon name="arrow alternate circle right" />
                     <img
                       alt="img"
                       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
                     />
-                  </a>
+                  </Link>
                 </div>
               ) : (
-                <a href={`/${Number(pokemonId) + 1}`}>
-                  <Icon name="arrow alternate circle right" />
-                  <img
-                    alt="img"
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                      Number(pokemonId) + 1
-                    }.png`}
-                  />
-                </a>
+                <div
+                  className={styles.arrowCont}
+                  onClick={FetchData([pokemon.getName(pokemonId)])}
+                >
+                  <Link to={`/${Number(pokemonId) + 1}`}>
+                    <Icon name="arrow alternate circle right" />
+                    <img
+                      alt="img"
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                        Number(pokemonId) + 1
+                      }.png`}
+                    />
+                  </Link>
+                </div>
               )}
             </div>
           </div>

@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import pokemon from "pokemon";
 /*eslint-disable */
-// import { Icon } from "semantic-ui-react";
 import { Context } from "../Context";
 import FetchData from "../services/FetchData";
 import EvolutionChain from "../components/EvolutionChain";
@@ -60,7 +59,7 @@ const PokeDetails = () => {
         style={{ backgroundColor: `${colors[el.type.name]}` }}
         className={"types"}
       >
-        {console.log(el)} {el.type.name.toUpperCase()} {""}
+        {el.type.name.toUpperCase()} {""}
       </span>
     ));
     name = capitalize(data[0].name);
