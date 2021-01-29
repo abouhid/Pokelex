@@ -14,7 +14,9 @@ const MainInfo = ({ name, description, types, data, pokemonId }) => {
   const loadImgs = () => {
     return sprites
       .filter((el) => el)
-      .map((el) => <img key={el} alt="img" src={el} />);
+      .map((el) => (
+        <img key={el} style={{ width: "13vw" }} alt="img" src={el} />
+      ));
   };
   return (
     <div className={styles.cont}>
@@ -24,17 +26,17 @@ const MainInfo = ({ name, description, types, data, pokemonId }) => {
           alt="img"
           src={data.sprites.other["official-artwork"].front_default}
         />
-        <div style={{ width: "150%" }}>
+        <div style={{ width: "60vw" }}>
           {loadImgs()}
           <h2>
             {" "}
             <span>Nº {pokemonId} </span> {name}
           </h2>
-          <div>Type(s): {types}</div>
-          <div style={{ margin: "10px" }}>
+          <div style={{ fontSize: "2.5vw" }}>Type(s): {types}</div>
+          <div style={{ margin: "10px", fontSize: "2vw" }}>
             Height: {height} m - Weight: {weight} kg
           </div>
-          <p style={{ padding: "3% 0%" }}>{description}</p>
+          <p style={{ padding: "3% 0%", fontSize: "2vw" }}>{description}</p>
         </div>
       </div>
     </div>

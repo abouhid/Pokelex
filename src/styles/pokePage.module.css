@@ -7,10 +7,11 @@
 }
 
 .mainImg {
-  width: 100%;
+  width: 30vw;
   border: 6px solid #343a40;
   border-radius: 10px;
-  margin-right: 10%;
+  margin-right: 5%;
+  height: 25vw;
 }
 
 .infoCont {
@@ -75,6 +76,7 @@
   justify-content: space-around;
   text-align: center;
   padding: 1%;
+  font-size: 2vw;
 }
 
 .footer img {
