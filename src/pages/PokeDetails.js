@@ -8,6 +8,7 @@ import EvolutionChain from "../components/EvolutionChain";
 import MainInfo from "../components/MainInfo";
 import getEvolution from "../services/getEvolution";
 import pokeball from "../images/pokeball.svg";
+import store from "../redux/store";
 
 const PokeDetails = () => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
@@ -22,7 +23,15 @@ const PokeDetails = () => {
     getImg,
     getName,
   } = useContext(Context);
-  const [{ data }] = FetchData([pokemon.getName(pokemonId)]);
+
+  const pokeData = store.getState().changeReducer;
+  let data;
+  if (pokeData.id) {
+    data = pokeData;
+  } else {
+    [{ data }] = FetchData([pokemon.getName(pokemonId)]);
+  }
+
   const [species, setSpecies] = useState([]);
   const noPokemon = Object.keys(data).length === 0 || species.length === 0;
   const [evolution, setEvolution] = useState([]);
@@ -70,6 +79,7 @@ const PokeDetails = () => {
       setIsLoading(true);
       try {
         getEvolution(
+          species,
           pokemonId,
           setSpecies,
           getImg,
@@ -109,6 +119,7 @@ const PokeDetails = () => {
       ) : (
         <>
           <MainInfo
+            pokeData={pokeData}
             data={data}
             name={name}
             description={description}

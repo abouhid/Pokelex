@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import FetchData from "./services/FetchData";
+import store from "./redux/store";
 
 const Context = React.createContext();
 
@@ -40,6 +41,7 @@ function ContextProvider({ children }) {
         getNum,
         getImg,
         getName,
+        store,
       }}
     >
       {children}

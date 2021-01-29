@@ -1,24 +1,32 @@
 /*eslint-disable */
 import React from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Icon } from "semantic-ui-react";
 
 import pokemon from "pokemon";
 import FetchData from "../services/FetchData";
-
+import store from "../redux/store";
+import changePage from "../redux/actions";
 import { Link } from "react-router-dom";
 import styles from "../styles/pokePage.module.css";
+import fetchChangePage from "../services/fetchChangePage";
 
 const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
 
+  console.log(store.getState().changeReducer, "store");
   const splitArr = evolution.reduce((result, value, index, array) => {
     if (index % 2 === 0) result.push(array.slice(index, index + 2));
     return result;
   }, []);
 
+  const handleClick = (id) => {
+    fetchChangePage(id);
+  };
+
   const chainList = splitArr.map((el) => (
-    <div key={el}>
+    <div onClick={() => handleClick(getNum(el[0]))} key={el}>
       <Link to={`/${getNum(el[0])}`}>
         <img alt="img" src={el[0]} />
         <br />
@@ -98,3 +106,6 @@ EvolutionChain.propTypes = {
 };
 
 export default EvolutionChain;
+// export default connect((state) => ({ state }), {
+//   changePage,
+// })(EvolutionChain);

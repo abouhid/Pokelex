@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "../styles/pokePage.module.css";
+/*eslint-disable */
 
-const MainInfo = ({ name, description, types, data, pokemonId }) => {
+import fetchChangePage from "../services/fetchChangePage";
+
+const MainInfo = ({ name, description, types, data, pokemonId, pokeData }) => {
   const sprites = [];
   const weight = data[0].weight / 10;
   const height = data[0].height / 10;

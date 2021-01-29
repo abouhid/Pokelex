@@ -1,8 +1,14 @@
-const dataFetchReducer = (state, action) => {
+const changeReducer = (state = {}, action) => {
   switch (action.type) {
     case "FETCH_INIT":
       return {
         ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "CHANGE_PAGE":
+      return {
+        ...action.payload.data,
         isLoading: true,
         isError: false,
       };
@@ -20,8 +26,8 @@ const dataFetchReducer = (state, action) => {
         isError: true,
       };
     default:
-      throw new Error();
+      return state;
   }
 };
 
-export default dataFetchReducer;
+export default changeReducer;

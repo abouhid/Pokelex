@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const getEvolution = async (
+  species,
   pokemonId,
   setSpecies,
   getImg,
@@ -12,6 +13,8 @@ const getEvolution = async (
     `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
   );
   const chainEv = await axios(result.data.evolution_chain.url);
+  console.log(result.data, "result.data");
+  console.log(species, "species inside getEvolution");
   setSpecies(result.data);
 
   if (chainEv.data.chain.evolves_to.length > 1) {
