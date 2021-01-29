@@ -11,15 +11,22 @@ const MainInfo = ({ name, description, types, data, pokemonId }) => {
   sprites[1] = data.sprites.front_shiny;
   sprites[2] = data.sprites.back_default;
   sprites[3] = data.sprites.back_shiny;
+  console.log(data.sprites);
+  const loadImgs = () => {
+    return sprites
+      .filter((el) => el)
+      .map((el) => <img key={el} alt="img" src={el} />);
+  };
   return (
     <div className={styles.cont}>
       <div className={styles.infoCont}>
-        <img className={styles.mainImg} alt="img" src={sprites[0]} />
+        <img
+          className={styles.mainImg}
+          alt="img"
+          src={data.sprites.other["official-artwork"].front_default}
+        />
         <div style={{ width: "150%" }}>
-          <img alt="img" src={sprites[0]} />
-          <img alt="img" src={sprites[2]} />
-          <img alt="img" src={sprites[1]} />
-          <img alt="img" src={sprites[3]} />
+          {loadImgs()}
           <h2>
             {" "}
             <span>Nº {pokemonId} </span> {name}

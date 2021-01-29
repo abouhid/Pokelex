@@ -116,7 +116,6 @@ const PokeDetails = () => {
             types={types}
             pokemonId={pokemonId}
           />
-          {console.log(isLoading)}
           <EvolutionChain
             pokemonId={pokemonId}
             data={data}

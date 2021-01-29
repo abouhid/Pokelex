@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 /*eslint-disable */
 import pokemon, { all } from "pokemon";
+import { Redirect } from "react-router-dom";
 
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { Context } from "../Context";
