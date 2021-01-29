@@ -24,6 +24,8 @@ const PokeDetails = () => {
     getName,
   } = useContext(Context);
   const [data, setData] = useState({});
+  console.log(data, "pokedetails");
+
   const [species, setSpecies] = useState([]);
   const noPokemon = Object.keys(data).length === 0 || species.length === 0;
   const [evolution, setEvolution] = useState([]);

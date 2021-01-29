@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
 /*eslint-disable */
+import React, { useContext } from "react";
 import pokemon, { all } from "pokemon";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { Context } from "../Context";
@@ -10,8 +10,9 @@ import style from "../styles/image.module.css";
 
 const Header = () => {
   const { query, setQuery, doFetch, search, setSearch } = useContext(Context);
-  const allPokemonArr = pokemon.all();
+  const history = useHistory();
 
+  const allPokemonArr = pokemon.all();
   const handleChange = (e) => {
     e.preventDefault();
     const filterArr = allPokemonArr.filter((el) =>
@@ -40,7 +41,11 @@ const Header = () => {
             value={query}
             onChange={(event) => handleChange(event)}
           />
-          <Button type="submit" variant="outline-info">
+          <Button
+            type="submit"
+            variant="outline-info"
+            onClick={() => history.push("/")}
+          >
             Search
           </Button>
         </form>

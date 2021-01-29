@@ -11,7 +11,6 @@ const MainInfo = ({ name, description, types, data, pokemonId }) => {
   sprites[1] = data.sprites.front_shiny;
   sprites[2] = data.sprites.back_default;
   sprites[3] = data.sprites.back_shiny;
-  console.log(data.sprites);
   const loadImgs = () => {
     return sprites
       .filter((el) => el)
