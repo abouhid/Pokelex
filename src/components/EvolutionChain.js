@@ -2,25 +2,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Icon } from "semantic-ui-react";
-
-import pokemon from "pokemon";
-import FetchData from "../services/FetchData";
-
 import { Link } from "react-router-dom";
 import styles from "../styles/pokePage.module.css";
 
 const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
-
   const splitArr = evolution.reduce((result, value, index, array) => {
     if (index % 2 === 0) result.push(array.slice(index, index + 2));
     return result;
   }, []);
+  const styling = splitArr.length > 3 ? styles.eevee : styles.chainCenter;
 
   const chainList = splitArr.map((el) => (
     <div key={el}>
       <Link to={`/${getNum(el[0])}`}>
-        {console.log(getNum(el[0]) === pokemonId)}
         {getNum(el[0]) === pokemonId ? (
           <div className={styles.selected}>
             <img alt="img" src={el[0]} />
@@ -70,7 +65,7 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
               </div>
             )}
 
-            <div className={styles.chainCenter}>{chainList}</div>
+            <div className={styling}>{chainList}</div>
 
             <div className={styles.arrowCont}>
               {Number(pokemonId) === 809 ? (
