@@ -11,12 +11,12 @@ export async function fetchPokemonData({ url }) {
 }
 
 const FetchData = (
-  initialArr = [...Array(13).keys()]
+  initialArr = [...Array(21).keys()]
     .slice(1)
     .map((num) => pokemon.getName(num)),
   initialData = {}
 ) => {
-  const maxSlice = 12;
+  const maxSlice = 21;
   const [url, setUrl] = useState(initialArr);
 
   const [state, dispatch] = useReducer(dataFetchReducer, {

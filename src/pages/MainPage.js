@@ -9,7 +9,6 @@ const MainPage = () => {
   const { data, isError, isLoading, getNum } = useContext(Context);
   const noPokemon = Object.keys(data).length == 0;
   const isOnePokemon = Object.keys(data).length == 17;
-  console.log(data, "MainPage");
   return (
     <>
       {isError && <div>Pokemon Not Found!</div>}
@@ -25,7 +24,13 @@ const MainPage = () => {
         <></>
       )}
       {noPokemon ? (
-        "No Pokémon Found!"
+        <div className="loader-container">
+          <img
+            src={pokeball}
+            className="loading-pokeball"
+            alt="pokeball-icon"
+          />
+        </div>
       ) : (
         <PokeGrid data={data} getNum={getNum} />
       )}
