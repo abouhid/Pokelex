@@ -36,7 +36,7 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
           <div>
             {Number(pokemonId) === 1 ? (
               <div className={styles.arrowCont}>
-                <Link to="/1">
+                <Link to="/809">
                   <Icon name="arrow alternate circle left" />
                   <img
                     alt="img"

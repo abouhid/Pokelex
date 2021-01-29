@@ -37,18 +37,16 @@ const MainInfo = ({ name, description, types, data, pokemonId }) => {
 MainInfo.propTypes = {
   pokemonId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      sprites: PropTypes.shape({
-        front_default: PropTypes.string,
-        front_shiny: PropTypes.string,
-        back_default: PropTypes.string,
-        back_shiny: PropTypes.string,
-      }),
-      weight: PropTypes.number,
-      height: PropTypes.number,
-    })
-  ).isRequired,
+  data: PropTypes.PropTypes.shape({
+    sprites: PropTypes.shape({
+      front_default: PropTypes.string,
+      front_shiny: PropTypes.string,
+      back_default: PropTypes.string,
+      back_shiny: PropTypes.string,
+    }),
+    weight: PropTypes.number,
+    height: PropTypes.number,
+  }).isRequired,
   description: PropTypes.string.isRequired,
   types: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string }))
     .isRequired,
