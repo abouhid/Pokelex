@@ -20,10 +20,22 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
   const chainList = splitArr.map((el) => (
     <div key={el}>
       <Link to={`/${getNum(el[0])}`}>
-        <img alt="img" src={el[0]} />
-        <br />
-        <span>Nº {getNum(el[0])} </span>
-        <h3>{capitalize(el[1])}</h3>
+        {console.log(getNum(el[0]) === pokemonId)}
+        {getNum(el[0]) === pokemonId ? (
+          <div className={styles.selected}>
+            <img alt="img" src={el[0]} />
+            <br />
+            <span>Nº {getNum(el[0])} </span>
+            <h5>{capitalize(el[1])}</h5>
+          </div>
+        ) : (
+          <div>
+            <img alt="img" src={el[0]} />
+            <br />
+            <span>Nº {getNum(el[0])} </span>
+            <h3>{capitalize(el[1])}</h3>
+          </div>
+        )}
       </Link>
     </div>
   ));
