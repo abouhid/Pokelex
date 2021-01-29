@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "../styles/pokePage.module.css";
+/*eslint-disable */
 
 const MainInfo = ({ name, description, types, data, pokemonId }) => {
   const sprites = [];
-  const weight = data[0].weight / 10;
-  const height = data[0].height / 10;
-  sprites[0] = data[0].sprites.front_default;
-  sprites[1] = data[0].sprites.front_shiny;
-  sprites[2] = data[0].sprites.back_default;
-  sprites[3] = data[0].sprites.back_shiny;
+  const weight = data.weight / 10;
+  const height = data.height / 10;
+  sprites[0] = data.sprites.front_default;
+  sprites[1] = data.sprites.front_shiny;
+  sprites[2] = data.sprites.back_default;
+  sprites[3] = data.sprites.back_shiny;
   return (
     <div className={styles.cont}>
       <div className={styles.infoCont}>

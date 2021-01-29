@@ -8,6 +8,7 @@ import EvolutionChain from "../components/EvolutionChain";
 import MainInfo from "../components/MainInfo";
 import getEvolution from "../services/getEvolution";
 import pokeball from "../images/pokeball.svg";
+import axios from "axios";
 
 const PokeDetails = () => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
@@ -22,7 +23,8 @@ const PokeDetails = () => {
     getImg,
     getName,
   } = useContext(Context);
-  const [{ data }] = FetchData([pokemon.getName(pokemonId)]);
+  // const [{ data }] = FetchData([pokemon.getName(pokemonId)]);
+  const [data, setData] = useState({});
   const [species, setSpecies] = useState([]);
   const noPokemon = Object.keys(data).length === 0 || species.length === 0;
   const [evolution, setEvolution] = useState([]);
@@ -49,10 +51,11 @@ const PokeDetails = () => {
   let description;
   let name;
   let types;
-
+  console.log(data, "data outside");
   if (!noPokemon) {
+    console.log(data, "datainside");
     description = species.flavor_text_entries[2].flavor_text;
-    types = data[0].types.map((el) => (
+    types = data.types.map((el) => (
       <span
         key={el.type.name}
         style={{ backgroundColor: `${colors[el.type.name]}` }}
@@ -61,7 +64,7 @@ const PokeDetails = () => {
         {el.type.name.toUpperCase()} {""}
       </span>
     ));
-    name = capitalize(data[0].name);
+    name = capitalize(data.name);
   }
 
   useEffect(() => {
@@ -70,6 +73,7 @@ const PokeDetails = () => {
       setIsLoading(true);
       try {
         getEvolution(
+          setData,
           pokemonId,
           setSpecies,
           getImg,

@@ -1,6 +1,8 @@
 import axios from "axios";
+/*eslint-disable */
 
 const getEvolution = async (
+  setData,
   pokemonId,
   setSpecies,
   getImg,
@@ -11,9 +13,13 @@ const getEvolution = async (
   const result = await axios(
     `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
   );
+  const resultData = await axios(
+    `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
+  );
+
   const chainEv = await axios(result.data.evolution_chain.url);
   setSpecies(result.data);
-
+  setData(resultData.data);
   if (chainEv.data.chain.evolves_to.length > 1) {
     chainEv.data.chain.evolves_to.map((el) => {
       evArr.push(getImg(getNum(el.species.url)));
