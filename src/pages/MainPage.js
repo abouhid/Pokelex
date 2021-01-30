@@ -5,9 +5,7 @@ import { Context } from "../Context";
 import pokeball from "../images/pokeball.svg";
 
 const MainPage = () => {
-  const { setAlert, alert, data, isError, isLoading, getNum } = useContext(
-    Context
-  );
+  const { setAlert, alert, data, isError, isLoading } = useContext(Context);
   const noPokemon = Object.keys(data).length === 0;
 
   return (
@@ -32,11 +30,7 @@ const MainPage = () => {
       ) : (
         <></>
       )}
-      {noPokemon ? (
-        "No Pokémon Found!"
-      ) : (
-        <PokeGrid data={data} getNum={getNum} />
-      )}
+      {noPokemon ? "No Pokémon Found!" : <PokeGrid data={data} />}
     </>
   );
 };
