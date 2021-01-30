@@ -6,6 +6,7 @@ const Context = React.createContext();
 
 function ContextProvider({ children }) {
   const [search, setSearch] = useState([""]);
+  const [alert, setAlert] = useState(false);
 
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +27,8 @@ function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        alert,
+        setAlert,
         query,
         setQuery,
         search,
