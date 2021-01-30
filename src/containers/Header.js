@@ -33,12 +33,12 @@ const Header = () => {
 
   return (
     <div>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/">
+      <nav bg="dark" variant="dark">
+        <a href="/">
           <img className={style.logo} src={logo} alt="Logo" />
           PokéLex
-        </Navbar.Brand>
-        <Nav className="mr-auto"></Nav>
+        </a>
+        <div className="mr-auto"></div>
         <Filter />
         <form
           onSubmit={(event) => {
@@ -65,7 +65,7 @@ const Header = () => {
             Search
           </Button>
         </form>
-      </Navbar>
+      </nav>
     </div>
   );
 };
