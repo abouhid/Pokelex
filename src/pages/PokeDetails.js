@@ -1,14 +1,11 @@
 /*eslint-disable */
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import pokemon from "pokemon";
 import { Context } from "../Context";
-import FetchData from "../services/FetchData";
 import EvolutionChain from "../components/EvolutionChain";
 import MainInfo from "../components/MainInfo";
 import getEvolution from "../services/getEvolution";
 import pokeball from "../images/pokeball.svg";
-import axios from "axios";
 
 const PokeDetails = () => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());

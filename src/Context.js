@@ -10,7 +10,7 @@ function ContextProvider({ children }) {
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [{ data }, doFetch] = FetchData();
+  const [{ data }, setUrl] = FetchData();
   const getNum = (url) => {
     const el = url.replace(/.*\D(?=\d)|\D+$/g, "");
     return el;
@@ -31,7 +31,7 @@ function ContextProvider({ children }) {
         search,
         setSearch,
         data,
-        doFetch,
+        setUrl,
         isError,
         setIsError,
         isLoading,

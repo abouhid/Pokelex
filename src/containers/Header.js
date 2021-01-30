@@ -1,15 +1,17 @@
 /*eslint-disable */
 import React, { useContext } from "react";
 import pokemon, { all } from "pokemon";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav, Button, Dropdown } from "react-bootstrap";
+
 import { Context } from "../Context";
 import logo from "../images/snorlax.png";
 import style from "../styles/image.module.css";
+import Filter from "../components/Filter";
 
 const Header = () => {
-  const { query, setQuery, doFetch, search, setSearch } = useContext(Context);
+  const { query, setQuery, setUrl, search, setSearch } = useContext(Context);
   const history = useHistory();
 
   const allPokemonArr = pokemon.all();
@@ -30,15 +32,17 @@ const Header = () => {
           PokéLex
         </Navbar.Brand>
         <Nav className="mr-auto"></Nav>
+        <Filter />
         <form
           onSubmit={(event) => {
             event.preventDefault();
-            doFetch(search);
+            setUrl(search);
           }}
         >
           <input
             type="text"
             value={query}
+            style={{ marginRight: "10px" }}
             onChange={(event) => handleChange(event)}
           />
           <Button

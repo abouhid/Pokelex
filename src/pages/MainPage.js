@@ -9,6 +9,7 @@ const MainPage = () => {
   const { data, isError, isLoading, getNum } = useContext(Context);
   const noPokemon = Object.keys(data).length == 0;
   const isOnePokemon = Object.keys(data).length == 17;
+
   return (
     <>
       {isError && <div>Pokemon Not Found!</div>}

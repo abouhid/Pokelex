@@ -2,8 +2,11 @@ import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
 /*eslint-disable */
 import pokemon, { all } from "pokemon";
+import { useDispatch } from "react-redux";
 
-import dataFetchReducer from "../reducers/dataFetchReducer";
+import dataFetchReducer from "../redux/reducers/dataFetchReducer";
+import store from "../redux";
+
 export async function fetchPokemonData({ url }) {
   const res = await fetch(url);
 
@@ -11,13 +14,14 @@ export async function fetchPokemonData({ url }) {
 }
 
 const FetchData = (
-  initialArr = [...Array(21).keys()]
+  initialArr = [...Array(25).keys()]
     .slice(1)
     .map((num) => pokemon.getName(num)),
   initialData = {}
 ) => {
-  const maxSlice = 21;
+  const maxSlice = 24;
   const [url, setUrl] = useState(initialArr);
+  // const dispatch = useDispatch();
 
   const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,
@@ -29,6 +33,8 @@ const FetchData = (
     let didCancel = false;
 
     const fetchData = async () => {
+      // console.log(store.dispatch({ type: "FETCH_INIT" }), "saaaa");
+      // dispatch({ type: "FETCH_INIT" });
       dispatch({ type: "FETCH_INIT" });
 
       const newUrl = url
@@ -41,10 +47,17 @@ const FetchData = (
         const pokeData = pokeData1.map((el) => el.data);
         if (!didCancel) {
           dispatch({ type: "FETCH_SUCCESS", payload: pokeData });
+          // console.log(store.getState().dataFetchReducer.data, "aaa");
+
+          // dispatch({ type: "FETCH_SUCCESS", payload: pokeData });
         }
       } catch (error) {
         if (!didCancel) {
-          dispatch({ type: "FETCH_FAILURE" });
+          store.dispatch({
+            type: "FETCH_FAILURE",
+          });
+
+          // dispatch({ type: "FETCH_FAILURE" });
         }
       }
     };
@@ -55,6 +68,7 @@ const FetchData = (
       didCancel = true;
     };
   }, [url]);
+  // console.log(state, "fora");
 
   return [state, setUrl];
 };

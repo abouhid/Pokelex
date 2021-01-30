@@ -1,27 +1,43 @@
 /*eslint-disable*/
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { Context } from "../Context";
-import PokeGrid from "../containers/PokeGrid";
+import { useLocation } from "react-router-dom";
+import pokemon, { all } from "pokemon";
+import filterGen from "../redux/actions";
 
 const Filter = () => {
-  const { data, getNum } = useContext(Context);
+  let location = useLocation();
+  const { data, setUrl } = useContext(Context);
+  const categories = [
+    "Gen I",
+    "Gen II",
+    "Gen III",
+    "Gen IV",
+    "Gen V",
+    "Gen VI",
+  ];
+  const handleFilterChange = (e) => {
+    const { value } = e.target;
+    // filteredBooks = dispatch(changeFilter(value)).payload;
+    console.log(data);
+    const filterArr = data
+      .filter((el) => el.id > 151 && el.id < 450)
+      .map((el) => pokemon.getName(el.id).toLowerCase());
 
-  const limit = noPokemon ? (
-    <p>No Pokémon Found!</p>
-  ) : isOnePokemon ? (
-    <p key={data.id}>
-      <Link to={getNum(data.forms[0].url)} href={data.forms[0].url}>
-        <img src={data.sprites.front_default} />
+    setUrl(filterArr);
+  };
 
-        {data.name}
-      </Link>
-    </p>
+  const categoriesOpt = categories.map((cat, index) => (
+    <option key={index}>{cat}</option>
+  ));
+
+  return location.pathname === "/" ? (
+    <select className="select" onChange={handleFilterChange}>
+      {categoriesOpt}
+    </select>
   ) : (
-    <PokeGrid data={data} getNum={getNum} />
+    <></>
   );
-
-  return <div>{limit}</div>;
 };
 
 export default Filter;
