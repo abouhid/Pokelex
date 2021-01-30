@@ -1,14 +1,19 @@
 /*eslint-disable*/
-import React, { useContext } from "react";
+import React, { useContext, useReducer } from "react";
 import { Context } from "../Context";
 import { useLocation } from "react-router-dom";
 import pokemon, { all } from "pokemon";
 import filterGen from "../redux/actions";
+import genReducer from "../redux/reducers/genReducer";
+import { useDispatch } from "react-redux";
+import store from "../redux";
 
 const Filter = () => {
   let location = useLocation();
-  const { data, setUrl } = useContext(Context);
+  const { data, setUrl, FetchData } = useContext(Context);
+  const dispatch = useDispatch();
   const categories = [
+    "All",
     "Gen I",
     "Gen II",
     "Gen III",
@@ -18,13 +23,11 @@ const Filter = () => {
   ];
   const handleFilterChange = (e) => {
     const { value } = e.target;
-    // filteredBooks = dispatch(changeFilter(value)).payload;
-    console.log(data);
-    const filterArr = data
-      .filter((el) => el.id > 151 && el.id < 450)
-      .map((el) => pokemon.getName(el.id).toLowerCase());
-
-    setUrl(filterArr);
+    dispatch({ type: value });
+    // const selectedGen = store.getState().genReducer;
+    // const filterArr = data
+    //   .filter((el) => el.id > selectedGen[0] && el.id < selectedGen[1])
+    //   .map((el) => pokemon.getName(el.id).toLowerCase());
   };
 
   const categoriesOpt = categories.map((cat, index) => (

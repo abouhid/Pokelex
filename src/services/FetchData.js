@@ -21,7 +21,6 @@ const FetchData = (
 ) => {
   const maxSlice = 24;
   const [url, setUrl] = useState(initialArr);
-  // const dispatch = useDispatch();
 
   const [state, dispatch] = useReducer(dataFetchReducer, {
     isLoading: false,
