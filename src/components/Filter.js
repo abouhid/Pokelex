@@ -26,10 +26,6 @@ const Filter = () => {
   const handleFilterChange = (e) => {
     const { value } = e.target;
     dispatch({ type: value, payload: data });
-    // const selectedGen = store.getState().genReducer;
-    // const filterArr = data
-    //   .filter((el) => el.id > selectedGen[0] && el.id < selectedGen[1])
-    //   .map((el) => pokemon.getName(el.id).toLowerCase());
     setSearch(store.getState().genReducer);
   };
 
