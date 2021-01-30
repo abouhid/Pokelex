@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "../styles/grid.module.css";
+import { Context } from "../Context";
 
-const Pokemon = ({ data, getNum }) => {
+const Pokemon = ({ data }) => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
+  const { getNum } = useContext(Context);
+
   return (
     <div className={styles.pokemon}>
       <Link to={getNum(data.forms[0].url)} href={data.forms[0].url}>
@@ -25,7 +28,6 @@ Pokemon.propTypes = {
       .isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
-  getNum: PropTypes.func.isRequired,
 };
 
 export default Pokemon;

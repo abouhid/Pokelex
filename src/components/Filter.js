@@ -1,17 +1,13 @@
-/*eslint-disable*/
-import React, { useContext, useReducer } from "react";
-import { Context } from "../Context";
-import { useLocation } from "react-router-dom";
-import pokemon, { all } from "pokemon";
-import filterGen from "../redux/actions";
-import genReducer from "../redux/reducers/genReducer";
+import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { Context } from "../Context";
+
 import store from "../redux";
-import fetchFunc from "../services/fetchFunc";
 
 const Filter = () => {
-  let location = useLocation();
-  const { data, setUrl, FetchData, setSearch } = useContext(Context);
+  const location = useLocation();
+  const { data, setSearch } = useContext(Context);
   const dispatch = useDispatch();
   const categories = [
     "All",
@@ -32,8 +28,8 @@ const Filter = () => {
     setSearch(store.getState().genReducer);
   };
 
-  const categoriesOpt = categories.map((cat, index) => (
-    <option key={index}>{cat}</option>
+  const categoriesOpt = categories.map((cat) => (
+    <option key={cat}>{cat}</option>
   ));
 
   return location.pathname === "/" ? (

@@ -1,10 +1,8 @@
-/*eslint-disable */
-import React, { useContext, useState } from "react";
-import pokemon, { all } from "pokemon";
-import { useHistory, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React, { useContext } from "react";
+import pokemon from "pokemon";
+import { useHistory } from "react-router-dom";
 
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 import { Context } from "../Context";
 import logo from "../images/snorlax.png";
@@ -16,8 +14,6 @@ const Header = () => {
     Context
   );
   const history = useHistory();
-  const dispatch = useDispatch();
-  const [show, setShow] = useState(true);
 
   const allPokemonArr = pokemon.all();
   const handleChange = (e) => {
@@ -38,15 +34,17 @@ const Header = () => {
           <img className={style.logo} src={logo} alt="Logo" />
           PokéLex
         </a>
-        <div className="mr-auto"></div>
+        <div className="mr-auto" />
         <Filter />
         <form
           onSubmit={(event) => {
             event.preventDefault();
 
-            event.target[0].defaultValue !== ""
-              ? setUrl(search)
-              : setAlert(true);
+            if (event.target[0].defaultValue !== "") {
+              setUrl(search);
+            } else {
+              setAlert(true);
+            }
           }}
         >
           <input

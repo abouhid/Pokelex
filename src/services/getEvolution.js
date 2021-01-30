@@ -1,6 +1,4 @@
 import axios from "axios";
-/*eslint-disable */
-import store from "../redux/index";
 
 const getEvolution = async (
   setData,

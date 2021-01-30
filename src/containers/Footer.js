@@ -1,5 +1,4 @@
-/*eslint-disable */
-import React, { useContext } from "react";
+import React from "react";
 import style from "../styles/pokePage.module.css";
 
 const Footer = () => {

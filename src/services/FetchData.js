@@ -1,12 +1,9 @@
 import { useEffect, useState, useReducer } from "react";
-/*eslint-disable */
-import axios from "axios";
-import pokemon, { all } from "pokemon";
-import { useDispatch } from "react-redux";
+
+import pokemon from "pokemon";
 import fetchFunc from "./fetchFunc";
 
 import dataFetchReducer from "../redux/reducers/dataFetchReducer";
-import store from "../redux";
 
 const FetchData = (
   initialArr = [...Array(25).keys()]

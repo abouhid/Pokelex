@@ -1,16 +1,14 @@
 import { useContext } from "react";
-/*eslint-disable */
-import Filter from "../components/Filter";
+import { Alert } from "react-bootstrap";
 import PokeGrid from "../containers/PokeGrid";
 import { Context } from "../Context";
 import pokeball from "../images/pokeball.svg";
-import { Alert } from "react-bootstrap";
 
 const MainPage = () => {
   const { setAlert, alert, data, isError, isLoading, getNum } = useContext(
     Context
   );
-  const noPokemon = Object.keys(data).length == 0;
+  const noPokemon = Object.keys(data).length === 0;
 
   return (
     <>
@@ -25,7 +23,6 @@ const MainPage = () => {
       {isError && <div>Pokemon Not Found!</div>}
       {isLoading ? (
         <div className="loader-container">
-          {"isLoading"}
           <img
             src={pokeball}
             className="loading-pokeball"

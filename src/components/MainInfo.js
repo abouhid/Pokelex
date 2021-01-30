@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "../styles/pokePage.module.css";
-/*eslint-disable */
 
 const MainInfo = ({ name, description, types, data, pokemonId }) => {
   const sprites = [];
@@ -45,12 +44,17 @@ const MainInfo = ({ name, description, types, data, pokemonId }) => {
 MainInfo.propTypes = {
   pokemonId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  data: PropTypes.PropTypes.shape({
+  data: PropTypes.shape({
     sprites: PropTypes.shape({
       front_default: PropTypes.string,
       front_shiny: PropTypes.string,
       back_default: PropTypes.string,
       back_shiny: PropTypes.string,
+      other: PropTypes.shape({
+        "official-artwork": PropTypes.shape({
+          front_default: PropTypes.string,
+        }),
+      }),
     }),
     weight: PropTypes.number,
     height: PropTypes.number,
