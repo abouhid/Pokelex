@@ -7,6 +7,7 @@ import filterGen from "../redux/actions";
 import genReducer from "../redux/reducers/genReducer";
 import { useDispatch } from "react-redux";
 import store from "../redux";
+import fetchFunc from "../services/fetchFunc";
 
 const Filter = () => {
   let location = useLocation();
@@ -21,15 +22,16 @@ const Filter = () => {
     "Gen V",
     "Gen VI",
     "Gen VII",
-    "Gen VII",
   ];
   const handleFilterChange = (e) => {
     const { value } = e.target;
     dispatch({ type: value, payload: data });
+    // fetchFunc(["chikorita", "torchic", "chimchar"], false, dispatch);
+    // console.log(store.getState(), "action");
+
     setSearch(store.getState().genReducer);
   };
 
-  console.log(store.getState().genReducer, "filter");
   const categoriesOpt = categories.map((cat, index) => (
     <option key={index}>{cat}</option>
   ));

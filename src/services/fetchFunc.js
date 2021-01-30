@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const fetchFunc = async (url, maxSlice, didCancel, dispatch) => {
+const fetchFunc = async (url, didCancel, dispatch) => {
   dispatch({ type: "FETCH_INIT" });
+  // const maxSlice = 24;
 
   const newUrl = url
-    .slice(0, Math.min(maxSlice, url.length))
+    // .slice(0, Math.min(maxSlice, url.length))
     .map((el) => `https://pokeapi.co/api/v2/pokemon/${el.toLowerCase()}`);
   try {
     const pokeData1 = await Promise.all(newUrl.map(async (el) => axios(el)));
