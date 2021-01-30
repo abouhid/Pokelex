@@ -10,7 +10,7 @@ import store from "../redux";
 
 const Filter = () => {
   let location = useLocation();
-  const { data, setUrl, FetchData } = useContext(Context);
+  const { data, setUrl, FetchData, setSearch } = useContext(Context);
   const dispatch = useDispatch();
   const categories = [
     "All",
@@ -20,16 +20,20 @@ const Filter = () => {
     "Gen IV",
     "Gen V",
     "Gen VI",
+    "Gen VII",
+    "Gen VII",
   ];
   const handleFilterChange = (e) => {
     const { value } = e.target;
-    dispatch({ type: value });
+    dispatch({ type: value, payload: data });
     // const selectedGen = store.getState().genReducer;
     // const filterArr = data
     //   .filter((el) => el.id > selectedGen[0] && el.id < selectedGen[1])
     //   .map((el) => pokemon.getName(el.id).toLowerCase());
+    setSearch(store.getState().genReducer);
   };
 
+  console.log(store.getState().genReducer, "filter");
   const categoriesOpt = categories.map((cat, index) => (
     <option key={index}>{cat}</option>
   ));

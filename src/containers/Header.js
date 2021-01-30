@@ -2,6 +2,7 @@
 import React, { useContext } from "react";
 import pokemon, { all } from "pokemon";
 import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { Navbar, Nav, Button, Dropdown } from "react-bootstrap";
 
@@ -13,6 +14,7 @@ import Filter from "../components/Filter";
 const Header = () => {
   const { query, setQuery, setUrl, search, setSearch } = useContext(Context);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const allPokemonArr = pokemon.all();
   const handleChange = (e) => {
@@ -20,6 +22,8 @@ const Header = () => {
     const filterArr = allPokemonArr.filter((el) =>
       el.toLowerCase().includes(e.target.value.toLowerCase())
     );
+    // dispatch({ type: value, payload: data });
+
     setSearch(filterArr);
     setQuery(e.target.value);
   };
