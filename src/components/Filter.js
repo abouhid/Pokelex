@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Context } from "../Context";
+/*eslint-disable */
 
 import store from "../redux";
 

@@ -1,21 +1,19 @@
+/*eslint-disable */
 import React, { useContext } from "react";
 import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-/*eslint-disable */
 import store from "../redux";
 
 import { Button } from "react-bootstrap";
-
+import getGen from "../services/getGen";
 import { Context } from "../Context";
 import logo from "../images/snorlax.png";
 import style from "../styles/image.module.css";
 import Filter from "../components/Filter";
 
 const Header = () => {
-  const { setAlert, query, setQuery, setUrl, search, setSearch } = useContext(
-    Context
-  );
+  const { query, setQuery, setUrl, search, setSearch } = useContext(Context);
   const dispatch = useDispatch();
 
   const history = useHistory();
@@ -49,7 +47,8 @@ const Header = () => {
             if (event.target[0].defaultValue !== "") {
               setUrl(search);
             } else {
-              setUrl(search);
+              const value = document.getElementsByTagName("select")[0].value;
+              setUrl(getGen(value));
             }
           }}
         >

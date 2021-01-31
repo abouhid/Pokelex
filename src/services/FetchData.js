@@ -7,7 +7,6 @@ import dataFetchReducer from "../redux/reducers/dataFetchReducer";
 
 const FetchData = (
   initialArr = [...Array(25).keys()].slice(1),
-  // .map((num) => pokemon.getName(num)),
   initialData = {}
 ) => {
   const [url, setUrl] = useState(initialArr);

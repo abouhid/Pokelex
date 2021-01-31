@@ -7,7 +7,6 @@ const Context = React.createContext();
 function ContextProvider({ children }) {
   const [search, setSearch] = useState([""]);
   const [alert, setAlert] = useState(false);
-
   const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
