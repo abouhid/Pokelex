@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+/*eslint-disable */
+import store from "../redux";
 
 import { Button } from "react-bootstrap";
 
@@ -13,16 +16,19 @@ const Header = () => {
   const { setAlert, query, setQuery, setUrl, search, setSearch } = useContext(
     Context
   );
+  const dispatch = useDispatch();
+
   const history = useHistory();
 
   const allPokemonArr = pokemon.all();
   const handleChange = (e) => {
     e.preventDefault();
-    const filterArr = allPokemonArr.filter((el) =>
+
+    const filterArrName = allPokemonArr.filter((el) =>
       el.toLowerCase().includes(e.target.value.toLowerCase())
     );
-
-    setSearch(filterArr);
+    const filterArrNum = filterArrName.map((el) => pokemon.getId(el));
+    setSearch(filterArrNum);
 
     setQuery(e.target.value);
   };
@@ -30,7 +36,7 @@ const Header = () => {
   return (
     <div>
       <nav bg="dark" variant="dark">
-        <a href="/">
+        <a className={style.title} href="/">
           <img className={style.logo} src={logo} alt="Logo" />
           PokéLex
         </a>
@@ -43,7 +49,7 @@ const Header = () => {
             if (event.target[0].defaultValue !== "") {
               setUrl(search);
             } else {
-              setAlert(true);
+              setUrl(search);
             }
           }}
         >

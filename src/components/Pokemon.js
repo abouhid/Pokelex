@@ -7,7 +7,6 @@ import { Context } from "../Context";
 const Pokemon = ({ data }) => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
   const { getNum } = useContext(Context);
-  console.log(data);
   return (
     <div className={styles.pokemon}>
       <Link to={getNum(data.forms[0].url)} href={data.forms[0].url}>

@@ -24,6 +24,7 @@ const PokeGrid = ({ data }) => {
     </div>
   );
 };
+
 PokeGrid.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.string }))
     .isRequired,

@@ -2,3 +2,12 @@
   width: 30px;
   margin-right: 10px;
 }
+
+.title {
+  color: white;
+}
+
+.title:hover {
+  text-decoration: none;
+  color: white;
+}

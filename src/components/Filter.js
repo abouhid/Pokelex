@@ -22,9 +22,6 @@ const Filter = () => {
   const handleFilterChange = (e) => {
     const { value } = e.target;
     dispatch({ type: value, payload: data });
-    // fetchFunc(["chikorita", "torchic", "chimchar"], false, dispatch);
-    // console.log(store.getState(), "action");
-
     setSearch(store.getState().genReducer);
   };
 
