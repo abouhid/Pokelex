@@ -1,15 +1,11 @@
-/*eslint-disable */
 import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { Context } from "../Context";
-import getGen from "../services/getGen";
-import genReducer from "../redux/reducers/genReducer";
-import store from "../redux";
 
 const Filter = () => {
   const location = useLocation();
-  const { data, query, setUrl } = useContext(Context);
+  const { data, setUrl } = useContext(Context);
   const dispatch = useDispatch();
   const categories = [
     "All",
@@ -28,8 +24,6 @@ const Filter = () => {
       setUrl(data.map((el) => el.id));
 
       dispatch({ type: value, payload: data });
-
-      // document.getElementsByTagName("input")[0].value = "";
     }
   };
 

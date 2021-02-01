@@ -1,11 +1,10 @@
-/*eslint-disable */
 import React, { useContext, useState } from "react";
 import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Button } from "react-bootstrap";
 import store from "../redux";
 
-import { Button } from "react-bootstrap";
 import getGen from "../services/getGen";
 import { Context } from "../Context";
 import logo from "../images/snorlax.png";
@@ -42,7 +41,7 @@ const Header = () => {
       setUrl(opt);
       document.getElementsByTagName("select")[0].value = "All";
     } else {
-      const value = document.getElementsByTagName("select")[0].value;
+      const { value } = document.getElementsByTagName("select")[0];
       setUrl(getGen(value));
     }
   };

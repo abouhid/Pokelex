@@ -1,6 +1,4 @@
 import { useEffect, useState, useReducer } from "react";
-/*eslint-disable */
-import pokemon from "pokemon";
 import fetchFunc from "./fetchFunc";
 import store from "../redux";
 import dataFetchReducer from "../redux/reducers/dataFetchReducer";
