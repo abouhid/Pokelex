@@ -11,7 +11,6 @@ const fetchFunc = async (url, didCancel, dispatch) => {
         dispatch({ type: "FETCH_SUCCESS", payload: pokeData });
       }
     } catch (error) {
-      console.log(error, "error");
       if (!didCancel) {
         dispatch({ type: "FETCH_FAILURE" });
       }
