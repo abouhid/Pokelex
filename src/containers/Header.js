@@ -1,5 +1,5 @@
 /*eslint-disable */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -13,22 +13,38 @@ import style from "../styles/image.module.css";
 import Filter from "../components/Filter";
 
 const Header = () => {
-  const { query, setQuery, setUrl, search, setSearch } = useContext(Context);
+  const { data, query, setQuery, setUrl } = useContext(Context);
   const dispatch = useDispatch();
-
+  const [opt, setOpt] = useState([]);
   const history = useHistory();
 
   const allPokemonArr = pokemon.all();
   const handleChange = (e) => {
     e.preventDefault();
-
     const filterArrName = allPokemonArr.filter((el) =>
       el.toLowerCase().includes(e.target.value.toLowerCase())
     );
     const filterArrNum = filterArrName.map((el) => pokemon.getId(el));
-    setSearch(filterArrNum);
-
+    setOpt(filterArrNum);
     setQuery(e.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    dispatch({
+      type: document.getElementsByTagName("select")[0].value,
+      payload: data,
+    });
+    setUrl(store.getState().genReducer);
+    dispatch({ type: "All", payload: data });
+    if (event.target[0].defaultValue !== "") {
+      setUrl(opt);
+      document.getElementsByTagName("select")[0].value = "All";
+    } else {
+      const value = document.getElementsByTagName("select")[0].value;
+      setUrl(getGen(value));
+    }
   };
 
   return (
@@ -40,18 +56,7 @@ const Header = () => {
         </a>
         <div className="mr-auto" />
         <Filter />
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-
-            if (event.target[0].defaultValue !== "") {
-              setUrl(search);
-            } else {
-              const value = document.getElementsByTagName("select")[0].value;
-              setUrl(getGen(value));
-            }
-          }}
-        >
+        <form onSubmit={(event) => handleSubmit(event)}>
           <input
             type="text"
             placeholder="Search Pokémon"

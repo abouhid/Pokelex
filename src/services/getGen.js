@@ -9,7 +9,7 @@ const getGen = (value) => {
     case "Gen IV":
       return [...new Array(24).keys()].map((el) => el + 387);
     case "Gen V":
-      return [...new Array(24).keys()].map((el) => el + 494);
+      return [...new Array(24).keys()].map((el) => el + 495);
     case "Gen VI":
       return [...new Array(24).keys()].map((el) => el + 650);
     case "Gen VII":
