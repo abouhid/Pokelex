@@ -31,12 +31,12 @@ beforeEach(() => {
 });
 
 describe("Pokemon Component", () => {
-  test("Should render name of pokemon from data", () => {
+  test("Should render 'Arbok from data", () => {
     expect(screen.getByText("Arbok")).toBeInTheDocument();
   });
-  test("Should render image on src", () => {
-    const src = screen.getByRole("img").getAttribute("src");
-    expect(src).toBe(
+  test("Should render image of 'Arbok' on src", () => {
+    const image = screen.getByRole("img").getAttribute("src");
+    expect(image).toBe(
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png"
     );
   });
