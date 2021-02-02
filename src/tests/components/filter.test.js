@@ -1,17 +1,17 @@
 import { render, screen } from "@testing-library/react";
-import Footer from "../../containers/Footer";
 import { Provider } from "react-redux";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import { ContextProvider } from "../../Context";
 import store from "../../redux";
+import Filter from "../../components/Filter";
 
 beforeEach(() => {
   render(
     <Provider store={store}>
       <ContextProvider>
         <Router>
-          <Footer />
+          <Filter />
         </Router>
       </ContextProvider>
     </Provider>
@@ -19,11 +19,8 @@ beforeEach(() => {
 });
 
 describe("Footer Container", () => {
-  test("Should have footer Logos ", () => {
-    const oneLogo = screen.getByTestId("footer-logo").getAttribute("src");
-
-    expect(oneLogo).toBe(
-      "https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1611772001~hmac=6aff5a6fb4de0961a6c263186e6467ce"
-    );
+  test("Should have 'All' selected ", () => {
+    const filter = screen.getByText("All");
+    expect(filter).toBeInTheDocument();
   });
 });

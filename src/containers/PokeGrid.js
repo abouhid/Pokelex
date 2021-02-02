@@ -7,7 +7,7 @@ import styles from "../styles/grid.module.css";
 const PokeGrid = ({ data }) => {
   const selectedGen = store.getState().genReducer;
   return (
-    <div className={styles.pokegrid}>
+    <div className={styles.pokegrid} data-testid="poke-grid">
       {selectedGen === "All" ? (
         <>
           {data.map((pokemon) => (

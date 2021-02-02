@@ -1,6 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import MainPage from "../../pages/MainPage";
 import { Provider } from "react-redux";
+import FetchData from "../../services/FetchData";
 import App from "../../App";
 
 import { BrowserRouter as Router } from "react-router-dom";
@@ -21,11 +22,8 @@ beforeEach(() => {
   );
 });
 
-describe("MainPage testing", () => {
-  test("Should not find any Pokémon befire the API call", () => {
-    expect(screen.getByText("No Pokémon Found!")).toBeInTheDocument();
-  });
-  test("Should find 'Arbok' when first rendered ", async () => {
+describe("fetchData API call testing", () => {
+  test("Should render initial array (24 elements) ", async () => {
     await waitFor(() => {
       expect(screen.getByText("Arbok")).toBeInTheDocument();
     });
