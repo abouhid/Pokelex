@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import MainPage from "../../pages/MainPage";
 import { Provider } from "react-redux";
 import FetchData from "../../services/FetchData";
@@ -23,7 +23,12 @@ beforeEach(() => {
 });
 
 describe("MainPage testing", () => {
-  test("Should not find any Pokémon when without data ", () => {
+  test("Should not find any Pokémon befire the API call", () => {
     expect(screen.getByText("No Pokémon Found!")).toBeInTheDocument();
+  });
+  test("Should find 'Arbok' when first rendered ", async () => {
+    await waitFor(() => {
+      expect(screen.getByText("Arbok")).toBeInTheDocument();
+    });
   });
 });

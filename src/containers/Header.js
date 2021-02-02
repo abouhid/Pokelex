@@ -37,6 +37,7 @@ const Header = () => {
     });
     setUrl(store.getState().genReducer);
     dispatch({ type: "All", payload: data });
+
     if (event.target[0].defaultValue !== "") {
       setUrl(opt);
       document.getElementsByTagName("select")[0].value = "All";

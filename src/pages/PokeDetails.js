@@ -42,6 +42,7 @@ const PokeDetails = () => {
     dark: "#705746",
     steel: "#B7B7CE",
     fairy: "#D685AD",
+    ice: "#6390F0",
   };
   const evArr = [];
   let description;
