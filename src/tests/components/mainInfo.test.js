@@ -1,31 +1,24 @@
-import { render, screen, fireEvent, getByText } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  getByText,
+  wait,
+  waitFor,
+} from "@testing-library/react";
 import { Provider } from "react-redux";
 import FetchData from "../../services/FetchData";
 import App from "../../App";
 
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, MemoryRouter } from "react-router-dom";
 import { ContextProvider } from "../../Context";
 import store from "../../redux";
 import PokeDetails from "../../pages/PokeDetails";
 import Header from "../../containers/Header";
 import MainInfo from "../../components/MainInfo";
 
-// beforeEach(() => {
-//   render(
-//     <Provider store={store}>
-//       <ContextProvider>
-//         <Router>
-//           <App>
-//             <PokeDetails />
-//           </App>
-//         </Router>
-//       </ContextProvider>
-//     </Provider>
-//   );
-// });
-
 describe("MainPage testing", () => {
-  test("Submitting ", () => {
+  test("Should Render Venusaur page at '/3' ", async () => {
     const name = "Venusaur";
     const description =
       "After a rainy day, the flower on its back smells stronger. The scent attracts other Pokémon.";
@@ -47,7 +40,8 @@ describe("MainPage testing", () => {
     const { container } = render(
       <Provider store={store}>
         <ContextProvider>
-          <Router>
+          <MemoryRouter initialEntries={["/3"]} initialIndex={1}>
+            {" "}
             <App>
               <MainInfo
                 data={data}
@@ -57,16 +51,12 @@ describe("MainPage testing", () => {
                 pokemonId={pokemonId}
               />
             </App>
-          </Router>
+          </MemoryRouter>
         </ContextProvider>
       </Provider>
     );
-
-    // const inputName = screen.getByText("Venusaur");
-    // fireEvent.change(screen.getByTestId("sortSelect"), {
-    //   target: { value: "Gen I" },
-    // });
-
-    expect("").toBe("");
+    await waitFor(() => {
+      expect(screen.getByText("Venusaur")).toBeInTheDocument();
+    });
   });
 });

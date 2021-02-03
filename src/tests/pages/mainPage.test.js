@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import MainPage from "../../pages/MainPage";
 import { Provider } from "react-redux";
 import App from "../../App";
@@ -22,12 +22,20 @@ beforeEach(() => {
 });
 
 describe("MainPage testing", () => {
-  test("Should not find any Pokémon befire the API call", () => {
-    expect(screen.getByText("No Pokémon Found!")).toBeInTheDocument();
-  });
   test("Should find 'Arbok' when first rendered ", async () => {
     await waitFor(() => {
       expect(screen.getByText("Arbok")).toBeInTheDocument();
     });
   });
+  // test("Should change gen and search ", async () => {
+  //   await waitFor(() => {
+  //     const input = screen.getByLabelText("cost-input");
+  //     fireEvent.change(input, { target: { value: "Ala" } });
+  //     const search = screen.getByLabelText("cost-button");
+  //     // fireEvent.click(search);
+  //     const button = screen.getByLabelText("cost-buttons");
+
+  //     expect(button).toBeInTheDocument();
+  //   });
+  // });
 });

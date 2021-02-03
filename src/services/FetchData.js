@@ -15,13 +15,11 @@ const FetchData = (
   });
 
   useEffect(() => {
-    let didCancel = false;
+    const ac = new AbortController();
 
-    fetchFunc(url, didCancel, dispatch);
+    fetchFunc(url, dispatch);
 
-    return () => {
-      didCancel = true;
-    };
+    return () => ac.abort();
   }, [store.getState(), url]);
 
   return [state, setUrl];

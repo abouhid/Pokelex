@@ -32,7 +32,11 @@ const Filter = () => {
   ));
 
   return location.pathname === "/" ? (
-    <select className="select" onChange={handleFilterChange}>
+    <select
+      data-testid="select"
+      className="select"
+      onChange={handleFilterChange}
+    >
       {categoriesOpt}
     </select>
   ) : (

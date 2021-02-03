@@ -27,9 +27,8 @@ const MainInfo = ({ name, description, types, data, pokemonId }) => {
         />
         <div style={{ width: "60vw" }}>
           {loadImgs()}
-          <h2>
-            {" "}
-            <span>Nº {pokemonId} </span> {name}
+          <h2 className="nameTest">
+            {name} - <span>Nº {pokemonId} </span>
           </h2>
           <div style={{ fontSize: "2.5vw" }}>Type(s): {types}</div>
           <div style={{ margin: "10px", fontSize: "2vw" }}>

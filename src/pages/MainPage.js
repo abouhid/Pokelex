@@ -30,7 +30,17 @@ const MainPage = () => {
       ) : (
         <></>
       )}
-      {noPokemon ? "No Pokémon Found!" : <PokeGrid data={data} />}
+      {noPokemon ? (
+        <div className="loader-container">
+          <img
+            src={pokeball}
+            className="loading-pokeball"
+            alt="pokeball-icon"
+          />
+        </div>
+      ) : (
+        <PokeGrid data={data} />
+      )}
     </>
   );
 };

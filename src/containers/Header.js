@@ -63,9 +63,12 @@ const Header = () => {
             value={query}
             style={{ marginRight: "10px" }}
             onChange={(event) => handleChange(event)}
+            aria-label="cost-input"
+            data-testid="form"
           />
 
           <Button
+            aria-label="cost-button"
             type="submit"
             variant="outline-info"
             onClick={() => history.push("/")}
