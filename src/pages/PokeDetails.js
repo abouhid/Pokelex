@@ -48,6 +48,7 @@ const PokeDetails = () => {
   let description;
   let name;
   let types;
+
   if (!noPokemon) {
     description = species.flavor_text_entries[17].flavor_text;
     types = data.types.map((el) => (

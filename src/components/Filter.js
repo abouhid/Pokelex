@@ -33,6 +33,7 @@ const Filter = () => {
 
   return location.pathname === "/" ? (
     <select
+      style={{ marginRight: "10px" }}
       data-testid="select"
       className="select"
       onChange={handleFilterChange}

@@ -5,8 +5,6 @@ import FetchData from "./services/FetchData";
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
-  const [alert, setAlert] = useState(false);
-  const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [{ data }, setUrl] = FetchData();
@@ -25,10 +23,6 @@ function ContextProvider({ children }) {
   return (
     <Context.Provider
       value={{
-        alert,
-        setAlert,
-        query,
-        setQuery,
         data,
         setUrl,
         isError,

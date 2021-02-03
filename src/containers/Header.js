@@ -3,7 +3,6 @@ import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
-
 import getGen from "../services/getGen";
 import { Context } from "../Context";
 import logo from "../images/snorlax.png";
@@ -11,7 +10,9 @@ import style from "../styles/image.module.css";
 import Filter from "../components/Filter";
 
 const Header = () => {
-  const { data, query, setQuery, setUrl } = useContext(Context);
+  const { data, setUrl } = useContext(Context);
+  const [query, setQuery] = useState("");
+
   const dispatch = useDispatch();
   const [search, setSearch] = useState([]);
   const history = useHistory();
@@ -29,14 +30,7 @@ const Header = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    dispatch({
-      type: document.getElementsByTagName("select")[0].value,
-      payload: data,
-    });
-
     dispatch({ type: "All", payload: data });
-    console.log(event);
     if (event.target[0].defaultValue !== "") {
       setUrl(search);
       document.getElementsByTagName("select")[0].value = "All";
