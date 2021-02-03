@@ -3,7 +3,6 @@ import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
-import store from "../redux";
 
 import getGen from "../services/getGen";
 import { Context } from "../Context";
@@ -14,7 +13,7 @@ import Filter from "../components/Filter";
 const Header = () => {
   const { data, query, setQuery, setUrl } = useContext(Context);
   const dispatch = useDispatch();
-  const [opt, setOpt] = useState([]);
+  const [search, setSearch] = useState([]);
   const history = useHistory();
 
   const allPokemonArr = pokemon.all();
@@ -24,7 +23,7 @@ const Header = () => {
       el.toLowerCase().includes(e.target.value.toLowerCase())
     );
     const filterArrNum = filterArrName.map((el) => pokemon.getId(el));
-    setOpt(filterArrNum);
+    setSearch(filterArrNum);
     setQuery(e.target.value);
   };
 
@@ -35,11 +34,11 @@ const Header = () => {
       type: document.getElementsByTagName("select")[0].value,
       payload: data,
     });
-    setUrl(store.getState().genReducer);
-    dispatch({ type: "All", payload: data });
 
+    dispatch({ type: "All", payload: data });
+    console.log(event);
     if (event.target[0].defaultValue !== "") {
-      setUrl(opt);
+      setUrl(search);
       document.getElementsByTagName("select")[0].value = "All";
     } else {
       const { value } = document.getElementsByTagName("select")[0];

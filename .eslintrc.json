@@ -26,6 +26,11 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "arrow-parens": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.test.js", "**/*.spec.js"] }
+    ],
+
     "prettier/prettier": "error",
     "arrow-body-style": "off"
   },

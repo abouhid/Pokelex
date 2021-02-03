@@ -22,7 +22,7 @@ describe("MainPage testing", () => {
       return el;
     };
     const pokemonId = "6";
-    const { container } = render(
+    render(
       <Provider store={store}>
         <ContextProvider>
           <MemoryRouter initialEntries={["/6"]} initialIndex={1}>

@@ -1,7 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import MainPage from "../../pages/MainPage";
 import { Provider } from "react-redux";
-import FetchData from "../../services/FetchData";
 import App from "../../App";
 
 import { BrowserRouter as Router } from "react-router-dom";

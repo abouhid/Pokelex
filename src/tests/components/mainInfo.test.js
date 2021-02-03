@@ -1,20 +1,10 @@
-import {
-  render,
-  screen,
-  fireEvent,
-  getByText,
-  wait,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
-import FetchData from "../../services/FetchData";
 import App from "../../App";
 
-import { BrowserRouter as Router, MemoryRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import { ContextProvider } from "../../Context";
 import store from "../../redux";
-import PokeDetails from "../../pages/PokeDetails";
-import Header from "../../containers/Header";
 import MainInfo from "../../components/MainInfo";
 
 describe("MainPage testing", () => {
@@ -37,11 +27,10 @@ describe("MainPage testing", () => {
       height: 3,
       weight: 30,
     };
-    const { container } = render(
+    render(
       <Provider store={store}>
         <ContextProvider>
           <MemoryRouter initialEntries={["/3"]} initialIndex={1}>
-            {" "}
             <App>
               <MainInfo
                 data={data}

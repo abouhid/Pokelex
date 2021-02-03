@@ -2,10 +2,11 @@ import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import MainPage from "../../pages/MainPage";
 import { Provider } from "react-redux";
 import App from "../../App";
-
+import { act } from "react-dom/test-utils";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ContextProvider } from "../../Context";
 import store from "../../redux";
+import Header from "../../containers/Header";
 
 beforeEach(() => {
   render(
@@ -13,6 +14,7 @@ beforeEach(() => {
       <ContextProvider>
         <Router>
           <App>
+            <Header />
             <MainPage />
           </App>
         </Router>
@@ -27,15 +29,4 @@ describe("MainPage testing", () => {
       expect(screen.getByText("Arbok")).toBeInTheDocument();
     });
   });
-  // test("Should change gen and search ", async () => {
-  //   await waitFor(() => {
-  //     const input = screen.getByLabelText("cost-input");
-  //     fireEvent.change(input, { target: { value: "Ala" } });
-  //     const search = screen.getByLabelText("cost-button");
-  //     // fireEvent.click(search);
-  //     const button = screen.getByLabelText("cost-buttons");
-
-  //     expect(button).toBeInTheDocument();
-  //   });
-  // });
 });

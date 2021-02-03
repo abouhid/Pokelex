@@ -22,6 +22,7 @@ const MainInfo = ({ name, description, types, data, pokemonId }) => {
       <div className={styles.infoCont}>
         <img
           className={styles.mainImg}
+          data-testid="mainImg"
           alt="img"
           src={data.sprites.other["official-artwork"].front_default}
         />

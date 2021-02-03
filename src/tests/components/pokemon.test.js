@@ -7,15 +7,13 @@ import store from "../../redux";
 
 beforeEach(() => {
   const data = {
-    forms: [
-      { name: "arbok", url: "https://pokeapi.co/api/v2/pokemon-form/24/" },
-    ],
+    forms: [{ name: "Mew", url: "https://pokeapi.co/api/v2/pokemon-form/24/" }],
     sprites: {
       front_default:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png",
     },
-    name: "arbok",
-    id: 24,
+    name: "Mew",
+    id: 151,
     height: "3m",
     weight: "30kg",
   };
@@ -31,10 +29,10 @@ beforeEach(() => {
 });
 
 describe("Pokemon Component", () => {
-  test("Should render 'Arbok from data", () => {
-    expect(screen.getByText("Arbok")).toBeInTheDocument();
+  test("Should render 'Mew from data", () => {
+    expect(screen.getByText("Mew")).toBeInTheDocument();
   });
-  test("Should render image of 'Arbok' on src", () => {
+  test("Should render image of 'Mew' on src", () => {
     const image = screen.getByRole("img").getAttribute("src");
     expect(image).toBe(
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png"
