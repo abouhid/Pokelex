@@ -13,10 +13,6 @@ Alongside the options of searching for Pokémon, you are able to filter through 
 
 [Live Demo Link](https://pokelex.netlify.app/)
 
-## Presentation Video
-
-[Presentation Video Link](https://www.loom.com/share/780e679306cd455ca6120dfea404005e)
-
 ## Built With
 
 - React / React-Bootstrap
