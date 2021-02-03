@@ -34,15 +34,15 @@
 
 .chain > div {
   display: flex;
-  justify-content: space-around;
-  width: -webkit-fill-available;
+  justify-content: space-between;
   align-items: center;
   padding: 1%;
+  width: 80%;
 }
 
 .chainCenter {
   display: flex;
-  width: 60%;
+  width: 80%;
   justify-content: space-around;
 }
 
@@ -67,7 +67,6 @@
 .chainCenter div {
   display: flex;
   flex-direction: column;
-  width: fit-content;
 }
 
 .footer {
@@ -88,9 +87,11 @@
 }
 
 .selected {
+  font-size: 26px;
   background: #343a40;
   border-radius: 5px;
   padding: 10%;
+  width: 120%;
 }
 
 .eevee {

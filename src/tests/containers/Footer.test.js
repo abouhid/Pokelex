@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import Footer from "../../containers/Footer";
 import { Provider } from "react-redux";
 
 import { BrowserRouter as Router } from "react-router-dom";
+import Footer from "../../containers/Footer";
 import { ContextProvider } from "../../Context";
 import store from "../../redux";
 

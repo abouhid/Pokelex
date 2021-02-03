@@ -1,8 +1,8 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { MemoryRouter } from "react-router-dom";
 import App from "../../App";
 
-import { BrowserRouter as Router, MemoryRouter } from "react-router-dom";
 import { ContextProvider } from "../../Context";
 import store from "../../redux";
 import EvolutionChain from "../../components/EvolutionChain";

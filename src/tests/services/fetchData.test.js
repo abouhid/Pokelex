@@ -1,9 +1,9 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import MainPage from "../../pages/MainPage";
 import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+import MainPage from "../../pages/MainPage";
 import App from "../../App";
 
-import { BrowserRouter as Router } from "react-router-dom";
 import { ContextProvider } from "../../Context";
 import store from "../../redux";
 

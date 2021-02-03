@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import PokeGrid from "../../containers/PokeGrid";
 import { Provider } from "react-redux";
 
 import { BrowserRouter as Router } from "react-router-dom";
