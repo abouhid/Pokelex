@@ -1,17 +1,20 @@
 import React, { useContext, useState } from "react";
+/*eslint-disable */
 import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import getGen from "../services/getGen";
 import { Context } from "../Context";
 import logo from "../images/snorlax.png";
 import style from "../styles/image.module.css";
 import Filter from "../components/Filter";
+import store from "../redux";
 
 const Header = () => {
-  const { data, setUrl } = useContext(Context);
+  const { setUrl } = useContext(Context);
   const [query, setQuery] = useState("");
+  const { data } = store.getState().dataFetchReducer;
 
   const dispatch = useDispatch();
   const [search, setSearch] = useState([]);

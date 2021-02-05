@@ -1,4 +1,6 @@
 import axios from "axios";
+/*eslint-disable */
+import store from "../redux";
 
 const fetchFunc = async (url, dispatch) => {
   dispatch({ type: "FETCH_INIT" });

@@ -1,4 +1,4 @@
-const dataFetchReducer = (state, action) => {
+const dataFetchReducer = (state = {}, action) => {
   switch (action.type) {
     case "FETCH_INIT":
       return {
@@ -20,7 +20,14 @@ const dataFetchReducer = (state, action) => {
         isError: true,
       };
     default:
-      return action.type;
+      return (
+        {
+          ...state,
+          isLoading: false,
+          isError: false,
+          data: action.payload,
+        } || {}
+      );
   }
 };
 

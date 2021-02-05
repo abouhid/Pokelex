@@ -7,7 +7,7 @@ const Footer = () => {
       <footer className={style.footer} style={{ color: "white" }}>
         <img
           data-testid="footer-logo"
-          src="https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1611772001~hmac=6aff5a6fb4de0961a6c263186e6467ce"
+          src="https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1612555692~hmac=a56462bf42fa99a90d51d8843f7f4f85"
           alt="Logo"
         />{" "}
         <img
@@ -15,7 +15,7 @@ const Footer = () => {
           alt="Logo"
         />
         <img
-          src="https://www.flaticon.com/svg/vstatic/svg/188/188989.svg?token=exp=1611772001~hmac=688ed8306ed714af5b8746fff9828abd"
+          src="https://www.flaticon.com/svg/vstatic/svg/188/188989.svg?token=exp=1612555692~hmac=fb978e233abf3fb38d0a7757b1b0399f"
           alt="Logo"
         />
         <div>
@@ -32,7 +32,7 @@ const Footer = () => {
           </a>
         </div>
         <img
-          src="https://www.flaticon.com/svg/vstatic/svg/188/188989.svg?token=exp=1611772001~hmac=688ed8306ed714af5b8746fff9828abd"
+          src="https://www.flaticon.com/svg/vstatic/svg/188/188989.svg?token=exp=1612555692~hmac=fb978e233abf3fb38d0a7757b1b0399f"
           alt="Logo"
         />
         <img
@@ -40,7 +40,7 @@ const Footer = () => {
           alt="Logo"
         />
         <img
-          src="https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1611772001~hmac=6aff5a6fb4de0961a6c263186e6467ce"
+          src="https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1612555692~hmac=a56462bf42fa99a90d51d8843f7f4f85"
           alt="Logo"
         />{" "}
       </footer>
@@ -49,20 +49,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-// <div className="poke-container">
-//     <div>
-//       Icons provided by{" "}
-//       <a
-//         href="https://www.flaticon.com/br/autores/roundicons-freebies"
-//         title="Roundicons Freebies"
-//       >
-//         Roundicons Freebies
-//       </a>{" "}
-//       from{" "}
-//       <a href="https://www.flaticon.com/br/" title="Flaticon">
-//         www.flaticon.com
-//       </a>
-//     </div>
-//   </div>
-//    <div></div>

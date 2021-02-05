@@ -23,7 +23,7 @@ describe("Footer Container", () => {
     const oneLogo = screen.getByTestId("footer-logo").getAttribute("src");
 
     expect(oneLogo).toBe(
-      "https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1611772001~hmac=6aff5a6fb4de0961a6c263186e6467ce"
+      "https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1612555692~hmac=a56462bf42fa99a90d51d8843f7f4f85"
     );
   });
 });

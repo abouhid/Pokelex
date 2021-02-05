@@ -1,27 +1,19 @@
-import { useContext } from "react";
+/*eslint-disable */
+import { useContext, useEffect, useState, useReducer } from "react";
+import { connect } from "react-redux";
+import Alert from "react-bootstrap/Alert";
+import store from "../redux";
 import PokeGrid from "../containers/PokeGrid";
-import { Context } from "../Context";
 import pokeball from "../images/pokeball.svg";
 
 const MainPage = () => {
-  const { data, isError, isLoading } = useContext(Context);
-  const noPokemon = Object.keys(data).length === 0;
-
+  const { data, isLoading } = store.getState().dataFetchReducer;
+  const loading = typeof data === "undefined" || isLoading;
+  const empty = data ? (data.length === 0 ? true : false) : false;
   return (
     <>
-      {isError && <div>Pokemon Not Found!</div>}
-      {isLoading ? (
-        <div className="loader-container">
-          <img
-            src={pokeball}
-            className="loading-pokeball"
-            alt="pokeball-icon"
-          />
-        </div>
-      ) : (
-        <></>
-      )}
-      {noPokemon ? (
+      {empty ? <Alert variant="danger">No Pokémon Found!</Alert> : <></>}
+      {loading ? (
         <div className="loader-container">
           <img
             src={pokeball}
@@ -35,5 +27,9 @@ const MainPage = () => {
     </>
   );
 };
+const mapStateToProps = ({ dataFetchReducer, genReducer }) => ({
+  dataFetchReducer,
+  genReducer,
+});
 
-export default MainPage;
+export default connect(mapStateToProps, null)(MainPage);

@@ -1,5 +1,8 @@
+/*eslint-disable */
 import { useEffect, useState, useReducer } from "react";
 import fetchFunc from "./fetchFunc";
+import { useDispatch } from "react-redux";
+
 import store from "../redux";
 import dataFetchReducer from "../redux/reducers/dataFetchReducer";
 
@@ -8,20 +11,14 @@ const FetchData = (
   initialData = {}
 ) => {
   const [url, setUrl] = useState(initialArr);
-  const [state, dispatch] = useReducer(dataFetchReducer, {
-    isLoading: false,
-    isError: false,
-    data: initialData,
-  });
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const ac = new AbortController();
-
     fetchFunc(url, dispatch);
-
     return () => ac.abort();
   }, [store.getState(), url]);
 
-  return [state, setUrl];
+  return [setUrl];
 };
 export default FetchData;
