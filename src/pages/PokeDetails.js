@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Context } from "../Context";
 import EvolutionChain from "../components/EvolutionChain";
 import MainInfo from "../components/MainInfo";
-import getEvolution from "../services/getEvolution";
+import { getEvolution, getTypes } from "../services/getFunctions";
 import pokeball from "../images/pokeball.svg";
 
 const PokeDetails = () => {
@@ -24,26 +24,7 @@ const PokeDetails = () => {
   const [species, setSpecies] = useState([]);
   const noPokemon = Object.keys(data).length === 0 || species.length === 0;
   const [evolution, setEvolution] = useState([]);
-  const colors = {
-    grass: "#7AC74C",
-    normal: "#A8A77A",
-    fire: "#EE8130",
-    water: "#6390F0",
-    electric: "#F7D02C",
-    fighting: "#C22E28",
-    poison: "#A33EA1",
-    ground: "#E2BF65",
-    flying: "#A98FF3",
-    psychic: "#F95587",
-    bug: "#A6B91A",
-    rock: "#B6A136",
-    ghost: "#735797",
-    dragon: "#6F35FC",
-    dark: "#705746",
-    steel: "#B7B7CE",
-    fairy: "#D685AD",
-    ice: "#6390F0",
-  };
+
   const evArr = [];
   let description;
   let name;
@@ -51,15 +32,7 @@ const PokeDetails = () => {
 
   if (!noPokemon) {
     description = species.flavor_text_entries[17].flavor_text;
-    types = data.types.map((el) => (
-      <span
-        key={el.type.name}
-        style={{ backgroundColor: `${colors[el.type.name]}` }}
-        className="types"
-      >
-        {el.type.name.toUpperCase()} {""}
-      </span>
-    ));
+    types = getTypes(data);
     name = capitalize(data.name);
   }
 

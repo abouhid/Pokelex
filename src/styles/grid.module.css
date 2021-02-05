@@ -6,8 +6,31 @@
   margin-bottom: 10px;
 }
 
-.pokemon {
+.link {
   border: 1px solid black;
   border-radius: 5px;
-  padding: 2% 0;
+  padding: 3% 0;
+  display: flex;
+  color: black;
+  justify-content: space-around;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.link span:nth-child(2),
+.link span:nth-child(3) {
+  height: fit-content;
+  font-size: 10px;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.names :nth-child(1) {
+  font-size: large;
 }

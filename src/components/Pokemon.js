@@ -1,20 +1,26 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styles from "../styles/grid.module.css";
-import { Context } from "../Context";
+import { getNum, getTypes } from "../services/getFunctions";
 
 const Pokemon = ({ data }) => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
-  const { getNum } = useContext(Context);
+  const types = getTypes(data);
   return (
-    <div className={styles.pokemon}>
-      <Link to={getNum(data.forms[0].url)} href={data.forms[0].url}>
-        <img alt="img" src={data.sprites.front_default} />
-
-        {capitalize(data.name)}
-      </Link>
-    </div>
+    <Link
+      className={styles.link}
+      to={getNum(data.forms[0].url)}
+      href={data.forms[0].url}
+    >
+      <img alt="img" src={data.sprites.front_default} />
+      <div className={styles.names}>
+        <span>
+          Nº {getNum(data.forms[0].url)} <br /> {capitalize(data.name)}
+        </span>
+        {types}
+      </div>
+    </Link>
   );
 };
 

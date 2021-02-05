@@ -4,7 +4,7 @@ import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
-import getGen from "../services/getGen";
+import { getGen } from "../services/getFunctions";
 import { Context } from "../Context";
 import logo from "../images/snorlax.png";
 import style from "../styles/image.module.css";
