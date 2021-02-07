@@ -1,6 +1,11 @@
+/*eslint-disable */
+
 import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { Context } from "../Context";
+import store from "../redux";
+
 import EvolutionChain from "../components/EvolutionChain";
 import MainInfo from "../components/MainInfo";
 import { getEvolution, getTypes } from "../services/getFunctions";
@@ -8,18 +13,17 @@ import pokeball from "../images/pokeball.svg";
 
 const PokeDetails = () => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
-
+  const { data, isLoading } = store.getState().dataFetchReducer;
+  const dispatch = useDispatch();
   const { pokemonId } = useParams();
   const {
     isError,
-    isLoading,
     setIsError,
     setIsLoading,
     getNum,
     getImg,
     getName,
   } = useContext(Context);
-  const [data, setData] = useState({});
 
   const [species, setSpecies] = useState([]);
   const noPokemon = Object.keys(data).length === 0 || species.length === 0;
@@ -36,28 +40,28 @@ const PokeDetails = () => {
     name = capitalize(data.name);
   }
 
-  useEffect(() => {
-    const getData = async () => {
-      setIsError(false);
-      setIsLoading(true);
-      try {
-        getEvolution(
-          setData,
-          pokemonId,
-          setSpecies,
-          getImg,
-          getNum,
-          setEvolution,
-          evArr
-        );
-      } catch (error) {
-        setIsError(true);
-      }
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     setIsError(false);
+  //     setIsLoading(true);
+  //     try {
+  //       getEvolution(
+  //         dispatch,
+  //         pokemonId,
+  //         setSpecies,
+  //         getImg,
+  //         getNum,
+  //         setEvolution,
+  //         evArr
+  //       );
+  //     } catch (error) {
+  //       setIsError(true);
+  //     }
 
-      setIsLoading(false);
-    };
-    getData();
-  }, [pokemonId]);
+  //     setIsLoading(false);
+  //   };
+  //   getData();
+  // }, [pokemonId]);
 
   return (
     <>

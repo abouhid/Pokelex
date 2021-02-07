@@ -1,23 +1,40 @@
-/*eslint-disable */
-import { useEffect, useState, useReducer } from "react";
-import fetchFunc from "./fetchFunc";
+import axios from "axios";
+
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import store from "../redux";
-import dataFetchReducer from "../redux/reducers/dataFetchReducer";
 
-const FetchData = (
-  initialArr = [...Array(25).keys()].slice(1),
-  initialData = {}
-) => {
+const FetchData = (initialArr = [...Array(25).keys()].slice(1)) => {
   const [url, setUrl] = useState(initialArr);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const ac = new AbortController();
-    fetchFunc(url, dispatch);
+
+    const fetchFunc = async () => {
+      dispatch({ type: "FETCH_INIT" });
+      if (url !== "All") {
+        const newUrl = url.map(
+          (el) => `https://pokeapi.co/api/v2/pokemon/${el}`
+        );
+        try {
+          const pokeData1 = await Promise.all(
+            newUrl.map(async (el) => axios(el))
+          );
+          const pokeData = pokeData1.map((el) => el.data);
+
+          dispatch({ type: "FETCH_SUCCESS", payload: pokeData });
+        } catch (error) {
+          dispatch({ type: "FETCH_FAILURE" });
+        }
+      }
+    };
+
+    fetchFunc();
+
     return () => ac.abort();
-  }, [store.getState(), url]);
+  }, [store.getState()]);
 
   return [setUrl];
 };

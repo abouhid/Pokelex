@@ -39,7 +39,7 @@ const getNum = (url) => {
 };
 
 const getEvolution = async (
-  setData,
+  dispatch,
   pokemonId,
   setSpecies,
   getImg,
@@ -56,7 +56,8 @@ const getEvolution = async (
 
   const chainEv = await axios(result.data.evolution_chain.url);
   setSpecies(result.data);
-  setData(resultData.data);
+  dispatch({ type: "FETCH_SUCCESS", payload: resultData.data });
+
   if (chainEv.data.chain.evolves_to.length > 1) {
     chainEv.data.chain.evolves_to.map((el) => {
       evArr.push(getImg(getNum(el.species.url)));

@@ -1,15 +1,13 @@
-/*eslint-disable */
-import { useContext, useEffect, useState, useReducer } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import Alert from "react-bootstrap/Alert";
-import store from "../redux";
 import PokeGrid from "../containers/PokeGrid";
 import pokeball from "../images/pokeball.svg";
 
-const MainPage = () => {
-  const { data, isLoading } = store.getState().dataFetchReducer;
+const MainPage = ({ data, isLoading }) => {
   const loading = typeof data === "undefined" || isLoading;
-  const empty = data ? (data.length === 0 ? true : false) : false;
+  const empty = data ? data.length === 0 : false;
   return (
     <>
       {empty ? <Alert variant="danger">No Pokémon Found!</Alert> : <></>}
@@ -26,6 +24,12 @@ const MainPage = () => {
       )}
     </>
   );
+};
+MainPage.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.string }))
+    .isRequired,
+
+  isLoading: PropTypes.bool.isRequired,
 };
 const mapStateToProps = ({ dataFetchReducer, genReducer }) => ({
   dataFetchReducer,

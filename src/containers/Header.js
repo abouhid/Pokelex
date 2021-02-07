@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
-/*eslint-disable */
 import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 import { getGen } from "../services/getFunctions";
 import { Context } from "../Context";

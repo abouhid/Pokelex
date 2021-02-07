@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { Context } from "../Context";
+// import { Context } from "../Context";
 import store from "../redux";
 
 const Filter = () => {
   const location = useLocation();
-  const { setUrl } = useContext(Context);
+  // const { setUrl } = useContext(Context);
   const { data } = store.getState().dataFetchReducer;
 
   const dispatch = useDispatch();
@@ -22,12 +22,10 @@ const Filter = () => {
   ];
   const handleFilterChange = (e) => {
     const { value } = e.target;
-    if (document.getElementsByTagName("input")[0].value !== "") {
-      dispatch({ type: value, payload: data.map((el) => el.id) });
-      setUrl(data.map((el) => el.id));
 
-      dispatch({ type: value, payload: data });
-    }
+    dispatch({ type: value, payload: data.map((el) => el.id) });
+
+    dispatch({ type: value, payload: data });
   };
 
   const categoriesOpt = categories.map((cat) => (
