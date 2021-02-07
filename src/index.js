@@ -10,11 +10,11 @@ import { ContextProvider } from "./Context";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ContextProvider>
-        <Router>
+      <Router>
+        <ContextProvider>
           <App />
-        </Router>
-      </ContextProvider>
+        </ContextProvider>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

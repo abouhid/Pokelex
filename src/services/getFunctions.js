@@ -20,6 +20,14 @@ const colors = {
   fairy: "#D685AD",
   ice: "#98D8D8",
 };
+const getImg = (num) => {
+  const el = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`;
+  return el;
+};
+const getName = (num) => {
+  const el = num;
+  return el;
+};
 
 const getTypes = (data) => {
   const types = data.types.map((el) => (
@@ -39,24 +47,23 @@ const getNum = (url) => {
 };
 
 const getEvolution = async (
-  dispatch,
   pokemonId,
   setSpecies,
-  getImg,
-  getNum,
   setEvolution,
-  evArr
+  evArr,
+  setData
 ) => {
   const result = await axios(
     `https://pokeapi.co/api/v2/pokemon-species/${pokemonId}`
   );
-  const resultData = await axios(
-    `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
-  );
+  const result2 = await axios(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
 
   const chainEv = await axios(result.data.evolution_chain.url);
+
   setSpecies(result.data);
-  dispatch({ type: "FETCH_SUCCESS", payload: resultData.data });
+  setData(result2.data);
+
+  // dispatch({ type: "FETCH_SUCCESS", payload: result.data });
 
   if (chainEv.data.chain.evolves_to.length > 1) {
     chainEv.data.chain.evolves_to.map((el) => {
@@ -111,4 +118,4 @@ const getGen = (value) => {
 
 export default getGen;
 
-export { getTypes, getNum, getEvolution, getGen };
+export { getTypes, getNum, getEvolution, getGen, getName, getImg };

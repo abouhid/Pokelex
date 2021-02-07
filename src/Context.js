@@ -8,19 +8,11 @@ function ContextProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [setUrl] = FetchData();
-
   const getNum = (url) => {
     const el = url.replace(/.*\D(?=\d)|\D+$/g, "");
     return el;
   };
-  const getImg = (num) => {
-    const el = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`;
-    return el;
-  };
-  const getName = (num) => {
-    const el = num;
-    return el;
-  };
+
   return (
     <Context.Provider
       value={{
@@ -31,8 +23,6 @@ function ContextProvider({ children }) {
         setIsLoading,
         FetchData,
         getNum,
-        getImg,
-        getName,
       }}
     >
       {children}

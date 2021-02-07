@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "../styles/pokePage.module.css";
 
-const MainInfo = ({ name, description, types, data, pokemonId }) => {
+const MainInfo = ({ name, types, description, data, pokemonId }) => {
   const sprites = [];
   const weight = data.weight / 10;
   const height = data.height / 10;

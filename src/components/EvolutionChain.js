@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { getNum } from "../services/getFunctions";
 import styles from "../styles/pokePage.module.css";
 
-const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
+const EvolutionChain = ({ evolution, pokemonId }) => {
+  console.log(evolution, pokemonId);
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
   const splitArr = evolution.reduce((result, value, index, array) => {
     if (index % 2 === 0) result.push(array.slice(index, index + 2));
@@ -100,7 +102,6 @@ const EvolutionChain = ({ evolution, getNum, pokemonId }) => {
 EvolutionChain.propTypes = {
   evolution: PropTypes.arrayOf(PropTypes.string).isRequired,
   pokemonId: PropTypes.string.isRequired,
-  getNum: PropTypes.func.isRequired,
 };
 
 export default EvolutionChain;

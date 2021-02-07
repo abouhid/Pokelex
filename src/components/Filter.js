@@ -1,12 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
-// import { Context } from "../Context";
 import store from "../redux";
 
 const Filter = () => {
   const location = useLocation();
-  // const { setUrl } = useContext(Context);
   const { data } = store.getState().dataFetchReducer;
 
   const dispatch = useDispatch();
