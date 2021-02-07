@@ -8,7 +8,7 @@ import store from "../../redux";
 import EvolutionChain from "../../components/EvolutionChain";
 
 describe("MainPage testing", () => {
-  test.only("Should Render Charizard page at '/6' ", async () => {
+  test("Should Render Charizard page at '/6' ", async () => {
     const evolution = [
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
       "charmander",

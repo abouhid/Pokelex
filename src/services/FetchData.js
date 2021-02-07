@@ -2,14 +2,12 @@ import axios from "axios";
 
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
 
 // import store from "../redux";
 
 const FetchData = (initialArr = [...Array(25).keys()].slice(1)) => {
   const [url, setUrl] = useState(initialArr);
   const dispatch = useDispatch();
-  const location = useLocation();
 
   useEffect(() => {
     const ac = new AbortController();
@@ -25,9 +23,7 @@ const FetchData = (initialArr = [...Array(25).keys()].slice(1)) => {
             newUrl.map(async (el) => axios(el))
           );
           const pokeData = pokeData1.map((el) => el.data);
-          if (location.pathname === "/") {
-            dispatch({ type: "FETCH_SUCCESS", payload: pokeData });
-          }
+          dispatch({ type: "FETCH_SUCCESS", payload: pokeData });
         } catch (error) {
           dispatch({ type: "FETCH_FAILURE" });
         }

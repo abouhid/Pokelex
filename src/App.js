@@ -14,7 +14,6 @@ import MainPage from "./pages/MainPage";
 
 function App() {
   const { data, isLoading } = store.getState().dataFetchReducer;
-
   return (
     <div className="App">
       <Header />

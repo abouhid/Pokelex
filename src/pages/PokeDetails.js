@@ -27,11 +27,7 @@ const PokeDetails = () => {
 
   useEffect(() => {
     const getData = async () => {
-      try {
-        getEvolution(pokemonId, setSpecies, setEvolution, evArr, setData);
-      } catch (error) {
-        console.log(error);
-      }
+      getEvolution(pokemonId, setSpecies, setEvolution, evArr, setData);
     };
     getData();
   }, [pokemonId]);

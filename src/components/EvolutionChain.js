@@ -6,7 +6,6 @@ import { getNum } from "../services/getFunctions";
 import styles from "../styles/pokePage.module.css";
 
 const EvolutionChain = ({ evolution, pokemonId }) => {
-  console.log(evolution, pokemonId);
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
   const splitArr = evolution.reduce((result, value, index, array) => {
     if (index % 2 === 0) result.push(array.slice(index, index + 2));

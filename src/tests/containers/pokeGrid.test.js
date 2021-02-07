@@ -68,7 +68,7 @@ beforeEach(() => {
   );
 });
 
-describe("PokeGrid Container", () => {
+describe("PokeGrid Container", async () => {
   test("Should Render 'Mewtwo', 'Mew' and 'Eevee' in the Grid ", () => {
     expect(screen.getByText("Mewtwo")).toBeInTheDocument();
     expect(screen.getByText("Mew")).toBeInTheDocument();

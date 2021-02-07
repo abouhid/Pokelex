@@ -1,16 +1,13 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import Alert from "react-bootstrap/Alert";
 import PokeGrid from "../containers/PokeGrid";
 import pokeball from "../images/pokeball.svg";
 
 const MainPage = ({ data, isLoading }) => {
   const loading = typeof data === "undefined" || isLoading;
-  const empty = data ? data.length === 0 : false;
   return (
     <>
-      {empty ? <Alert variant="danger">No Pokémon Found!</Alert> : <></>}
       {loading ? (
         <div className="loader-container">
           <img
@@ -25,10 +22,11 @@ const MainPage = ({ data, isLoading }) => {
     </>
   );
 };
+MainPage.defaultProps = {
+  data: [],
+};
 MainPage.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.string }))
-    .isRequired,
-
+  data: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.string })),
   isLoading: PropTypes.bool.isRequired,
 };
 const mapStateToProps = ({ dataFetchReducer, genReducer }) => ({
