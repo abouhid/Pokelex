@@ -9,9 +9,15 @@ const reducers = combineReducers({
   dataFetchReducer,
   genReducer,
 });
+let middleware = [];
+if (process.env.NODE_ENV === "development") {
+  middleware = [...middleware, thunk, logger];
+} else {
+  middleware = [...middleware, thunk];
+}
 
 const store = createStore(
   reducers,
-  composeWithDevTools(applyMiddleware(logger, thunk))
+  composeWithDevTools(applyMiddleware(...middleware))
 );
 export default store;
