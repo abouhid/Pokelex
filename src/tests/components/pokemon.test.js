@@ -1,16 +1,18 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import Pokemon from "../../components/Pokemon";
-import { ContextProvider } from "../../Context";
 import store from "../../redux";
 
 beforeEach(() => {
   const data = {
-    forms: [{ name: "Mew", url: "https://pokeapi.co/api/v2/pokemon-form/24/" }],
+    types: [{ name: "Mew", type: { name: "Mew" } }],
+    forms: [
+      { name: "Mew", url: "https://pokeapi.co/api/v2/pokemon-form/151/" },
+    ],
     sprites: {
       front_default:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
     },
     name: "Mew",
     id: 151,
@@ -19,23 +21,23 @@ beforeEach(() => {
   };
   render(
     <Provider store={store}>
-      <ContextProvider>
-        <Router>
-          <Pokemon data={data} />{" "}
-        </Router>
-      </ContextProvider>
+      <Router>
+        <Pokemon data={data} />
+      </Router>
     </Provider>
   );
 });
 
 describe("Pokemon Component", () => {
-  test("Should render 'Mew from data", () => {
-    expect(screen.getByText("Mew")).toBeInTheDocument();
+  test("Should render 'Mew from data", async () => {
+    await waitFor(() => {
+      expect(screen.getByText("Nº 151 Mew")).toBeInTheDocument();
+    });
   });
   test("Should render image of 'Mew' on src", () => {
     const image = screen.getByRole("img").getAttribute("src");
     expect(image).toBe(
-      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png"
+      "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png"
     );
   });
 });

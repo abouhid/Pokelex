@@ -9,6 +9,8 @@ import store from "../../redux";
 beforeEach(() => {
   const data = [
     {
+      types: [{ name: "Mewtwo", type: { name: "Mewtwo" } }],
+
       forms: [
         {
           name: "mewtwo",
@@ -25,10 +27,12 @@ beforeEach(() => {
       weight: "30kg",
     },
     {
+      types: [{ name: "Mew", type: { name: "Mew" } }],
+
       forms: [
         {
           name: "mew",
-          url: "https://pokeapi.co/api/v2/pokemon-form/150/",
+          url: "https://pokeapi.co/api/v2/pokemon-form/151/",
         },
       ],
       sprites: {
@@ -41,6 +45,8 @@ beforeEach(() => {
       weight: "30kg",
     },
     {
+      types: [{ name: "Eevee", type: { name: "Eevee" } }],
+
       forms: [
         {
           name: "eevee",
@@ -68,11 +74,11 @@ beforeEach(() => {
   );
 });
 
-describe("PokeGrid Container", async () => {
+describe("PokeGrid Container", () => {
   test("Should Render 'Mewtwo', 'Mew' and 'Eevee' in the Grid ", () => {
-    expect(screen.getByText("Mewtwo")).toBeInTheDocument();
-    expect(screen.getByText("Mew")).toBeInTheDocument();
-    expect(screen.getByText("Eevee")).toBeInTheDocument();
+    expect(screen.getByText("Nº 150 Mewtwo")).toBeInTheDocument();
+    expect(screen.getByText("Nº 151 Mew")).toBeInTheDocument();
+    expect(screen.getByText("Nº 133 Eevee")).toBeInTheDocument();
   });
   test("Should Render the 3 images of 'Mewtwo', 'Mew' and 'Eevee' in the Grid ", () => {
     expect(screen.getAllByRole("img")).toHaveLength(3);

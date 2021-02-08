@@ -7,25 +7,21 @@ import App from "../../App";
 import { ContextProvider } from "../../Context";
 import store from "../../redux";
 
-// beforeEach(() => {
-
-// });
-
 describe("fetchData API call testing", () => {
-  const { data, isLoading } = store.getState().dataFetchReducer;
-
-  render(
-    <Provider store={store}>
-      <ContextProvider>
-        <Router>
-          <App>
-            <MainPage data={data} isLoading={isLoading} />
-          </App>
-        </Router>
-      </ContextProvider>
-    </Provider>
-  );
   test("Should render initial array (24 elements) ", async () => {
+    const { data, isLoading } = store.getState().dataFetchReducer;
+    console.log(data);
+    render(
+      <Provider store={store}>
+        <ContextProvider>
+          <Router>
+            <App>
+              <MainPage data={data} isLoading={isLoading} />
+            </App>
+          </Router>
+        </ContextProvider>
+      </Provider>
+    );
     await waitFor(() => {
       expect(screen.getByText("Nº 24 Arbok")).toBeInTheDocument();
     });
