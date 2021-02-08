@@ -10,7 +10,6 @@ import store from "../../redux";
 describe("fetchData API call testing", () => {
   test("Should render initial array (24 elements) ", async () => {
     const { data, isLoading } = store.getState().dataFetchReducer;
-    console.log(data);
     render(
       <Provider store={store}>
         <ContextProvider>

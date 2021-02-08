@@ -6,6 +6,7 @@ import App from "../../App";
 import { ContextProvider } from "../../Context";
 import store from "../../redux";
 import MainInfo from "../../components/MainInfo";
+
 beforeEach(() => {
   const name = "Venusaur";
   const description =

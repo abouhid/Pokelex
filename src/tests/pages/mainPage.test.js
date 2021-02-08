@@ -21,8 +21,7 @@ describe("MainPage testing", () => {
       </Provider>
     );
     await waitFor(() => {
-      // expect(screen.getByText("Nº 24 Arbok")).toBeInTheDocument();
-      expect("").toBe("");
+      expect(screen.getByText("Nº 24 Arbok")).toBeInTheDocument();
     });
   });
 });

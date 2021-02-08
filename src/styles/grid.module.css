@@ -19,12 +19,6 @@
   text-decoration: none;
 }
 
-.link span:nth-child(2),
-.link span:nth-child(3) {
-  height: fit-content;
-  font-size: 10px;
-}
-
 .names {
   display: flex;
   flex-direction: column;

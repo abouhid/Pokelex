@@ -3,8 +3,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-// import store from "../redux";
-
 const FetchData = (initialArr = [...Array(25).keys()].slice(1)) => {
   const [url, setUrl] = useState(initialArr);
   const dispatch = useDispatch();
