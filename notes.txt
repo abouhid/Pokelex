@@ -1,0 +1,12 @@
+test("Should change gen and search ", async () => {
+    await waitFor(() => {
+      act(() => {
+        const input = screen.getByLabelText("cost-input");
+        fireEvent.change(input, { target: { value: "Ala" } });
+        const search = screen.getByLabelText("cost-button");
+        fireEvent.click(search);
+        const result = screen.getByText("Alakazam");
+        expect(result).toBeInTheDocument();
+      });
+    });
+  });

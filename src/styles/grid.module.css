@@ -1,0 +1,30 @@
+.pokegrid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 1% 4%;
+  margin-bottom: 10px;
+}
+
+.link {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3% 0;
+  display: flex;
+  color: black;
+  justify-content: space-around;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.names :nth-child(1) {
+  font-size: large;
+}

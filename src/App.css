@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  -webkit-font-smoothing: none;
+  font-family: "pokemon-font", monospace;
 }
 
 .App-logo {
@@ -7,9 +9,45 @@
   pointer-events: none;
 }
 
+nav {
+  background-color: #343a40;
+  display: flex !important;
+  justify-content: space-around;
+  text-align: center;
+  padding: 1%;
+}
+
+.loading-pokeball {
+  -webkit-animation: spin 500ms linear infinite;
+  -moz-animation: spin 500ms linear infinite;
+  animation: spin 500ms linear infinite;
+  margin: 20px 0;
+  height: 50px;
+  width: 50px;
+}
+
+@if () @-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 5s linear;
   }
 }
 
@@ -32,7 +70,20 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.types {
+  width: 95px;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 5px;
+  -webkit-box-shadow: 2px 4px 9px -1px #6b0303;
+  box-shadow: 2px 4px 9px -1px #6b0303;
+  cursor: pointer;
 }
