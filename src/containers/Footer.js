@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div>
       <footer className={style.footer} style={{ color: "white" }}>
-        <img
+        {/* <img
           data-testid="footer-logo"
           src="https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1612555692~hmac=a56462bf42fa99a90d51d8843f7f4f85"
           alt="Logo"
@@ -17,7 +17,7 @@ const Footer = () => {
         <img
           src="https://www.flaticon.com/svg/vstatic/svg/188/188989.svg?token=exp=1612555692~hmac=fb978e233abf3fb38d0a7757b1b0399f"
           alt="Logo"
-        />
+        /> */}
         <div>
           Icons provided by{" "}
           <a
@@ -31,7 +31,7 @@ const Footer = () => {
             www.flaticon.com
           </a>
         </div>
-        <img
+        {/* <img
           src="https://www.flaticon.com/svg/vstatic/svg/188/188989.svg?token=exp=1612555692~hmac=fb978e233abf3fb38d0a7757b1b0399f"
           alt="Logo"
         />
@@ -42,7 +42,7 @@ const Footer = () => {
         <img
           src="https://www.flaticon.com/svg/vstatic/svg/188/188990.svg?token=exp=1612555692~hmac=a56462bf42fa99a90d51d8843f7f4f85"
           alt="Logo"
-        />{" "}
+        />{" "} */}
       </footer>
     </div>
   );
