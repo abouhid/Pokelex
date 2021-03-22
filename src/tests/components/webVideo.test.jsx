@@ -67,7 +67,6 @@ test("Tests getGen", () => {
 
 test("Tests getting queries", () => {
   const { getByText } = render2(<App />);
-  //   console.log(getByText("PokéLex"));
   const result = getGen(1);
 
   expect(getByText("PokéLex")).not.toBeNull();
