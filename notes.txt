@@ -1,12 +1,15 @@
-test("Should change gen and search ", async () => {
-    await waitFor(() => {
-      act(() => {
-        const input = screen.getByLabelText("cost-input");
-        fireEvent.change(input, { target: { value: "Ala" } });
-        const search = screen.getByLabelText("cost-button");
-        fireEvent.click(search);
-        const result = screen.getByText("Alakazam");
-        expect(result).toBeInTheDocument();
-      });
-    });
-  });
+
+// test("Should change search", async () => {
+//   const utils = render();
+//   const input = utils.getByLabelText("cost-input");
+//   const button = utils.getByLabelText("cost-button");
+
+//   expect(input).not.toBeNull();
+//   fireEvent.change(input, { target: { value: "Alak" } });
+//   fireEvent.click(button);
+//   await waitFor(() => {
+//     expect(screen.getByText("PokéLex")).toBeInTheDocument();
+//     expect(screen.getByText("Nº 65 Alakazam")).toBeInTheDocument();
+//   });
+// });
+

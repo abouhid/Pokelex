@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
 
 import { Switch, Route } from "react-router-dom";
-// import Footer from "./containers/Footer";
+import Footer from "./containers/Footer";
 import Header from "./containers/Header";
 import store from "./redux";
 
@@ -25,7 +25,7 @@ function App() {
           <PokeDetails />
         </Route>
       </Switch>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

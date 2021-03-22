@@ -2,6 +2,8 @@
   text-align: center;
   -webkit-font-smoothing: none;
   font-family: "pokemon-font", monospace;
+  min-height: 100vh;
+  position: relative;
 }
 
 .App-logo {
