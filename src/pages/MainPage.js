@@ -5,8 +5,6 @@ import PokeGrid from "../containers/PokeGrid";
 import pokeball from "../images/pokeball.svg";
 
 const MainPage = ({ isLoading }) => {
-  console.log(isLoading);
-
   return (
     <>
       {isLoading ? (

@@ -40,7 +40,7 @@ PokeGrid.defaultProps = {
 
 PokeGrid.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.string })),
-  filteredPokemon: PropTypes.arrayOf(PropTypes.number).isRequired,
+  filteredPokemon: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ dataFetchReducer, genReducer }) => ({
