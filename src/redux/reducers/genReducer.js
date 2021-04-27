@@ -1,4 +1,4 @@
-const genReducer = (state, action = { type: "All", payload: { id: 4 } }) => {
+const genReducer = (state, action = { type: "All", payload: { id: 1 } }) => {
   switch (action.type) {
     case "Gen I":
       return action.payload.filter((el) => el.id > 0 && el.id < 150);

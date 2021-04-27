@@ -41,6 +41,7 @@ const MainInfo = ({ name, types, description, data, pokemonId }) => {
     </div>
   );
 };
+
 MainInfo.propTypes = {
   pokemonId: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

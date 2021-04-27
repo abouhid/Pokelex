@@ -9,6 +9,7 @@ import logo from "../images/snorlax.png";
 import style from "../styles/image.module.css";
 import Filter from "../components/Filter";
 import store from "../redux";
+import getData from "../redux/actions";
 
 const Header = () => {
   const { setUrl } = useContext(Context);
@@ -20,8 +21,10 @@ const Header = () => {
   const history = useHistory();
 
   const allPokemonArr = pokemon.all();
+
   const handleChange = (e) => {
     e.preventDefault();
+
     const filterArrName = allPokemonArr.filter((el) =>
       el.toLowerCase().includes(e.target.value.toLowerCase())
     );
@@ -32,7 +35,7 @@ const Header = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch({ type: "All", payload: data });
+    dispatch(getData("All", data));
     if (event.target[0].defaultValue !== "") {
       setUrl(search);
       document.getElementsByTagName("select")[0].value = "All";

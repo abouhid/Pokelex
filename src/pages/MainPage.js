@@ -4,11 +4,12 @@ import PropTypes from "prop-types";
 import PokeGrid from "../containers/PokeGrid";
 import pokeball from "../images/pokeball.svg";
 
-const MainPage = ({ data, isLoading }) => {
-  const loading = typeof data === "undefined" || isLoading;
+const MainPage = ({ isLoading }) => {
+  console.log(isLoading);
+
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <div className="loader-container">
           <img
             src={pokeball}
@@ -17,21 +18,16 @@ const MainPage = ({ data, isLoading }) => {
           />
         </div>
       ) : (
-        <PokeGrid data={data} />
+        <PokeGrid />
       )}
     </>
   );
 };
-MainPage.defaultProps = {
-  data: [],
-};
 MainPage.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.string })),
   isLoading: PropTypes.bool.isRequired,
 };
-const mapStateToProps = ({ dataFetchReducer, genReducer }) => ({
-  dataFetchReducer,
-  genReducer,
+const mapStateToProps = ({ dataFetchReducer }) => ({
+  isLoading: dataFetchReducer.isLoading,
 });
 
 export default connect(mapStateToProps, null)(MainPage);
