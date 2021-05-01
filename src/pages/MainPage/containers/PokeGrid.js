@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Pokemon from "../components/Pokemon";
-import styles from "../styles/grid.module.css";
-import pokeball from "../images/pokeball.svg";
+import styles from "../../../styles/grid.module.css";
+import pokeball from "../../../images/pokeball.svg";
 
 const PokeGrid = ({ data, filteredPokemon }) => {
   const filteredData =

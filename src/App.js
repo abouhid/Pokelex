@@ -5,12 +5,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
 
 import { Switch, Route } from "react-router-dom";
-import Footer from "./containers/Footer";
-import Header from "./containers/Header";
+import Footer from "./common/Footer";
+import Header from "./common/Header";
 import store from "./redux";
-
-import PokeDetails from "./pages/PokeDetails";
-import MainPage from "./pages/MainPage";
+import MainPage from "./pages/MainPage/MainPage";
+import PokeDetails from "./pages/PokeDetails/PokeDetails";
 
 function App() {
   const { data, isLoading } = store.getState().dataFetchReducer;

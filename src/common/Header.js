@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 import { getGen } from "../services/getFunctions";
 import logo from "../images/snorlax.png";
 import style from "../styles/image.module.css";
-import Filter from "../components/Filter";
+import Filter from "./Filter";
 import store from "../redux";
 import getData from "../redux/actions";
 import FetchData from "../services/FetchData";

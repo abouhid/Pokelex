@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "../styles/pokePage.module.css";
+import styles from "../../../styles/pokePage.module.css";
 
 const MainInfo = ({ name, types, description, data, pokemonId }) => {
   const sprites = [];

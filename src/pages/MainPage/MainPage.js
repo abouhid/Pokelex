@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import PokeGrid from "../containers/PokeGrid";
-import pokeball from "../images/pokeball.svg";
+import PokeGrid from "./containers/PokeGrid";
+import pokeball from "../../images/pokeball.svg";
 
 const MainPage = ({ isLoading }) => {
   return (

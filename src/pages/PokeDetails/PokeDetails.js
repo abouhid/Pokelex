@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
-import EvolutionChain from "../components/EvolutionChain";
-import MainInfo from "../components/MainInfo";
-import { getEvolution, getTypes } from "../services/getFunctions";
-import pokeball from "../images/pokeball.svg";
+import MainInfo from "./components/MainInfo";
+import { getEvolution, getTypes } from "../../services/getFunctions";
+import pokeball from "../../images/pokeball.svg";
+import EvolutionChain from "./components/EvolutionChain";
 
 const PokeDetails = () => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());

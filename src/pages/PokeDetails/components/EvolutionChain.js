@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { getNum } from "../services/getFunctions";
-import styles from "../styles/pokePage.module.css";
+import { getNum } from "../../../services/getFunctions";
+import styles from "../../../styles/pokePage.module.css";
 
 const EvolutionChain = ({ evolution, pokemonId }) => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
