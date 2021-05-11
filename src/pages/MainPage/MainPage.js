@@ -19,7 +19,7 @@ const MainPage = ({ isLoading }) => {
       ) : (
         <>
           <PokeGrid />
-          <PageComponent />
+          {/* <PageComponent /> */}
         </>
       )}
     </>
