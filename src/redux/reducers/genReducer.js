@@ -1,4 +1,4 @@
-const genReducer = (state, action = { type: "All", payload: { id: 4 } }) => {
+const genReducer = (state, action = { type: "All", payload: { id: 1 } }) => {
   switch (action.type) {
     case "Gen I":
       return action.payload.filter((el) => el.id > 0 && el.id < 150);
@@ -14,6 +14,8 @@ const genReducer = (state, action = { type: "All", payload: { id: 4 } }) => {
       return action.payload.filter((el) => el.id > 649 && el.id < 720);
     case "Gen VII":
       return action.payload.filter((el) => el.id > 721 && el.id < 808);
+    case "Gen VIII":
+      return action.payload.filter((el) => el.id > 809 && el.id < 897);
     default:
       return "All";
   }

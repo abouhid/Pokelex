@@ -76,6 +76,9 @@
   text-align: center;
   padding: 1%;
   font-size: 2vw;
+  position: absolute;
+  bottom: -8%;
+  width: 100%;
 }
 
 .footer img {

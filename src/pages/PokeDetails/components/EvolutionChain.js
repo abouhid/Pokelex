@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { getNum } from "../services/getFunctions";
-import styles from "../styles/pokePage.module.css";
+import { getNum } from "../../../services/getFunctions";
+import styles from "../../../styles/pokePage.module.css";
 
 const EvolutionChain = ({ evolution, pokemonId }) => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
@@ -43,11 +43,11 @@ const EvolutionChain = ({ evolution, pokemonId }) => {
           <div>
             {Number(pokemonId) === 1 ? (
               <div className={styles.arrowCont}>
-                <Link to="/809">
+                <Link to="/898">
                   <Icon name="arrow alternate circle left" />
                   <img
                     alt="img"
-                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/809.png"
+                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/898.png"
                   />
                 </Link>
               </div>
@@ -68,7 +68,7 @@ const EvolutionChain = ({ evolution, pokemonId }) => {
             <div className={styling}>{chainList}</div>
 
             <div className={styles.arrowCont}>
-              {Number(pokemonId) === 809 ? (
+              {Number(pokemonId) === 898 ? (
                 <div className={styles.arrowCont}>
                   <Link to="/1">
                     <Icon name="arrow alternate circle right" />

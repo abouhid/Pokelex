@@ -17,12 +17,10 @@ const Filter = () => {
     "Gen V",
     "Gen VI",
     "Gen VII",
+    "Gen VIII",
   ];
   const handleFilterChange = (e) => {
     const { value } = e.target;
-
-    dispatch({ type: value, payload: data.map((el) => el.id) });
-
     dispatch({ type: value, payload: data });
   };
 

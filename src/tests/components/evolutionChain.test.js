@@ -3,9 +3,8 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import App from "../../App";
 
-import { ContextProvider } from "../../Context";
 import store from "../../redux";
-import EvolutionChain from "../../components/EvolutionChain";
+import EvolutionChain from "../../pages/PokeDetails/components/EvolutionChain";
 
 describe("MainPage testing", () => {
   test("Should Render Charizard page at '/6' ", async () => {
@@ -24,18 +23,16 @@ describe("MainPage testing", () => {
     const pokemonId = "6";
     render(
       <Provider store={store}>
-        <ContextProvider>
-          <MemoryRouter initialEntries={["/6"]} initialIndex={1}>
-            {" "}
-            <App>
-              <EvolutionChain
-                evolution={evolution}
-                pokemonId={pokemonId}
-                getNum={getNum}
-              />
-            </App>
-          </MemoryRouter>
-        </ContextProvider>
+        <MemoryRouter initialEntries={["/6"]} initialIndex={1}>
+          {" "}
+          <App>
+            <EvolutionChain
+              evolution={evolution}
+              pokemonId={pokemonId}
+              getNum={getNum}
+            />
+          </App>
+        </MemoryRouter>
       </Provider>
     );
     await waitFor(() => {

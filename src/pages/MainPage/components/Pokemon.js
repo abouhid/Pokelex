@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import styles from "../styles/grid.module.css";
-import { getNum, getTypes } from "../services/getFunctions";
+import styles from "../../../styles/grid.module.css";
+import { getNum, getTypes } from "../../../services/getFunctions";
 
 const Pokemon = ({ data }) => {
   const capitalize = (str) => str.replace(/^\w/, (c) => c.toUpperCase());
