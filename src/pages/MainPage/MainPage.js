@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import PokeGrid from "./containers/PokeGrid";
 import pokeball from "../../images/pokeball.svg";
+import PageComponent from "./components/PageComponent";
 
 const MainPage = ({ isLoading }) => {
   return (
@@ -16,7 +17,10 @@ const MainPage = ({ isLoading }) => {
           />
         </div>
       ) : (
-        <PokeGrid />
+        <>
+          <PokeGrid />
+          <PageComponent />
+        </>
       )}
     </>
   );

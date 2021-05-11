@@ -1,19 +1,16 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import Footer from "../../containers/Footer";
-import { ContextProvider } from "../../Context";
+import Footer from "../../common/Footer";
 import store from "../../redux";
 
 beforeEach(() => {
   render(
     <Provider store={store}>
-      <ContextProvider>
-        <Router>
-          <Footer />
-        </Router>
-      </ContextProvider>
+      <Router>
+        <Footer />{" "}
+      </Router>
     </Provider>
   );
 });

@@ -3,9 +3,8 @@ import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
 import App from "../../App";
 
-import { ContextProvider } from "../../Context";
 import store from "../../redux";
-import MainInfo from "../../components/MainInfo";
+import MainInfo from "../../pages/PokeDetails/components/MainInfo";
 
 beforeEach(() => {
   const name = "Venusaur";
@@ -28,19 +27,17 @@ beforeEach(() => {
   };
   render(
     <Provider store={store}>
-      <ContextProvider>
-        <MemoryRouter initialEntries={["/3"]} initialIndex={1}>
-          <App>
-            <MainInfo
-              data={data}
-              name={name}
-              description={description}
-              types={types}
-              pokemonId={pokemonId}
-            />
-          </App>
-        </MemoryRouter>
-      </ContextProvider>
+      <MemoryRouter initialEntries={["/3"]} initialIndex={1}>
+        <App>
+          <MainInfo
+            data={data}
+            name={name}
+            description={description}
+            types={types}
+            pokemonId={pokemonId}
+          />
+        </App>
+      </MemoryRouter>
     </Provider>
   );
 });

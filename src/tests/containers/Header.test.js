@@ -2,18 +2,15 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import { ContextProvider } from "../../Context";
+import Header from "../../common/Header";
 import store from "../../redux";
-import Header from "../../containers/Header";
 
 beforeEach(() => {
   render(
     <Provider store={store}>
-      <ContextProvider>
-        <Router>
-          <Header />{" "}
-        </Router>
-      </ContextProvider>
+      <Router>
+        <Header />
+      </Router>
     </Provider>
   );
 });

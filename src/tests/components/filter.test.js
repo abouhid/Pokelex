@@ -2,18 +2,15 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import { ContextProvider } from "../../Context";
 import store from "../../redux";
-import Filter from "../../components/Filter";
+import Filter from "../../common/Filter";
 
 beforeEach(() => {
   render(
     <Provider store={store}>
-      <ContextProvider>
-        <Router>
-          <Filter />
-        </Router>
-      </ContextProvider>
+      <Router>
+        <Filter />
+      </Router>
     </Provider>
   );
 });

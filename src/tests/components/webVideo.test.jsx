@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { ContextProvider } from "../../Context";
 
 import App from "../../App";
 import { Provider } from "react-redux";
@@ -22,9 +21,7 @@ const render2 = (component) => {
 
   ReactDOM.render(
     <Provider store={store}>
-      <ContextProvider>
-        <Router>{component}</Router>
-      </ContextProvider>
+      <Router>{component}</Router>
     </Provider>,
     root
   );

@@ -2,8 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 
 import { BrowserRouter as Router } from "react-router-dom";
-import PokeGrid from "../../containers/PokeGrid";
-import { ContextProvider } from "../../Context";
+import PokeGrid from "../../pages/MainPage/containers/PokeGrid";
 import store from "../../redux";
 
 beforeEach(() => {
@@ -65,11 +64,9 @@ beforeEach(() => {
   ];
   render(
     <Provider store={store}>
-      <ContextProvider>
-        <Router>
-          <PokeGrid data={data} />{" "}
-        </Router>
-      </ContextProvider>
+      <Router>
+        <PokeGrid data={data} />{" "}
+      </Router>
     </Provider>
   );
 });
