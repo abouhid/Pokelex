@@ -17,6 +17,7 @@ const Filter = () => {
     "Gen V",
     "Gen VI",
     "Gen VII",
+    "Gen VIII",
   ];
   const handleFilterChange = (e) => {
     const { value } = e.target;

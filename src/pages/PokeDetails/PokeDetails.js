@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-
 import MainInfo from "./components/MainInfo";
 import { getEvolution, getTypes } from "../../services/getFunctions";
 import pokeball from "../../images/pokeball.svg";
@@ -19,13 +18,14 @@ const PokeDetails = () => {
   let description;
   let name;
   let types;
+
   if (!loading) {
-    description = species.flavor_text_entries[17].flavor_text;
+    description = species.flavor_text_entries[0]?.flavor_text;
     types = getTypes(data);
     name = capitalize(data.name);
   }
 
-  useEffect(() => {
+  useMemo(() => {
     const getData = async () => {
       getEvolution(pokemonId, setSpecies, setEvolution, evArr, setData);
     };

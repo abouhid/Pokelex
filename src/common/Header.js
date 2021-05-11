@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import pokemon from "pokemon";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
-import { getGen } from "../services/getFunctions";
+import { getGen, getIds } from "../services/getFunctions";
 import logo from "../images/snorlax.png";
 import style from "../styles/image.module.css";
 import Filter from "./Filter";
@@ -12,24 +11,19 @@ import getData from "../redux/actions";
 import FetchData from "../services/FetchData";
 
 const Header = () => {
-  const [setUrl] = FetchData();
   const [query, setQuery] = useState("");
   const { data } = store.getState().dataFetchReducer;
-
+  const [setUrl] = FetchData();
   const dispatch = useDispatch();
   const [search, setSearch] = useState([]);
   const history = useHistory();
 
-  const allPokemonArr = pokemon.all();
-
   const handleChange = (e) => {
     e.preventDefault();
 
-    const filterArrName = allPokemonArr.filter((el) =>
-      el.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    const filterArrNum = filterArrName.map((el) => pokemon.getId(el));
-    setSearch(filterArrNum);
+    const filteredArr = getIds(e.target.value.toLowerCase());
+
+    setSearch(filteredArr);
     setQuery(e.target.value);
   };
 

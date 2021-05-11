@@ -14,7 +14,6 @@ import {
   getNum,
   getEvolution,
   getGen,
-  getName,
   getImg,
 } from "../../services/getFunctions";
 
