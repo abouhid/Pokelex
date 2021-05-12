@@ -4,4 +4,5 @@ const getData = (type, payload) => {
     payload,
   };
 };
+
 export default getData;

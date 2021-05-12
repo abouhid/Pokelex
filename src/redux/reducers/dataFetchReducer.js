@@ -19,6 +19,8 @@ const dataFetchReducer = (state = {}, action) => {
         isLoading: false,
         isError: true,
       };
+    case "CURRENT_PAGE":
+      return { ...state, page: action.payload };
     default:
       return (
         {
