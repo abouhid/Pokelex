@@ -7,6 +7,9 @@ import PageComponent from "./components/PageComponent";
 const MainPage = ({ data, filteredPokemon, isLoading, page }) => {
   const totalPokemon =
     filteredPokemon === "All" ? data.length : filteredPokemon.length;
+  const PAGE_LIMIT = 12;
+  const PAGE_NEIGHBOURS = 2;
+  const totalPages = Math.ceil(totalPokemon / PAGE_LIMIT);
 
   return (
     <>
@@ -20,11 +23,12 @@ const MainPage = ({ data, filteredPokemon, isLoading, page }) => {
         </div>
       ) : (
         <>
-          {console.log("xxx", totalPokemon)}
+          {console.log("totalPokemon", totalPokemon)}
           <PageComponent
+            totalPages={totalPages}
             totalRecords={totalPokemon}
-            pageLimit={12}
-            pageNeighbours={2}
+            pageLimit={PAGE_LIMIT}
+            pageNeighbours={PAGE_NEIGHBOURS}
           />
           <PokeGrid data={data} filteredPokemon={filteredPokemon} page={page} />
         </>
