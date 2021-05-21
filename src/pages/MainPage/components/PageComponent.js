@@ -25,22 +25,27 @@ class PageComponent extends Component {
   constructor(props) {
     super(props);
     this.pageLimit = props.pageLimit;
-    this.totalRecords = props.totalRecords;
+    // this.state.totalRecords = props.totalRecords;
 
     console.log("aaa", this.totalRecords);
     // pageNeighbours can be: 0, 1 or 2
     this.pageNeighbours = props.pageNeighbours;
 
-    this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
+    // this.state.totalPages = props.totalPages;
 
-    this.state = { currentPage: 1 };
+    this.state = {
+      currentPage: 1,
+      totalPages: props.totalPages,
+      totalRecords: props.totalRecords,
+    };
   }
-  componentWillReceiveProps({ totalRecords }) {
-    this.setState({ ...this.state, totalRecords });
+  componentWillReceiveProps({ totalRecords, totalPages }) {
+    this.setState({ ...this.state, totalRecords, totalPages });
+    console.log(this.state.totalPages, this.state.totalRecords);
   }
 
   fetchPageNumbers = () => {
-    const totalPages = this.totalPages;
+    const totalPages = this.state.totalPages;
     const currentPage = this.state.currentPage;
     const pageNeighbours = this.pageNeighbours;
 
@@ -85,7 +90,7 @@ class PageComponent extends Component {
     return range(1, totalPages);
   };
   render() {
-    if (!this.totalRecords || this.totalPages === 1) return null;
+    if (!this.state.totalRecords || this.state.totalPages === 1) return null;
 
     const { currentPage } = this.state;
     const pages = this.fetchPageNumbers();
@@ -165,10 +170,10 @@ class PageComponent extends Component {
     this.onPageChanged = (f) => f;
     store.dispatch({ type: "CURRENT_PAGE", payload: page });
 
-    const currentPage = Math.max(0, Math.min(page, this.totalPages));
+    const currentPage = Math.max(0, Math.min(page, this.state.totalPages));
     const paginationData = {
       currentPage,
-      totalPages: this.totalPages,
+      totalPages: this.state.totalPages,
       pageLimit: this.pageLimit,
       totalRecords: this.totalRecords,
     };
