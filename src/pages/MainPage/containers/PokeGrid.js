@@ -4,15 +4,13 @@ import Pokemon from "../components/Pokemon";
 import styles from "../../../styles/grid.module.css";
 import pokeball from "../../../images/pokeball.svg";
 
-const PokeGrid = ({ data, filteredPokemon, page }) => {
-  const pageLimit = 12;
+const PokeGrid = ({ data, filteredPokemon, page, pageLimit }) => {
   const filteredData =
     filteredPokemon === "All"
       ? data
       : data.filter((el) =>
           filteredPokemon.map((pokemon) => pokemon.id).includes(el.id)
         );
-
   return (
     <div className={styles.pokegrid} data-testid="poke-grid">
       {data ? (
@@ -41,12 +39,14 @@ const PokeGrid = ({ data, filteredPokemon, page }) => {
 PokeGrid.defaultProps = {
   data: [],
   page: 1,
+  pageLimit: 16,
 };
 
 PokeGrid.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.string })),
   filteredPokemon: PropTypes.arrayOf(PropTypes.string).isRequired,
   page: PropTypes.number,
+  pageLimit: PropTypes.number,
 };
 
 export default PokeGrid;

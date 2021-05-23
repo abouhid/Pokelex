@@ -25,9 +25,8 @@ class PageComponent extends Component {
   constructor(props) {
     super(props);
     this.pageLimit = props.pageLimit;
-    // this.state.totalRecords = props.totalRecords;
+    this.setPage = props.setPage;
 
-    console.log("aaa", this.totalRecords);
     // pageNeighbours can be: 0, 1 or 2
     this.pageNeighbours = props.pageNeighbours;
 
@@ -41,7 +40,6 @@ class PageComponent extends Component {
   }
   componentWillReceiveProps({ totalRecords, totalPages }) {
     this.setState({ ...this.state, totalRecords, totalPages });
-    console.log(this.state.totalPages, this.state.totalRecords);
   }
 
   fetchPageNumbers = () => {
@@ -92,7 +90,7 @@ class PageComponent extends Component {
   render() {
     if (!this.state.totalRecords || this.state.totalPages === 1) return null;
 
-    const { currentPage } = this.state;
+    const { currentPage } = 4;
     const pages = this.fetchPageNumbers();
 
     return (
@@ -156,28 +154,30 @@ class PageComponent extends Component {
     this.gotoPage(1);
   }
 
-  onPageChanged = (data) => {
-    const { currentPage, totalPages, pageLimit } = data;
+  // onPageChanged = (data) => {
+  //   const { currentPage, totalPages, pageLimit } = data;
 
-    axios
-      .get(`/api/countries?page=${currentPage}&limit=${pageLimit}`)
-      .then((response) => {
-        const currentPokemon = response.data.countries;
-        setState({ currentPage, currentPokemon, totalPages });
-      });
-  };
+  //   axios
+  //     .get(`/api/countries?page=${currentPage}&limit=${pageLimit}`)
+  //     .then((response) => {
+  //       const currentPokemon = response.data.countries;
+  //       setState({ currentPage, currentPokemon, totalPages });
+  //     });
+  // };
   gotoPage = (page) => {
     this.onPageChanged = (f) => f;
-    store.dispatch({ type: "CURRENT_PAGE", payload: page });
-
+    // store.dispatch({ type: "CURRENT_PAGE", payload: page });
     const currentPage = Math.max(0, Math.min(page, this.state.totalPages));
     const paginationData = {
       currentPage,
       totalPages: this.state.totalPages,
       pageLimit: this.pageLimit,
-      totalRecords: this.totalRecords,
+      totalRecords: this.state.totalRecords,
     };
+
     this.setState({ currentPage }, () => this.onPageChanged(paginationData));
+
+    this.setPage(currentPage);
   };
 
   handleClick = (page) => (evt) => {
