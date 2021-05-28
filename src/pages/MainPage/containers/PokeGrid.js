@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
+import { string, shape, arrayOf, oneOfType, number } from "prop-types";
 import Pokemon from "../components/Pokemon";
 import styles from "../../../styles/grid.module.css";
 import pokeball from "../../../images/pokeball.svg";
@@ -43,10 +43,11 @@ PokeGrid.defaultProps = {
 };
 
 PokeGrid.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.string })),
-  filteredPokemon: PropTypes.arrayOf(PropTypes.string).isRequired,
-  page: PropTypes.number,
-  pageLimit: PropTypes.number,
+  data: arrayOf(shape({ data: string })),
+  filteredPokemon: oneOfType([string, shape({}), arrayOf(shape({}))])
+    .isRequired,
+  page: number,
+  pageLimit: number,
 };
 
 export default PokeGrid;

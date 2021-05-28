@@ -90,9 +90,7 @@ class PageComponent extends Component {
   render() {
     if (!this.state.totalRecords || this.state.totalPages === 1) return null;
 
-    const { currentPage } = 4;
     const pages = this.fetchPageNumbers();
-
     return (
       <>
         <nav aria-label="Countries Pagination">
@@ -132,7 +130,7 @@ class PageComponent extends Component {
                 <li
                   key={index}
                   className={`page-item${
-                    currentPage === page ? " active" : ""
+                    this.state.currentPage === page ? " active" : ""
                   }`}
                 >
                   <a
@@ -165,19 +163,17 @@ class PageComponent extends Component {
   //     });
   // };
   gotoPage = (page) => {
-    this.onPageChanged = (f) => f;
+    // this.onPageChanged = (f) => f;
     // store.dispatch({ type: "CURRENT_PAGE", payload: page });
-    const currentPage = Math.max(0, Math.min(page, this.state.totalPages));
+    // const currentPage = Math.max(0, Math.min(page, this.state.totalPages));
     const paginationData = {
-      currentPage,
+      currentPage: page,
       totalPages: this.state.totalPages,
       pageLimit: this.pageLimit,
       totalRecords: this.state.totalRecords,
     };
-
-    this.setState({ currentPage }, () => this.onPageChanged(paginationData));
-
-    this.setPage(currentPage);
+    this.setState(paginationData);
+    this.setPage(page);
   };
 
   handleClick = (page) => (evt) => {
