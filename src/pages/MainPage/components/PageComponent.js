@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-/*eslint-disable */
-import PropTypes from "prop-types";
+import { number, func } from "prop-types";
+
 const LEFT_PAGE = "LEFT";
 const RIGHT_PAGE = "RIGHT";
 
-const PageComponentF = ({
+const PageComponent = ({
   totalPages,
   totalRecords,
   pageLimit,
@@ -14,9 +14,9 @@ const PageComponentF = ({
 }) => {
   const [pagination, setPagination] = useState({
     currentPage: 1,
-    totalPages: totalPages,
-    pageLimit: pageLimit,
-    totalRecords: totalRecords,
+    totalPages,
+    pageLimit,
+    totalRecords,
   });
 
   const gotoPage = (page) => {
@@ -96,11 +96,12 @@ const PageComponentF = ({
     <>
       <nav aria-label="Countries Pagination">
         <ul className="pagination">
-          {pages.map((page, index) => {
+          {pages.map((page) => {
             if (page === LEFT_PAGE)
               return (
-                <li key={index} className="page-item">
-                  <a
+                <li key={page} className="page-item">
+                  <button
+                    type="button"
                     className="page-link"
                     href="#"
                     aria-label="Previous"
@@ -108,14 +109,15 @@ const PageComponentF = ({
                   >
                     <span aria-hidden="true">&laquo;</span>
                     <span className="sr-only">Previous</span>
-                  </a>
+                  </button>
                 </li>
               );
 
             if (page === RIGHT_PAGE)
               return (
-                <li key={index} className="page-item">
-                  <a
+                <li key={page} className="page-item">
+                  <button
+                    type="button"
                     className="page-link"
                     href="#"
                     aria-label="Next"
@@ -123,18 +125,23 @@ const PageComponentF = ({
                   >
                     <span aria-hidden="true">&raquo;</span>
                     <span className="sr-only">Next</span>
-                  </a>
+                  </button>
                 </li>
               );
 
             return (
               <li
-                key={index}
+                key={page}
                 className={`page-item${currentPage === page ? " active" : ""}`}
               >
-                <a className="page-link" href="#" onClick={handleClick(page)}>
+                <button
+                  type="button"
+                  className="page-link"
+                  href="#"
+                  onClick={handleClick(page)}
+                >
                   {page}
-                </a>
+                </button>
               </li>
             );
           })}
@@ -144,4 +151,13 @@ const PageComponentF = ({
   );
 };
 
-export default PageComponentF;
+PageComponent.propTypes = {
+  totalPages: number.isRequired,
+  totalRecords: number.isRequired,
+  pageLimit: number.isRequired,
+  pageNeighbours: number.isRequired,
+  setPage: func.isRequired,
+  currentPage: number.isRequired,
+};
+
+export default PageComponent;
