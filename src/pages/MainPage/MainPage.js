@@ -12,7 +12,6 @@ const MainPage = ({ data, filteredPokemon, isLoading }) => {
   const PAGE_LIMIT = 16;
   const PAGE_NEIGHBOURS = 2;
   const totalPages = Math.ceil(totalPokemon / PAGE_LIMIT);
-  console.log(filteredPokemon);
   return (
     <>
       {isLoading ? (
@@ -31,6 +30,7 @@ const MainPage = ({ data, filteredPokemon, isLoading }) => {
             pageLimit={PAGE_LIMIT}
             pageNeighbours={PAGE_NEIGHBOURS}
             setPage={setPage}
+            currentPage={page}
           />
           <PokeGrid
             data={data}

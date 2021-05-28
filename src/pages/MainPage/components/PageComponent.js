@@ -1,8 +1,6 @@
 /*eslint-disable */
 import React, { Component } from "react";
-import store from "../../../redux";
 import PropTypes from "prop-types";
-import dataFetchReducer from "../../../redux/reducers/dataFetchReducer";
 const LEFT_PAGE = "LEFT";
 const RIGHT_PAGE = "RIGHT";
 
@@ -33,13 +31,13 @@ class PageComponent extends Component {
     // this.state.totalPages = props.totalPages;
 
     this.state = {
-      currentPage: 1,
+      currentPage: props.currentPage,
       totalPages: props.totalPages,
       totalRecords: props.totalRecords,
     };
   }
-  componentWillReceiveProps({ totalRecords, totalPages }) {
-    this.setState({ ...this.state, totalRecords, totalPages });
+  componentWillReceiveProps({ totalRecords, totalPages, currentPage }) {
+    this.setState({ ...this.state, totalRecords, totalPages, currentPage });
   }
 
   fetchPageNumbers = () => {
@@ -89,7 +87,6 @@ class PageComponent extends Component {
   };
   render() {
     if (!this.state.totalRecords || this.state.totalPages === 1) return null;
-
     const pages = this.fetchPageNumbers();
     return (
       <>
@@ -152,20 +149,7 @@ class PageComponent extends Component {
     this.gotoPage(1);
   }
 
-  // onPageChanged = (data) => {
-  //   const { currentPage, totalPages, pageLimit } = data;
-
-  //   axios
-  //     .get(`/api/countries?page=${currentPage}&limit=${pageLimit}`)
-  //     .then((response) => {
-  //       const currentPokemon = response.data.countries;
-  //       setState({ currentPage, currentPokemon, totalPages });
-  //     });
-  // };
   gotoPage = (page) => {
-    // this.onPageChanged = (f) => f;
-    // store.dispatch({ type: "CURRENT_PAGE", payload: page });
-    // const currentPage = Math.max(0, Math.min(page, this.state.totalPages));
     const paginationData = {
       currentPage: page,
       totalPages: this.state.totalPages,
