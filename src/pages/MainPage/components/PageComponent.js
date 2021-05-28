@@ -75,20 +75,6 @@ const PageComponent = ({
 
     return range(1, totalPages);
   };
-  const handleClick = (page) => (evt) => {
-    evt.preventDefault();
-    gotoPage(page);
-  };
-
-  const handleMoveLeft = (evt) => {
-    evt.preventDefault();
-    gotoPage(pagination.currentPage - pageNeighbours * 2 - 1);
-  };
-
-  const handleMoveRight = (evt) => {
-    evt.preventDefault();
-    gotoPage(pagination.currentPage + pageNeighbours * 2 + 1);
-  };
 
   if (!totalRecords || totalPages === 1) return null;
   const pages = fetchPageNumbers();
@@ -105,7 +91,9 @@ const PageComponent = ({
                     className="page-link"
                     href="#"
                     aria-label="Previous"
-                    onClick={handleMoveLeft}
+                    onClick={() =>
+                      gotoPage(pagination.currentPage - pageNeighbours * 2 - 1)
+                    }
                   >
                     <span aria-hidden="true">&laquo;</span>
                     <span className="sr-only">Previous</span>
@@ -121,7 +109,9 @@ const PageComponent = ({
                     className="page-link"
                     href="#"
                     aria-label="Next"
-                    onClick={handleMoveRight}
+                    onClick={() =>
+                      gotoPage(pagination.currentPage + pageNeighbours * 2 + 1)
+                    }
                   >
                     <span aria-hidden="true">&raquo;</span>
                     <span className="sr-only">Next</span>
@@ -138,7 +128,7 @@ const PageComponent = ({
                   type="button"
                   className="page-link"
                   href="#"
-                  onClick={handleClick(page)}
+                  onClick={() => gotoPage(page)}
                 >
                   {page}
                 </button>
