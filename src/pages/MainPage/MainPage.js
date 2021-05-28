@@ -1,10 +1,10 @@
-/*eslint-disable */
 import { useState } from "react";
 import { connect } from "react-redux";
 import { string, shape, arrayOf, oneOfType, bool } from "prop-types";
 import PokeGrid from "./containers/PokeGrid";
 import pokeball from "../../images/pokeball.svg";
 import PageComponent from "./components/PageComponent";
+
 const MainPage = ({ data, filteredPokemon, isLoading }) => {
   const [page, setPage] = useState(1);
   const totalPokemon =
