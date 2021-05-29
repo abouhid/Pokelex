@@ -1,26 +1,27 @@
-import React from "react";
-
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Fragment } from "react";
+import { string, shape, arrayOf, oneOfType, number } from "prop-types";
 import Pokemon from "../components/Pokemon";
 import styles from "../../../styles/grid.module.css";
 import pokeball from "../../../images/pokeball.svg";
 
-const PokeGrid = ({ data, filteredPokemon }) => {
+const PokeGrid = ({ data, filteredPokemon, page, pageLimit }) => {
   const filteredData =
     filteredPokemon === "All"
       ? data
       : data.filter((el) =>
           filteredPokemon.map((pokemon) => pokemon.id).includes(el.id)
         );
-
   return (
     <div className={styles.pokegrid} data-testid="poke-grid">
       {data ? (
         <>
-          {filteredData.map((pokemon) => (
-            <Pokemon key={pokemon.id} data={pokemon} />
-          ))}
+          {filteredData.map((pokemon, i) =>
+            Math.floor(i / pageLimit) === page - 1 ? (
+              <Pokemon key={pokemon.id} data={pokemon} />
+            ) : (
+              <Fragment key={pokemon.id} />
+            )
+          )}
         </>
       ) : (
         <div className="loader-container">
@@ -37,16 +38,16 @@ const PokeGrid = ({ data, filteredPokemon }) => {
 
 PokeGrid.defaultProps = {
   data: [],
+  page: 1,
+  pageLimit: 16,
 };
 
 PokeGrid.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({ data: PropTypes.string })),
-  filteredPokemon: PropTypes.string.isRequired,
+  data: arrayOf(shape({ data: string })),
+  filteredPokemon: oneOfType([string, shape({}), arrayOf(shape({}))])
+    .isRequired,
+  page: number,
+  pageLimit: number,
 };
 
-const mapStateToProps = ({ dataFetchReducer, genReducer }) => ({
-  data: dataFetchReducer.data,
-  filteredPokemon: genReducer,
-});
-
-export default connect(mapStateToProps, null)(PokeGrid);
+export default PokeGrid;

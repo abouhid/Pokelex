@@ -1,10 +1,17 @@
+import { useState } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-
+import { string, shape, arrayOf, oneOfType, bool } from "prop-types";
 import PokeGrid from "./containers/PokeGrid";
 import pokeball from "../../images/pokeball.svg";
+import PageComponent from "./components/PageComponent";
 
-const MainPage = ({ isLoading }) => {
+const MainPage = ({ data, filteredPokemon, isLoading }) => {
+  const [page, setPage] = useState(1);
+  const totalPokemon =
+    filteredPokemon === "All" ? data.length : filteredPokemon.length;
+  const PAGE_LIMIT = 16;
+  const PAGE_NEIGHBOURS = 2;
+  const totalPages = Math.ceil(totalPokemon / PAGE_LIMIT);
   return (
     <>
       {isLoading ? (
@@ -17,17 +24,41 @@ const MainPage = ({ isLoading }) => {
         </div>
       ) : (
         <>
-          <PokeGrid />
+          <PageComponent
+            totalPages={totalPages}
+            totalRecords={totalPokemon}
+            pageLimit={PAGE_LIMIT}
+            pageNeighbours={PAGE_NEIGHBOURS}
+            setPage={setPage}
+            currentPage={page}
+          />
+          <PokeGrid
+            data={data}
+            filteredPokemon={filteredPokemon}
+            page={page}
+            pageLimit={PAGE_LIMIT}
+          />
         </>
       )}
     </>
   );
 };
-MainPage.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+
+MainPage.defaultProps = {
+  data: [],
 };
-const mapStateToProps = ({ dataFetchReducer }) => ({
+
+MainPage.propTypes = {
+  isLoading: bool.isRequired,
+  data: arrayOf(shape({ data: string })),
+  filteredPokemon: oneOfType([string, shape({}), arrayOf(shape({}))])
+    .isRequired,
+};
+
+const mapStateToProps = ({ dataFetchReducer, genReducer }) => ({
   isLoading: dataFetchReducer.isLoading,
+  data: dataFetchReducer.data,
+  filteredPokemon: genReducer,
 });
 
 export default connect(mapStateToProps, null)(MainPage);

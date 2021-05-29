@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-const FetchData = (initialArr = [...Array(31).keys()].slice(1)) => {
+const FetchData = (initialArr = [...Array(899).keys()].slice(1)) => {
   const [url, setUrl] = useState(initialArr);
   const dispatch = useDispatch();
   const fetchFunc = async () => {
